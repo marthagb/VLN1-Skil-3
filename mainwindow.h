@@ -15,6 +15,23 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
+
+private slots:
+    void on_addScientistButton_clicked();
+
+    void on_deleteScientistButton_clicked();
+
+    void on_updateScientistButton_clicked();
+
+    void on_addScientistsFromFileButton_clicked();
+
+    void on_saveScientistsToFileButton_clicked();
+
+    void on_ascendingRadioButton_clicked();
+
+    void on_descendingRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -21,7 +21,10 @@ SOURCES += main.cpp\
     association.cpp \
     validation.cpp \
     datalayer.cpp \
-    servicelayer.cpp
+    servicelayer.cpp \
+    addscientistdialog.cpp \
+    addcomputerdialog.cpp \
+    addassociationdialog.cpp
 
 HEADERS  += mainwindow.h \
     persons.h \
@@ -29,6 +32,12 @@ HEADERS  += mainwindow.h \
     association.h \
     validation.h \
     datalayer.h \
-    servicelayer.h
+    servicelayer.h \
+    addscientistdialog.h \
+    addcomputerdialog.h \
+    addassociationdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addscientistdialog.ui \
+    addcomputerdialog.ui \
+    addassociationdialog.ui

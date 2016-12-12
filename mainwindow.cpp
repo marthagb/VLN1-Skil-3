@@ -12,3 +12,38 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_addScientistButton_clicked()
+{
+
+}
+
+void MainWindow::on_deleteScientistButton_clicked()
+{
+
+}
+
+void MainWindow::on_updateScientistButton_clicked()
+{
+
+}
+
+void MainWindow::on_addScientistsFromFileButton_clicked()
+{
+
+}
+
+void MainWindow::on_saveScientistsToFileButton_clicked()
+{
+
+}
+
+void MainWindow::on_ascendingRadioButton_clicked()
+{
+
+}
+
+void MainWindow::on_descendingRadioButton_clicked()
+{
+
+}
