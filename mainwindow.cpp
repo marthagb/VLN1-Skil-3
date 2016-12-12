@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "addscientistdialog.h"
+#include "addcomputerdialog.h"
+#include "addassociationdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,7 +18,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addScientistButton_clicked()
 {
-
+    addScientistDialog addScientistButton;
+    addScientistButton.setModal(true);
+    addScientistButton.exec();
 }
 
 void MainWindow::on_deleteScientistButton_clicked()
@@ -46,4 +51,19 @@ void MainWindow::on_ascendingRadioButton_clicked()
 void MainWindow::on_descendingRadioButton_clicked()
 {
 
+}
+
+void MainWindow::on_addComputerButton_clicked()
+{
+    addComputerDialog addComputerButton;
+    addComputerButton.setModal(true);
+    addComputerButton.exec();
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    addComputerDialog addComputerButton;
+    addComputerButton.setModal(true);
+    addComputerButton.exec();
 }

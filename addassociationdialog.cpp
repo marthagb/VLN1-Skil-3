@@ -12,3 +12,8 @@ addAssociationDialog::~addAssociationDialog()
 {
     delete ui;
 }
+
+void addAssociationDialog::on_cancelAddAssociationButton_clicked()
+{
+    this->close();
+}
