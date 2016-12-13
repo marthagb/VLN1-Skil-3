@@ -15,6 +15,9 @@ public:
     explicit addScientistDialog(QWidget *parent = 0);
     ~addScientistDialog();
 
+private slots:
+    void on_cancelScientistAddButton_clicked();
+
 private:
     Ui::addScientistDialog *ui;
 };

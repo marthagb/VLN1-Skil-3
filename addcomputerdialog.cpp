@@ -12,3 +12,8 @@ addComputerDialog::~addComputerDialog()
 {
     delete ui;
 }
+
+void addComputerDialog::on_cancelComputerAddButton_clicked()
+{
+    this->close();
+}

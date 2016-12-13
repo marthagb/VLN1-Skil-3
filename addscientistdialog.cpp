@@ -12,3 +12,8 @@ addScientistDialog::~addScientistDialog()
 {
     delete ui;
 }
+
+void addScientistDialog::on_cancelScientistAddButton_clicked()
+{
+    this->close();
+}

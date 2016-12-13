@@ -15,6 +15,9 @@ public:
     explicit addAssociationDialog(QWidget *parent = 0);
     ~addAssociationDialog();
 
+private slots:
+    void on_cancelAddAssociationButton_clicked();
+
 private:
     Ui::addAssociationDialog *ui;
 };
