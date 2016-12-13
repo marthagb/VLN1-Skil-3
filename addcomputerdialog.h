@@ -16,7 +16,6 @@ public:
     ~addComputerDialog();
 
 private slots:
-    void on_cancelComputerAddButton_clicked();
 
     void on_cancelAddComputerButton_clicked();
 

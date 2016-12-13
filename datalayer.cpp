@@ -9,16 +9,28 @@ DataLayer::DataLayer()
 
 vector<Persons> DataLayer::getScientistVector()
 {
+    if (scientists.size() == 0)
+    {
+        readScientists(1,1);
+    }
     return scientists;
 }
 
 vector<Computer> DataLayer::getComputerVector()
 {
+    if (computers.size() == 0)
+    {
+        readComputers(1,1);
+    }
     return computers;
 }
 
 vector<Association> DataLayer::getAssociationVector()
 {
+    if (associations.size() == 0)
+    {
+        readAssociations(1,1);
+    }
     return associations;
 }
 
