@@ -74,6 +74,7 @@ private:
     void showAssociations(vector<Association> A);
     void addNewScientist(const Persons& p);
     void addNewComputer(const Computer& c);
+    void addNewAssociation(const string sN, const string cN);
 
 };
 

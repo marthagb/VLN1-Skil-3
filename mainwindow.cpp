@@ -3,6 +3,7 @@
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
 #include "addassociationdialog.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,6 +32,7 @@ void MainWindow::on_addScientistButton_clicked()
     if (addScientist.getAdd())
     {
         addNewScientist(addScientist.newScientist());
+        showScientists(serve.listScientists());
     }
 }
 
@@ -41,7 +43,19 @@ void MainWindow::addNewScientist(const Persons &p)
 
 void MainWindow::on_deleteScientistButton_clicked()
 {
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist?",
+                                                                QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        int r = ui->scientistTable->currentRow();
+        string n = ui->scientistTable->item(r, 0)->text().toStdString();
+        serve.deleteScientist(n);
+        showScientists(serve.listScientists());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
+    }
 }
 
 void MainWindow::on_updateScientistButton_clicked()
@@ -77,6 +91,7 @@ void MainWindow::on_addComputerButton_clicked()
     if (addComputer.getAdd())
     {
         addNewComputer(addComputer.newComputer());
+        showComputers(serve.listComputers());
     }
 }
 
@@ -87,7 +102,19 @@ void MainWindow::addNewComputer(const Computer &c)
 
 void MainWindow::on_deleteComputerButton_clicked()
 {
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer?",
+                                                                QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        int r = ui->computersTable->currentRow();
+        string n =ui->computersTable->item(r, 0)->text().toStdString();
+        serve.deleteComputer(n);
+        showComputers(serve.listComputers());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
+    }
 }
 
 void MainWindow::on_updateComputerButton_clicked()
@@ -107,14 +134,42 @@ void MainWindow::on_addComputersFromFileButton_clicked()
 
 void MainWindow::on_addAssociationButton_clicked()
 {
-    addAssociationDialog addAssociationButton;
-    addAssociationButton.setModal(true);
-    addAssociationButton.exec();
+    addAssociationDialog addAssociation;
+    addAssociation.setModal(true);
+    addAssociation.exec();
+    if (addAssociation.getAdd())
+    {
+        addNewAssociation(addAssociation.newAssociation()[0], addAssociation.newAssociation()[1]);
+        showAssociations(serve.listAssociations());
+    }
+}
+
+void MainWindow::addNewAssociation(const string sN, const string cN)
+{
+    serve.sortScientists(1,1);
+    Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
+    serve.sortComputers(1,1);
+    Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
+    Association a(s, c);
+    serve.addAssociation(a);
 }
 
 void MainWindow::on_deleteAssociationButton_clicked()
 {
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
+                                                                QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        int r = ui->associationsTable->currentRow();
+        string sN = ui->associationsTable->item(r, 0)->text().toStdString();
+        string cN = ui->associationsTable->item(r, 1)->text().toStdString();
+        serve.deleteAssociation(sN, cN);
+        showAssociations(serve.listAssociations());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
+    }
 }
 
 void MainWindow::on_updateAssociationButton_clicked()
