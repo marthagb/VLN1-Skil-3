@@ -15,7 +15,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+///////////%%%%%%
 void MainWindow::on_addScientistButton_clicked()
 {
     addScientistDialog addScientistButton;
