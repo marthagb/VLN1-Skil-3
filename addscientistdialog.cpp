@@ -17,3 +17,8 @@ void addScientistDialog::on_cancelAddScientistButton_clicked()
 {
     this->close();
 }
+
+void addScientistDialog::on_addScientistButton_clicked()
+{
+
+}

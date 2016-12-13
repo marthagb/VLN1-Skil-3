@@ -18,6 +18,8 @@ public:
 private slots:
     void on_cancelAddAssociationButton_clicked();
 
+    void on_addAssociationButton_clicked();
+
 private:
     Ui::addAssociationDialog *ui;
 };

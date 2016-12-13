@@ -18,6 +18,8 @@ public:
 private slots:
     void on_cancelAddScientistButton_clicked();
 
+    void on_addScientistButton_clicked();
+
 private:
     Ui::addScientistDialog *ui;
 };

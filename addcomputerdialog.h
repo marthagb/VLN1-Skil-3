@@ -19,6 +19,8 @@ private slots:
 
     void on_cancelAddComputerButton_clicked();
 
+    void on_addComputerButton_clicked();
+
 private:
     Ui::addComputerDialog *ui;
 };

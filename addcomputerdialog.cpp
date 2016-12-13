@@ -17,3 +17,8 @@ void addComputerDialog::on_cancelAddComputerButton_clicked()
 {
     this->close();
 }
+
+void addComputerDialog::on_addComputerButton_clicked()
+{
+
+}
