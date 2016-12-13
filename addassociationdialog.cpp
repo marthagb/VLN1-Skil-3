@@ -17,3 +17,8 @@ void addAssociationDialog::on_cancelAddAssociationButton_clicked()
 {
     this->close();
 }
+
+void addAssociationDialog::on_addAssociationButton_clicked()
+{
+
+}

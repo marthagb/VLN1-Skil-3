@@ -61,6 +61,8 @@ private slots:
 
     void on_actionAdd_Association_triggered();
 
+    void on_actionExit_Program_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -229,3 +229,8 @@ void MainWindow::on_actionAdd_Association_triggered()
 {
     on_addAssociationButton_clicked();
 }
+
+void MainWindow::on_actionExit_Program_triggered()
+{
+    close();
+}

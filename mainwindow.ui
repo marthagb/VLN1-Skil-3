@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
-    <height>611</height>
+    <width>832</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>711</width>
+      <width>841</width>
       <height>571</height>
      </rect>
     </property>
@@ -44,12 +44,15 @@
        <rect>
         <x>30</x>
         <y>120</y>
-        <width>641</width>
+        <width>761</width>
         <height>331</height>
        </rect>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustIgnored</enum>
@@ -57,9 +60,21 @@
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
+      <property name="textElideMode">
+       <enum>Qt::ElideMiddle</enum>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
       <column>
        <property name="text">
         <string>Name</string>
@@ -217,9 +232,9 @@
      <widget class="QTableWidget" name="computersTable">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>120</y>
-        <width>651</width>
+        <width>761</width>
         <height>331</height>
        </rect>
       </property>
@@ -259,8 +274,8 @@
      <widget class="QPushButton" name="addComputerButton">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>480</y>
+        <x>30</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -272,8 +287,8 @@
      <widget class="QPushButton" name="deleteComputerButton">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>480</y>
+        <x>150</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -285,8 +300,8 @@
      <widget class="QPushButton" name="updateComputerButton">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>480</y>
+        <x>270</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -298,8 +313,8 @@
      <widget class="QPushButton" name="saveComputersToFileButton">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>480</y>
+        <x>390</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -311,8 +326,8 @@
      <widget class="QPushButton" name="addComputersFromFileButton">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>480</y>
+        <x>510</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -382,10 +397,10 @@
      <widget class="QTableWidget" name="associationsTable">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>120</y>
-        <width>671</width>
-        <height>341</height>
+        <width>761</width>
+        <height>331</height>
        </rect>
       </property>
       <property name="sizeAdjustPolicy">
@@ -426,8 +441,8 @@
      <widget class="QPushButton" name="addAssociationButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>480</y>
+        <x>30</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -439,8 +454,8 @@
      <widget class="QPushButton" name="deleteAssociationButton">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>480</y>
+        <x>150</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -452,8 +467,8 @@
      <widget class="QPushButton" name="updateAssociationButton">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>480</y>
+        <x>270</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -465,8 +480,8 @@
      <widget class="QPushButton" name="saveAssocToFileButton">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>480</y>
+        <x>390</x>
+        <y>470</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -480,7 +495,7 @@
        <rect>
         <x>30</x>
         <y>40</y>
-        <width>391</width>
+        <width>381</width>
         <height>31</height>
        </rect>
       </property>
@@ -501,7 +516,7 @@
      <widget class="QComboBox" name="searchAssocByBox">
       <property name="geometry">
        <rect>
-        <x>452</x>
+        <x>430</x>
         <y>40</y>
         <width>111</width>
         <height>31</height>
@@ -541,7 +556,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>703</width>
+     <width>832</width>
      <height>26</height>
     </rect>
    </property>
@@ -552,6 +567,7 @@
     <addaction name="actionAdd_Scientist"/>
     <addaction name="actionAdd_Computer"/>
     <addaction name="actionAdd_Association"/>
+    <addaction name="actionExit_Program"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -592,6 +608,11 @@
    </property>
    <property name="text">
     <string>Add Association</string>
+   </property>
+  </action>
+  <action name="actionExit_Program">
+   <property name="text">
+    <string>Exit Program</string>
    </property>
   </action>
  </widget>
