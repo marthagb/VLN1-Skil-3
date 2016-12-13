@@ -41,3 +41,6 @@ FORMS    += mainwindow.ui \
     addscientistdialog.ui \
     addcomputerdialog.ui \
     addassociationdialog.ui
+
+RESOURCES += \
+    resources.qrc

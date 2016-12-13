@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Images/addAssociation.png</file>
+        <file>Images/addComputer.jpg</file>
+        <file>Images/addScientist.jpg</file>
+    </qresource>
+</RCC>

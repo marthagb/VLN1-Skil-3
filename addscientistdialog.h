@@ -16,7 +16,7 @@ public:
     ~addScientistDialog();
 
 private slots:
-    void on_cancelScientistAddButton_clicked();
+    void on_cancelAddScientistButton_clicked();
 
 private:
     Ui::addScientistDialog *ui;

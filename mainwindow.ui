@@ -581,9 +581,18 @@
      <x>0</x>
      <y>0</y>
      <width>703</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAdd_Scientist"/>
+    <addaction name="actionAdd_Computer"/>
+    <addaction name="actionAdd_Association"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -592,8 +601,38 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionAdd_Scientist"/>
+   <addaction name="actionAdd_Computer"/>
+   <addaction name="actionAdd_Association"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAdd_Scientist">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Images/addScientist.jpg</normaloff>:/images/Images/addScientist.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Add Scientist</string>
+   </property>
+  </action>
+  <action name="actionAdd_Computer">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Images/addComputer.jpg</normaloff>:/images/Images/addComputer.jpg</iconset>
+   </property>
+   <property name="text">
+    <string>Add Computer</string>
+   </property>
+  </action>
+  <action name="actionAdd_Association">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Images/addAssociation.png</normaloff>:/images/Images/addAssociation.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add Association</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -628,6 +667,8 @@
   <tabstop>updateAssociationButton</tabstop>
   <tabstop>saveAssocToFileButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
