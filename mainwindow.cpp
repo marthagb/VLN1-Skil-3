@@ -55,7 +55,9 @@ void MainWindow::on_descendingRadioButton_clicked()
 
 void MainWindow::on_addComputerButton_clicked()
 {
-
+    addComputerDialog addComputerButton;
+    addComputerButton.setModal(true);
+    addComputerButton.exec();
 }
 
 void MainWindow::on_deleteComputerButton_clicked()
@@ -80,7 +82,9 @@ void MainWindow::on_addComputersFromFileButton_clicked()
 
 void MainWindow::on_addAssociationButton_clicked()
 {
-
+    addAssociationDialog addAssociationButton;
+    addAssociationButton.setModal(true);
+    addAssociationButton.exec();
 }
 
 void MainWindow::on_deleteAssociationButton_clicked()
@@ -95,15 +99,5 @@ void MainWindow::on_updateAssociationButton_clicked()
 
 void MainWindow::on_saveAssocToFileButton_clicked()
 {
-    addComputerDialog addComputerButton;
-    addComputerButton.setModal(true);
-    addComputerButton.exec();
 
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    addComputerDialog addComputerButton;
-    addComputerButton.setModal(true);
-    addComputerButton.exec();
 }
