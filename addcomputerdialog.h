@@ -2,6 +2,7 @@
 #define ADDCOMPUTERDIALOG_H
 
 #include <QDialog>
+#include "computer.h"
 
 namespace Ui {
 class addComputerDialog;
@@ -15,12 +16,20 @@ public:
     explicit addComputerDialog(QWidget *parent = 0);
     ~addComputerDialog();
 
+    Computer newComputer();
+
+    bool getAdd();
+
 private slots:
 
     void on_cancelAddComputerButton_clicked();
 
+    void on_addComputerButton_clicked();
+
 private:
     Ui::addComputerDialog *ui;
+
+    bool add;
 };
 
 #endif // ADDCOMPUTERDIALOG_H

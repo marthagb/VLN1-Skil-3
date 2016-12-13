@@ -25,9 +25,18 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_addScientistButton_clicked()
 {
-    addScientistDialog addScientistButton;
-    addScientistButton.setModal(true);
-    addScientistButton.exec();
+    addScientistDialog addScientist;
+    addScientist.setModal(true);
+    addScientist.exec();
+    if (addScientist.getAdd())
+    {
+        addNewScientist(addScientist.newScientist());
+    }
+}
+
+void MainWindow::addNewScientist(const Persons &p)
+{
+    serve.addScientist(p);
 }
 
 void MainWindow::on_deleteScientistButton_clicked()
@@ -62,9 +71,18 @@ void MainWindow::on_descendingRadioButton_clicked()
 
 void MainWindow::on_addComputerButton_clicked()
 {
-    addComputerDialog addComputerButton;
-    addComputerButton.setModal(true);
-    addComputerButton.exec();
+    addComputerDialog addComputer;
+    addComputer.setModal(true);
+    addComputer.exec();
+    if (addComputer.getAdd())
+    {
+        addNewComputer(addComputer.newComputer());
+    }
+}
+
+void MainWindow::addNewComputer(const Computer &c)
+{
+    serve.addComputer(c);
 }
 
 void MainWindow::on_deleteComputerButton_clicked()

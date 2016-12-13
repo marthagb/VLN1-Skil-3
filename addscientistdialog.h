@@ -2,6 +2,7 @@
 #define ADDSCIENTISTDIALOG_H
 
 #include <QDialog>
+#include "persons.h"
 
 namespace Ui {
 class addScientistDialog;
@@ -15,11 +16,19 @@ public:
     explicit addScientistDialog(QWidget *parent = 0);
     ~addScientistDialog();
 
+    Persons newScientist();
+
+    bool getAdd();
+
 private slots:
     void on_cancelAddScientistButton_clicked();
 
+    void on_addScientistButton_clicked();
+
 private:
     Ui::addScientistDialog *ui;
+
+    bool add;
 };
 
 #endif // ADDSCIENTISTDIALOG_H

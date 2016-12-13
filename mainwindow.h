@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "servicelayer.h"
+#include "validation.h"
 
 namespace Ui {
 class MainWindow;
@@ -62,11 +63,15 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     ServiceLayer serve;
+    validation valid;
 
     void showScientists(vector<Persons> S);
     void showComputers(vector<Computer> C);
     void showAssociations(vector<Association> A);
+    void addNewScientist(const Persons& p);
+    void addNewComputer(const Computer& c);
 
 };
 

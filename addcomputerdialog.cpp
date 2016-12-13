@@ -15,5 +15,27 @@ addComputerDialog::~addComputerDialog()
 
 void addComputerDialog::on_cancelAddComputerButton_clicked()
 {
+    add = false;
     this->close();
+}
+
+void addComputerDialog::on_addComputerButton_clicked()
+{
+    add = true;
+    this->close();
+}
+
+Computer addComputerDialog::newComputer()
+{
+    string n = ui->computerNameLineEdit->text().toStdString();
+    int yM = ui->yearMadeEdit->date().year();
+    string t = ui->computerTypeLineEdit->text().toStdString();
+    bool b = ui->computerBuiltComboBox->currentText().toStdString() == "Built";
+    Computer c(n, yM, t, b);
+    return c;
+}
+
+bool addComputerDialog::getAdd()
+{
+    return add;
 }

@@ -171,6 +171,19 @@
     <string>yyyy</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="diedCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>100</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
