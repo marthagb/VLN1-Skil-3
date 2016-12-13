@@ -196,3 +196,18 @@ void MainWindow::on_mainOptions_currentChanged(int index)
         showAssociations(serve.listAssociations());
     }
 }
+
+void MainWindow::on_actionAdd_Scientist_triggered()
+{
+    on_addScientistButton_clicked();
+}
+
+void MainWindow::on_actionAdd_Computer_triggered()
+{
+    on_addComputerButton_clicked();
+}
+
+void MainWindow::on_actionAdd_Association_triggered()
+{
+    on_addAssociationButton_clicked();
+}

@@ -54,6 +54,12 @@ private slots:
 
     void on_mainOptions_currentChanged(int index);
 
+    void on_actionAdd_Scientist_triggered();
+
+    void on_actionAdd_Computer_triggered();
+
+    void on_actionAdd_Association_triggered();
+
 private:
     Ui::MainWindow *ui;
     ServiceLayer serve;

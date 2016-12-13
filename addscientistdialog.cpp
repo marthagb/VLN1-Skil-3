@@ -13,7 +13,7 @@ addScientistDialog::~addScientistDialog()
     delete ui;
 }
 
-void addScientistDialog::on_cancelScientistAddButton_clicked()
+void addScientistDialog::on_cancelAddScientistButton_clicked()
 {
     this->close();
 }
