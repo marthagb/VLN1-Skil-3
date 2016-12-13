@@ -32,6 +32,24 @@ private slots:
 
     void on_descendingRadioButton_clicked();
 
+    void on_addComputerButton_clicked();
+
+    void on_deleteComputerButton_clicked();
+
+    void on_updateComputerButton_clicked();
+
+    void on_saveComputersToFileButton_clicked();
+
+    void on_addComputersFromFileButton_clicked();
+
+    void on_addAssociationButton_clicked();
+
+    void on_deleteAssociationButton_clicked();
+
+    void on_updateAssociationButton_clicked();
+
+    void on_saveAssocToFileButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

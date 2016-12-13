@@ -47,3 +47,48 @@ void MainWindow::on_descendingRadioButton_clicked()
 {
 
 }
+
+void MainWindow::on_addComputerButton_clicked()
+{
+
+}
+
+void MainWindow::on_deleteComputerButton_clicked()
+{
+
+}
+
+void MainWindow::on_updateComputerButton_clicked()
+{
+
+}
+
+void MainWindow::on_saveComputersToFileButton_clicked()
+{
+
+}
+
+void MainWindow::on_addComputersFromFileButton_clicked()
+{
+
+}
+
+void MainWindow::on_addAssociationButton_clicked()
+{
+
+}
+
+void MainWindow::on_deleteAssociationButton_clicked()
+{
+
+}
+
+void MainWindow::on_updateAssociationButton_clicked()
+{
+
+}
+
+void MainWindow::on_saveAssocToFileButton_clicked()
+{
+
+}

@@ -14,13 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="Scientists">
+   <widget class="QTabWidget" name="mainOptions">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>691</width>
-      <height>561</height>
+      <width>711</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="accessibleName">
@@ -436,7 +436,7 @@
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="addAssociationButton">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -449,7 +449,7 @@
        <string>Add</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="deleteAssociationButton">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -462,7 +462,7 @@
        <string>Delete</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="updateAssociationButton">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -475,7 +475,7 @@
        <string>Update</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="saveAssocToFileButton">
       <property name="geometry">
        <rect>
         <x>370</x>
