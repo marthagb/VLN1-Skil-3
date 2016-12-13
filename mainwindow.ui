@@ -29,6 +29,9 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <property name="elideMode">
+     <enum>Qt::ElideMiddle</enum>
+    </property>
     <widget class="QWidget" name="scientistsTab">
      <attribute name="title">
       <string>Scientists</string>
@@ -38,9 +41,18 @@
        <rect>
         <x>30</x>
         <y>120</y>
-        <width>631</width>
+        <width>641</width>
         <height>331</height>
        </rect>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
       </property>
       <column>
        <property name="text">
@@ -112,32 +124,6 @@
         <string>Year of Death</string>
        </property>
       </item>
-     </widget>
-     <widget class="QRadioButton" name="ascendingRadioButtonScientists">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ascending</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="descendingRadioButtonScientists">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Descending</string>
-      </property>
      </widget>
      <widget class="QPushButton" name="addScientistButton">
       <property name="geometry">
@@ -231,6 +217,15 @@
         <height>331</height>
        </rect>
       </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
       <column>
        <property name="text">
         <string>Name</string>
@@ -317,32 +312,6 @@
        <string>Add from file</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="ascendingRadioButtonComputers">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ascending</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="descendingRadioButtonComputers">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Descending</string>
-      </property>
-     </widget>
      <widget class="QComboBox" name="searchComputersByBox">
       <property name="geometry">
        <rect>
@@ -409,6 +378,15 @@
         <width>671</width>
         <height>341</height>
        </rect>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
       </property>
       <column>
        <property name="text">
@@ -546,32 +524,6 @@
        </property>
       </item>
      </widget>
-     <widget class="QRadioButton" name="ascendingRadioButtonAssoc">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ascending</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="descendingRadioButtonAssoc">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>90</y>
-        <width>95</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Descending</string>
-      </property>
-     </widget>
     </widget>
    </widget>
   </widget>
@@ -581,7 +533,7 @@
      <x>0</x>
      <y>0</y>
      <width>703</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -600,8 +552,6 @@
   <tabstop>mainOptions</tabstop>
   <tabstop>searchInputScientists</tabstop>
   <tabstop>searchScientistsByBox</tabstop>
-  <tabstop>ascendingRadioButtonScientists</tabstop>
-  <tabstop>descendingRadioButtonScientists</tabstop>
   <tabstop>scientistTable</tabstop>
   <tabstop>addScientistButton</tabstop>
   <tabstop>deleteScientistButton</tabstop>
@@ -610,8 +560,6 @@
   <tabstop>addScientistsFromFileButton</tabstop>
   <tabstop>searchInputComputers</tabstop>
   <tabstop>searchComputersByBox</tabstop>
-  <tabstop>ascendingRadioButtonComputers</tabstop>
-  <tabstop>descendingRadioButtonComputers</tabstop>
   <tabstop>computersTable</tabstop>
   <tabstop>addComputerButton</tabstop>
   <tabstop>deleteComputerButton</tabstop>
@@ -620,8 +568,6 @@
   <tabstop>addComputersFromFileButton</tabstop>
   <tabstop>searchInputAssociations</tabstop>
   <tabstop>searchAssocByBox</tabstop>
-  <tabstop>ascendingRadioButtonAssoc</tabstop>
-  <tabstop>descendingRadioButtonAssoc</tabstop>
   <tabstop>associationsTable</tabstop>
   <tabstop>addAssociationButton</tabstop>
   <tabstop>deleteAssociationButton</tabstop>

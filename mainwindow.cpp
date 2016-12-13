@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->mainOptions->setCurrentIndex(0);
     showScientists(serve.listScientists());
 }
 
