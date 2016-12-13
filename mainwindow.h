@@ -51,7 +51,6 @@ private slots:
     void on_saveAssocToFileButton_clicked();
 
     void on_pushButton_clicked();
->>>>>>> e3e1224d81deb496eb4f24695c0f777ba5f54ea1
 
 private:
     Ui::MainWindow *ui;

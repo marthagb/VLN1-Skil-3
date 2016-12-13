@@ -581,7 +581,7 @@
      <x>0</x>
      <y>0</y>
      <width>703</width>
-     <height>26</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
@@ -596,6 +596,38 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>mainOptions</tabstop>
+  <tabstop>searchInputScientists</tabstop>
+  <tabstop>searchScientistsByBox</tabstop>
+  <tabstop>ascendingRadioButtonScientists</tabstop>
+  <tabstop>descendingRadioButtonScientists</tabstop>
+  <tabstop>scientistTable</tabstop>
+  <tabstop>addScientistButton</tabstop>
+  <tabstop>deleteScientistButton</tabstop>
+  <tabstop>updateScientistButton</tabstop>
+  <tabstop>saveScientistsToFileButton</tabstop>
+  <tabstop>addScientistsFromFileButton</tabstop>
+  <tabstop>searchInputComputers</tabstop>
+  <tabstop>searchComputersByBox</tabstop>
+  <tabstop>ascendingRadioButtonComputers</tabstop>
+  <tabstop>descendingRadioButtonComputers</tabstop>
+  <tabstop>computersTable</tabstop>
+  <tabstop>addComputerButton</tabstop>
+  <tabstop>deleteComputerButton</tabstop>
+  <tabstop>updateComputerButton</tabstop>
+  <tabstop>saveComputersToFileButton</tabstop>
+  <tabstop>addComputersFromFileButton</tabstop>
+  <tabstop>searchInputAssociations</tabstop>
+  <tabstop>searchAssocByBox</tabstop>
+  <tabstop>ascendingRadioButtonAssoc</tabstop>
+  <tabstop>descendingRadioButtonAssoc</tabstop>
+  <tabstop>associationsTable</tabstop>
+  <tabstop>addAssociationButton</tabstop>
+  <tabstop>deleteAssociationButton</tabstop>
+  <tabstop>updateAssociationButton</tabstop>
+  <tabstop>saveAssocToFileButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
