@@ -93,7 +93,7 @@ void MainWindow::addNewScientist(const Persons &p)
 
 void MainWindow::on_deleteScientistButton_clicked()
 {
-    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist(s)?",
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist?",
                                       QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -209,7 +209,7 @@ void MainWindow::addNewComputer(const Computer &c)
 
 void MainWindow::on_deleteComputerButton_clicked()
 {
-    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer(s)?",
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer?",
                                       QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
@@ -251,6 +251,8 @@ void MainWindow::on_addAssociationButton_clicked()
 {
     addAssociationDialog addAssociation;
     addAssociation.setModal(true);
+    addAssociation.setScientistList(serve.listScientists());
+    addAssociation.setComputerList(serve.listComputers());
     addAssociation.exec();
     if (addAssociation.getAdd())
     {
@@ -271,7 +273,7 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
 
 void MainWindow::on_deleteAssociationButton_clicked()
 {
-    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association(s)?",
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
                                       QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
