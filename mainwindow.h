@@ -69,6 +69,24 @@ private slots:
 
     void on_associationsTable_clicked();
 
+    void on_searchScientistsByBox_currentTextChanged(const QString &arg1);
+
+    void on_searchComputersByBox_currentTextChanged(const QString &arg1);
+
+    void on_searchAssocByBox_currentTextChanged(const QString &arg1);
+
+    void on_searchInputScientists_returnPressed();
+
+    void on_searchInputComputers_returnPressed();
+
+    void on_searchInputAssociations_returnPressed();
+
+    void on_lastYearInputScientist_returnPressed();
+
+    void on_lastYearInputComputers_returnPressed();
+
+    void on_lastYearInputAssoc_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 
@@ -81,6 +99,9 @@ private:
     void addNewScientist(const Persons& p);
     void addNewComputer(const Computer& c);
     void addNewAssociation(const string sN, const string cN);
+    void searchScientist();
+    void searchComputer();
+    void searchAssociation();
 
 };
 

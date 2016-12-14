@@ -29,7 +29,7 @@ vector<Association> DataLayer::getAssociationVector()
 {
     if (associations.size() == 0)
     {
-        readAssociations(1,1);
+        readAssociations(0,1);
     }
     return associations;
 }
@@ -366,6 +366,14 @@ void DataLayer::deleteScientist(string n)
     db.close();
 
     readScientists(1,1);
+    int s = associations.size();
+    for (int i = s; i >= 0; i--)
+    {
+        if (associations[i].getScientistName() == n)
+        {
+            deleteAssociation(n, associations[i].getComputerName());
+        }
+    }
 }
 
 //Saves a list of the scientists in the database to the file 'input'.
@@ -749,6 +757,14 @@ void DataLayer::deleteComputer(string n)
     db.close();
 
     readComputers(1,1);
+    int s = associations.size();
+    for (int i = s; i >= 0; i--)
+    {
+        if (associations[i].getComputerName() == n)
+        {
+            deleteAssociation(associations[i].getScientistName(), n);
+        }
+    }
 }
 
 //Saves a list of the computers in the database to the file 'input'.
