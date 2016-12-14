@@ -163,6 +163,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="deleteScientistButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -294,6 +297,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="deleteComputerButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -307,6 +313,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="updateComputerButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -464,6 +473,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="deleteAssociationButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -572,7 +584,7 @@
      <x>0</x>
      <y>0</y>
      <width>832</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

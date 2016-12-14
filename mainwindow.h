@@ -63,7 +63,11 @@ private slots:
 
     void on_actionExit_Program_triggered();
 
-    void on_scientistTable_clicked(const QModelIndex &index);
+    void on_scientistTable_clicked();
+
+    void on_computersTable_clicked();
+
+    void on_associationsTable_clicked();
 
 private:
     Ui::MainWindow *ui;
