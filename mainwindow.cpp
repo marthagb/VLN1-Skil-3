@@ -5,6 +5,7 @@
 #include "addassociationdialog.h"
 #include "updatescientist.h"
 #include <QMessageBox>
+#include "savescientiststofiledialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -133,7 +134,15 @@ void MainWindow::on_addScientistsFromFileButton_clicked()
 
 void MainWindow::on_saveScientistsToFileButton_clicked()
 {
+    saveScientistsToFileDialog sC;
+    sC.setModal(true);
+    sC.exec();
 
+    if(sC.getSave())
+    {
+        string input = sC.getInput();
+        serve.saveScientistsToFile(input);
+    }
 }
 
 void MainWindow::on_ascendingRadioButton_clicked()
