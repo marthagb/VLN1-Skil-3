@@ -4,6 +4,7 @@
 #include "addcomputerdialog.h"
 #include "addassociationdialog.h"
 #include "updatescientist.h"
+#include "updatecomputer.h"
 #include <QMessageBox>
 #include "savescientiststofiledialog.h"
 #include "savecomputerstofiledialog.h"
@@ -195,10 +196,8 @@ void MainWindow::on_addComputerButton_clicked()
         Computer c = addComputer.newComputer();
         if (valid.validComputerName(c.getComputerName()))
         {
-
-                addNewComputer(c);
-                showComputers(serve.listComputers());
-
+            addNewComputer(c);
+            showComputers(serve.listComputers());
         }
         else
         {
@@ -240,7 +239,35 @@ void MainWindow::on_deleteComputerButton_clicked()
 
 void MainWindow::on_updateComputerButton_clicked()
 {
+    int r = ui->computersTable->currentRow();
+    string n = ui->computersTable->item(r,0)->text().toStdString();
+    int yM = ui->computersTable->item(r,1)->text().toUInt();
+    string t = ui->computersTable->item(r,2)->text().toStdString();
+    string b = ui->computersTable->item(r,3)->text().toStdString();
 
+    updateComputer updatecomputer;
+    updatecomputer.setModal(true);
+    updatecomputer.setName(n);
+    updatecomputer.setYearMade(yM);
+    updatecomputer.setType(t);
+    updatecomputer.setBuilt(b);
+    updatecomputer.exec();
+
+    if(updatecomputer.getUpdate())
+    {
+        string name = updatecomputer.getName();
+        serve.updateComputer(1,name,n);
+        string yearMade = updatecomputer.getYearMade();
+        serve.updateComputer(2,yearMade,n);
+        string type = updatecomputer.getType();
+        serve.updateComputer(3,type,n);
+        string built = updatecomputer.getBuilt();
+        serve.updateComputer(4,built,n);
+    }
+
+    serve.sortComputers(1,1);
+    showComputers(serve.listComputers());
+    ui->updateComputerButton->setEnabled(false);
 }
 
 void MainWindow::on_saveComputersToFileButton_clicked()
