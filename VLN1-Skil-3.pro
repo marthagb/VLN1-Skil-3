@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     servicelayer.cpp \
     addscientistdialog.cpp \
     addcomputerdialog.cpp \
-    addassociationdialog.cpp
+    addassociationdialog.cpp \
+    updatescientist.cpp
 
 HEADERS  += mainwindow.h \
     persons.h \
@@ -35,12 +36,14 @@ HEADERS  += mainwindow.h \
     servicelayer.h \
     addscientistdialog.h \
     addcomputerdialog.h \
-    addassociationdialog.h
+    addassociationdialog.h \
+    updatescientist.h
 
 FORMS    += mainwindow.ui \
     addscientistdialog.ui \
     addcomputerdialog.ui \
-    addassociationdialog.ui
+    addassociationdialog.ui \
+    updatescientist.ui
 
 RESOURCES += \
     resources.qrc
