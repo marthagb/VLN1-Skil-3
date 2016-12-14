@@ -195,24 +195,10 @@ void MainWindow::on_addComputerButton_clicked()
         Computer c = addComputer.newComputer();
         if (valid.validComputerName(c.getComputerName()))
         {
-            if (valid.validComputerType(c.getType()))
-            {
+
                 addNewComputer(c);
                 showComputers(serve.listComputers());
-            }
-            else
-            {
-                int reply = QMessageBox::question(this, "Type not valid", "Invalid input for type!\nTry again?",
-                                                  QMessageBox::Yes | QMessageBox::No);
-                if (reply == QMessageBox::Yes)
-                {
-                    on_addComputerButton_clicked();
-                }
-                else if (reply == QMessageBox::No)
-                {
 
-                }
-            }
         }
         else
         {

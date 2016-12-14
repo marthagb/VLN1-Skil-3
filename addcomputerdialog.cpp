@@ -29,7 +29,7 @@ Computer addComputerDialog::newComputer()
 {
     string n = ui->computerNameLineEdit->text().toStdString();
     int yM = ui->yearMadeEdit->date().year();
-    string t = ui->computerTypeLineEdit->text().toStdString();
+    string t = ui->computerTypeComboBox->currentText().toStdString();
     bool b = ui->computerBuiltComboBox->currentText().toStdString() == "Built";
     Computer c(n, yM, t, b);
     return c;
