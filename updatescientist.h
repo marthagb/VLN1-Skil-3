@@ -19,9 +19,25 @@ public:
     void setGender(const std::string g);
     void setBirthYear(const int bY);
     void setDeathYear(const int dY);
+    void setCheckBox();
+
+    std::string getName();
+    std::string getGender();
+    std::string getBirthYear();
+    std::string getDeathYear();
+    bool getCheckBox();
+
+    bool getUpdate();
+
+private slots:
+    void on_updateScientistButton_clicked();
+
+    void on_cancelUpdateScientistButton_clicked();
 
 private:
     Ui::updatescientist *ui;
+
+    bool update;
 };
 
 #endif // UPDATESCIENTIST_H

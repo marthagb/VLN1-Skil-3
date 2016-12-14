@@ -23,16 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="computerTypeLineEdit">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>180</y>
-     <width>281</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="computerBuiltComboBox">
    <property name="geometry">
     <rect>
@@ -143,12 +133,36 @@
     <string>yyyy</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="computerTypeComboBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>180</y>
+     <width>281</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Mechanical Computer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Electronic Computer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Transistors Machinery</string>
+    </property>
+   </item>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>computerNameLineEdit</tabstop>
   <tabstop>yearMadeEdit</tabstop>
   <tabstop>computerBuiltComboBox</tabstop>
-  <tabstop>computerTypeLineEdit</tabstop>
   <tabstop>addComputerButton</tabstop>
   <tabstop>cancelAddComputerButton</tabstop>
  </tabstops>

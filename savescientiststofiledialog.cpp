@@ -8,6 +8,7 @@ saveScientistsToFileDialog::saveScientistsToFileDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
 saveScientistsToFileDialog::~saveScientistsToFileDialog()
 {
     delete ui;
@@ -15,7 +16,10 @@ saveScientistsToFileDialog::~saveScientistsToFileDialog()
 
 void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
 {
+
     save = true;
+   // ui->saveToFileLabel->setText("<span style ='color: #007f00'> Success! </span>");
+
     this->close();
 }
 
@@ -34,3 +38,5 @@ void saveScientistsToFileDialog::on_cancelSaveScientistsToFile_clicked()
     save = false;
     this->close();
 }
+
+

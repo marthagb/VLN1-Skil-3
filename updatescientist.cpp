@@ -42,3 +42,63 @@ void updatescientist::setDeathYear(const int dY)
     QDate d(dY, 1, 1);
     ui->updateDeathYear->setDate(d);
 }
+
+void updatescientist::setCheckBox()
+{
+    ui->aliveCheckBox->setChecked(true);
+}
+
+std::string updatescientist::getName()
+{
+    std::string name = ui->updateNameInput->text().toStdString();
+    return name;
+}
+
+std::string updatescientist::getGender()
+{
+    std::string gender = ui->updateGenderBox->currentText().toStdString();
+    return gender;
+}
+
+std::string updatescientist::getBirthYear()
+{
+    int bY = ui->updateBirthYear->date().year();
+    std::string birthYear = std::to_string(bY);
+    return birthYear;
+}
+
+std::string updatescientist::getDeathYear()
+{
+    int dY = ui->updateDeathYear->date().year();
+    std::string deathYear = std::to_string(dY);
+    return deathYear;
+}
+
+bool updatescientist::getCheckBox()
+{
+    if(ui->aliveCheckBox->isChecked())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool updatescientist::getUpdate()
+{
+    return update;
+}
+
+void updatescientist::on_updateScientistButton_clicked()
+{
+    update = true;
+    this->close();
+}
+
+void updatescientist::on_cancelUpdateScientistButton_clicked()
+{
+    update = false;
+    this->close();
+}

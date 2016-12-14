@@ -171,6 +171,32 @@
     <string>Cancel</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="aliveCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>120</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="aliveLabel">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>100</y>
+     <width>55</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Alive</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

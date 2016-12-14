@@ -4,8 +4,13 @@
 #include "addcomputerdialog.h"
 #include "addassociationdialog.h"
 #include "updatescientist.h"
+#include "updatecomputer.h"
 #include <QMessageBox>
 #include "savescientiststofiledialog.h"
+#include "savecomputerstofiledialog.h"
+#include "saveassociationstofiledialog.h"
+#include "loadscientistsfromfiledialog.h"
+#include "loadcomputersfromfile.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -118,18 +123,58 @@ void MainWindow::on_updateScientistButton_clicked()
     updateScientist.setName(n);
     updateScientist.setGender(g);
     updateScientist.setBirthYear(bY);
+
     if(ui->scientistTable->item(r,3))
     {
         int dY = ui->scientistTable->item(r,3)->text().toUInt();
         updateScientist.setDeathYear(dY);
     }
+    else
+    {
+        updateScientist.setCheckBox();
+    }
+
     updateScientist.exec();
 
+    if(updateScientist.getUpdate())
+    {
+        string name = updateScientist.getName();            //name update
+        serve.updateScientist(1, name, n);
+        string gender = updateScientist.getGender();        //gender update
+        serve.updateScientist(2,gender,n);
+        string birthYear = updateScientist.getBirthYear();  //birthYear update
+        serve.updateScientist(3,birthYear,n);
+        if(!updateScientist.getCheckBox())
+        {
+            string deathYear = updateScientist.getDeathYear();  //deathYear update
+            serve.updateScientist(4,deathYear,n);
+        }
+        else
+        {
+            string dY = " ";
+            serve.updateScientist(4,dY,n);
+        }
+    }
+    serve.sortScientists(1,1);
+    showScientists(serve.listScientists());
+    ui->updateScientistButton->setEnabled(false);
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
 {
+    LoadScientistsFromFileDialog loadScientists;
+    loadScientists.setModal(true);
+    loadScientists.exec();
 
+    if(loadScientists.getLoad())
+    {
+        string input = loadScientists.getInput();
+        if (!(serve.addScientistsFromFile(input)))
+        {
+            //errormessage
+        }
+    }
+    showScientists(serve.listScientists());
 }
 
 void MainWindow::on_saveScientistsToFileButton_clicked()
@@ -165,24 +210,8 @@ void MainWindow::on_addComputerButton_clicked()
         Computer c = addComputer.newComputer();
         if (valid.validComputerName(c.getComputerName()))
         {
-            if (valid.validComputerType(c.getType()))
-            {
-                addNewComputer(c);
-                showComputers(serve.listComputers());
-            }
-            else
-            {
-                int reply = QMessageBox::question(this, "Type not valid", "Invalid input for type!\nTry again?",
-                                                  QMessageBox::Yes | QMessageBox::No);
-                if (reply == QMessageBox::Yes)
-                {
-                    on_addComputerButton_clicked();
-                }
-                else if (reply == QMessageBox::No)
-                {
-
-                }
-            }
+            addNewComputer(c);
+            showComputers(serve.listComputers());
         }
         else
         {
@@ -224,17 +253,65 @@ void MainWindow::on_deleteComputerButton_clicked()
 
 void MainWindow::on_updateComputerButton_clicked()
 {
+    int r = ui->computersTable->currentRow();
+    string n = ui->computersTable->item(r,0)->text().toStdString();
+    int yM = ui->computersTable->item(r,1)->text().toUInt();
+    string t = ui->computersTable->item(r,2)->text().toStdString();
+    string b = ui->computersTable->item(r,3)->text().toStdString();
 
+    updateComputer updatecomputer;
+    updatecomputer.setModal(true);
+    updatecomputer.setName(n);
+    updatecomputer.setYearMade(yM);
+    updatecomputer.setType(t);
+    updatecomputer.setBuilt(b);
+    updatecomputer.exec();
+
+    if(updatecomputer.getUpdate())
+    {
+        string name = updatecomputer.getName();
+        serve.updateComputer(1,name,n);
+        string yearMade = updatecomputer.getYearMade();
+        serve.updateComputer(2,yearMade,n);
+        string type = updatecomputer.getType();
+        serve.updateComputer(3,type,n);
+        string built = updatecomputer.getBuilt();
+        serve.updateComputer(4,built,n);
+    }
+
+    serve.sortComputers(1,1);
+    showComputers(serve.listComputers());
+    ui->updateComputerButton->setEnabled(false);
 }
 
 void MainWindow::on_saveComputersToFileButton_clicked()
 {
+    saveComputersToFileDialog saveComp;
+    saveComp.setModal(true);
+    saveComp.exec();
 
+    if(saveComp.getSave())
+    {
+        string input = saveComp.getInput();
+        serve.saveComputersToFile(input);
+    }
 }
 
 void MainWindow::on_addComputersFromFileButton_clicked()
 {
+    LoadComputersFromFile comp;
+    comp.setModal(true);
+    comp.exec();
 
+    if(comp.getLoad())
+    {
+        string input = comp.getInput();
+        if (!(serve.addComputersFromFile(input)))
+        {
+            //Errormessage
+        }
+    }
+    showComputers(serve.listComputers());
 }
 
 void MainWindow::on_addAssociationButton_clicked()
@@ -286,6 +363,15 @@ void MainWindow::on_updateAssociationButton_clicked()
 
 void MainWindow::on_saveAssocToFileButton_clicked()
 {
+    saveAssociationsToFileDialog saveAssociations;
+    saveAssociations.setModal(true);
+    saveAssociations.exec();
+
+    if(saveAssociations.getSave())
+    {
+        string input = saveAssociations.getInput();
+        serve.saveAssociationsToFile(input);
+    }
 
 }
 
