@@ -118,13 +118,28 @@ void MainWindow::on_updateScientistButton_clicked()
     updateScientist.setName(n);
     updateScientist.setGender(g);
     updateScientist.setBirthYear(bY);
+
     if(ui->scientistTable->item(r,3))
     {
         int dY = ui->scientistTable->item(r,3)->text().toUInt();
         updateScientist.setDeathYear(dY);
     }
+    else
+    {
+        updateScientist.setCheckBox();
+    }
+
     updateScientist.exec();
 
+    if(updateScientist.getUpdate())
+    {
+        string name = updateScientist.getName();  //name update
+        serve.updateScientist(1, name, n);
+        string gender = updateScientist.getGender();  //gender update
+        serve.updateScientist(2,gender,n);
+    }
+    serve.sortScientists(1,1);
+    showScientists(serve.listScientists());
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
