@@ -15,6 +15,7 @@ public:
     explicit saveScientistsToFileDialog(QWidget *parent = 0);
     ~saveScientistsToFileDialog();
 
+
     std::string getInput();
     bool getSave();
 
@@ -23,6 +24,8 @@ private slots:
 
     void on_cancelSaveScientistsToFile_clicked();
 
+
+    void on_saveToFileLabel_linkActivated(const QString &link);
 
 private:
     Ui::saveScientistsToFileDialog *ui;
