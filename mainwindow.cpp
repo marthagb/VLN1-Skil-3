@@ -107,9 +107,23 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
+    int r = ui->scientistTable->currentRow();
+    string n = ui->scientistTable->item(r,0)->text().toStdString();
+    string g = ui->scientistTable->item(r,1)->text().toStdString();
+    int bY = ui->scientistTable->item(r,2)->text().toUInt();
+
     updatescientist updateScientist;
     updateScientist.setModal(true);
+    updateScientist.setName(n);
+    updateScientist.setGender(g);
+    updateScientist.setBirthYear(bY);
+    if(ui->scientistTable->item(r,3))
+    {
+        int dY = ui->scientistTable->item(r,3)->text().toUInt();
+        updateScientist.setDeathYear(dY);
+    }
     updateScientist.exec();
+
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
