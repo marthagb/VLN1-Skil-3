@@ -69,6 +69,19 @@ p, li { white-space: pre-wrap; }
     <string>Cancel</string>
    </property>
   </widget>
+  <widget class="QLabel" name="saveToFileLabel">
+   <property name="geometry">
+    <rect>
+     <x>224</x>
+     <y>150</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
