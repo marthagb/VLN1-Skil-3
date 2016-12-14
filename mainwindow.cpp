@@ -8,6 +8,8 @@
 #include "savescientiststofiledialog.h"
 #include "savecomputerstofiledialog.h"
 #include "saveassociationstofiledialog.h"
+#include "loadscientistsfromfiledialog.h"
+#include "loadcomputersfromfile.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -159,7 +161,16 @@ void MainWindow::on_updateScientistButton_clicked()
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
 {
+    LoadScientistsFromFileDialog loadScientists;
+    loadScientists.setModal(true);
+    loadScientists.exec();
 
+    if(loadScientists.getLoad())
+    {
+        string input = loadScientists.getInput();
+        serve.addScientistsFromFile(input);
+    }
+    showScientists(serve.listScientists());
 }
 
 void MainWindow::on_saveScientistsToFileButton_clicked()
@@ -272,7 +283,16 @@ void MainWindow::on_saveComputersToFileButton_clicked()
 
 void MainWindow::on_addComputersFromFileButton_clicked()
 {
+    LoadComputersFromFile comp;
+    comp.setModal(true);
+    comp.exec();
 
+    if(comp.getLoad())
+    {
+        string input = comp.getInput();
+        serve.addComputersFromFile(input);
+    }
+    showComputers(serve.listComputers());
 }
 
 void MainWindow::on_addAssociationButton_clicked()
