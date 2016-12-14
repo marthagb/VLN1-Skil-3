@@ -20,7 +20,6 @@ void LoadComputersFromFile::on_ButtonLoad_clicked()
 
     if (!serve.addScientistsFromFile(ui->InputForTextFileName->text().toStdString()))
     {
-        //ui->LabelErrorMessage->setText("Could Not Load From File!");
         ui->LabelErrorMessage->setText("<span style ='color: #ff0000 '> Could not load from file </span>");
     }
     else

@@ -1,5 +1,6 @@
 #include "savescientiststofiledialog.h"
 #include "ui_savescientiststofiledialog.h"
+#include "servicelayer.h"
 
 saveScientistsToFileDialog::saveScientistsToFileDialog(QWidget *parent) :
     QDialog(parent),
@@ -16,11 +17,16 @@ saveScientistsToFileDialog::~saveScientistsToFileDialog()
 
 void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
 {
-
-    save = true;
-   // ui->saveToFileLabel->setText("<span style ='color: #007f00'> Success! </span>");
-
-    this->close();
+    ServiceLayer serve;
+    if(!serve.saveScientistsToFile(ui->InputForTextFileName->text().toStdString()))
+    {
+        ui->ErrorLabelSaveScientists->setText("<span style ='color: #ff0000 '> Could not load from file </span>");
+    }
+    else
+    {
+        save = true;
+        this->close();
+    }
 }
 
 std::string saveScientistsToFileDialog::getInput()

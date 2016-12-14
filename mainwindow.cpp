@@ -11,6 +11,8 @@
 #include "saveassociationstofiledialog.h"
 #include "loadscientistsfromfiledialog.h"
 #include "loadcomputersfromfile.h"
+#include "updatescientist.h"
+#include "updatecomputer.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -113,6 +115,8 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
+    Persons s;
+
     int r = ui->scientistTable->currentRow();
     string n = ui->scientistTable->item(r,0)->text().toStdString();
     string g = ui->scientistTable->item(r,1)->text().toStdString();
@@ -139,30 +143,41 @@ void MainWindow::on_updateScientistButton_clicked()
     if(updateScientist.getUpdate())
     {
         string name = updateScientist.getName();            //name update--
+        serve.updateScientist(1, name, n);
         if(valid.validName(name))
         {
-        serve.updateScientist(1, name, n);
+            string gender = updateScientist.getGender();        //gender update
+            serve.updateScientist(2,gender,n);
+            string birthYear = updateScientist.getBirthYear();  //birthYear update
+            //serve.updateScientist(3,birthYear,n);
 
-        string gender = updateScientist.getGender();        //gender update
-        serve.updateScientist(2,gender,n);
-        string birthYear = updateScientist.getBirthYear();  //birthYear update
-        serve.updateScientist(3,birthYear,n);
-        if(!updateScientist.getCheckBox())
-        {
-            string deathYear = updateScientist.getDeathYear();  //deathYear update
-            serve.updateScientist(4,deathYear,n);
-        }
-        else
-        {
-            string dY = " ";
-            serve.updateScientist(4,dY,n);
+            if(!updateScientist.getCheckBox())
+            {
+                string deathYear = updateScientist.getDeathYear();  //deathYear update
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                {
+                    serve.updateScientist(4,deathYear,n);
+                    serve.updateScientist(3,birthYear,n);
+                }
+                //  serve.updateScientist(4,deathYear,n);
+            }
+            else if(updateScientist.getCheckBox())
+            {
+                string dY = " ";
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                {
+                    serve.updateScientist(4,birthYear,n);
+                    serve.updateScientist(4,dY,n);
+                }
+            }
+
+
         }
 
+    }
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
     ui->updateScientistButton->setEnabled(false);
-}
-        }
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
