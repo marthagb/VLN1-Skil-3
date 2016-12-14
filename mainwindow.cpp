@@ -171,14 +171,6 @@ void MainWindow::on_addScientistsFromFileButton_clicked()
     loadScientists.setModal(true);
     loadScientists.exec();
 
-    if(loadScientists.getLoad())
-    {
-        string input = loadScientists.getInput();
-        if (!(serve.addScientistsFromFile(input)))
-        {
-            //errormessage
-        }
-    }
     showScientists(serve.listScientists());
 }
 
@@ -324,14 +316,6 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     comp.setModal(true);
     comp.exec();
 
-    if(comp.getLoad())
-    {
-        string input = comp.getInput();
-        if (!(serve.addComputersFromFile(input)))
-        {
-            //Errormessage
-        }
-    }
     showComputers(serve.listComputers());
 }
 

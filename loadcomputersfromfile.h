@@ -15,9 +15,6 @@ public:
     explicit LoadComputersFromFile(QWidget *parent = 0);
     ~LoadComputersFromFile();
 
-    std::string getInput();
-    bool getLoad();
-
 private slots:
     void on_ButtonLoad_clicked();
 
@@ -25,7 +22,6 @@ private slots:
 
 private:
     Ui::LoadComputersFromFile *ui;
-    bool load;
 };
 
 #endif // LOADCOMPUTERSFROMFILE_H
