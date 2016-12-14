@@ -1,5 +1,6 @@
 #include "loadcomputersfromfile.h"
 #include "ui_loadcomputersfromfile.h"
+#include "servicelayer.h"
 
 LoadComputersFromFile::LoadComputersFromFile(QWidget *parent) :
     QDialog(parent),
@@ -15,22 +16,19 @@ LoadComputersFromFile::~LoadComputersFromFile()
 
 void LoadComputersFromFile::on_ButtonLoad_clicked()
 {
-    load = true;
-    this->close();
+    ServiceLayer serve;
+
+    if (!serve.addScientistsFromFile(ui->InputForTextFileName->text().toStdString()))
+    {
+        ui->LabelErrorMessage->setText("Could Not Load From File!");
+    }
+    else
+    {
+        this->close();
+    }
 }
 
 void LoadComputersFromFile::on_ButtonCancel_clicked()
 {
-    load = false;
     this->close();
-}
-
-std::string LoadComputersFromFile::getInput()
-{
-    return ui->InputForTextFileName->text().toStdString();
-}
-
-bool LoadComputersFromFile::getLoad()
-{
-    return load;
 }

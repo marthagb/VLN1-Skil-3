@@ -1,5 +1,6 @@
 #include "loadscientistsfromfiledialog.h"
 #include "ui_loadscientistsfromfiledialog.h"
+#include "servicelayer.h"
 
 using namespace std;
 
@@ -18,22 +19,19 @@ LoadScientistsFromFileDialog::~LoadScientistsFromFileDialog()
 
 void LoadScientistsFromFileDialog::on_ButtonLoad_clicked()
 {
-    load = true;
-    this->close();
+    ServiceLayer serve;
+
+    if (!serve.addScientistsFromFile(ui->InputForTextFileName->text().toStdString()))
+    {
+        ui->LabelErrorMessage->setText("Could Not Load From File!");
+    }
+    else
+    {
+        this->close();
+    }
 }
 
 void LoadScientistsFromFileDialog::on_ButtonCancel_clicked()
 {
-    load = false;
     this->close();
-}
-
-std::string LoadScientistsFromFileDialog::getInput()
-{
-    return ui->InputForTextFileName->text().toStdString();
-}
-
-bool LoadScientistsFromFileDialog::getLoad()
-{
-    return load;
 }
