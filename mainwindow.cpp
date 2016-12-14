@@ -6,6 +6,8 @@
 #include "updatescientist.h"
 #include <QMessageBox>
 #include "savescientiststofiledialog.h"
+#include "savecomputerstofiledialog.h"
+#include "saveassociationstofiledialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -229,7 +231,15 @@ void MainWindow::on_updateComputerButton_clicked()
 
 void MainWindow::on_saveComputersToFileButton_clicked()
 {
+    saveComputersToFileDialog saveComp;
+    saveComp.setModal(true);
+    saveComp.exec();
 
+    if(saveComp.getSave())
+    {
+        string input = saveComp.getInput();
+        serve.saveComputersToFile(input);
+    }
 }
 
 void MainWindow::on_addComputersFromFileButton_clicked()
@@ -284,6 +294,15 @@ void MainWindow::on_updateAssociationButton_clicked()
 
 void MainWindow::on_saveAssocToFileButton_clicked()
 {
+    saveAssociationsToFileDialog saveAssociations;
+    saveAssociations.setModal(true);
+    saveAssociations.exec();
+
+    if(saveAssociations.getSave())
+    {
+        string input = saveAssociations.getInput();
+        serve.saveAssociationsToFile(input);
+    }
 
 }
 

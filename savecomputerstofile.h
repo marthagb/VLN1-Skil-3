@@ -8,6 +8,7 @@ class saveComputersToFile : public QAbstractItemModel
     Q_OBJECT
 
 public:
+    bool getSave();
     explicit saveComputersToFile(QObject *parent = 0);
 
     // Header:
@@ -24,6 +25,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
+    bool save;
 };
 
 #endif // SAVECOMPUTERSTOFILE_H

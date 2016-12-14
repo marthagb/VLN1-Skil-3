@@ -1,5 +1,10 @@
 #include "savecomputerstofile.h"
 
+bool saveComputersToFile::getSave()
+{
+    return save;
+}
+
 saveComputersToFile::saveComputersToFile(QObject *parent)
     : QAbstractItemModel(parent)
 {
