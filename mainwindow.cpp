@@ -275,7 +275,23 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
-        serve.updateComputer(1,name,n);
+        if(valid.validComputerName(name) && valid.validComputerNameShort(name))
+        {
+            serve.updateComputer(1,name,n);
+        }
+        else
+        {
+            int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
+                                              QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                on_addComputerButton_clicked();
+            }
+            else if (reply == QMessageBox::No)
+            {
+
+            }
+        }
         string yearMade = updatecomputer.getYearMade();
         serve.updateComputer(2,yearMade,n);
         string type = updatecomputer.getType();
