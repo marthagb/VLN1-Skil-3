@@ -18,7 +18,7 @@ void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
 {
 
     save = true;
-    ui->saveToFileLabel->setText("<span style ='color: #007f00'> Success! </span>");
+   // ui->saveToFileLabel->setText("<span style ='color: #007f00'> Success! </span>");
 
     this->close();
 }
@@ -39,7 +39,4 @@ void saveScientistsToFileDialog::on_cancelSaveScientistsToFile_clicked()
     this->close();
 }
 
-void saveScientistsToFileDialog::on_saveToFileLabel_linkActivated(const QString &link)
-{
-    ui->saveToFileLabel->setText("<span style ='color: #ED1C58'>Name Cannot be empty </span>");
-}
+
