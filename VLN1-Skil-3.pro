@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     updatescientist.cpp \
     savescientiststofiledialog.cpp \
     savecomputerstofiledialog.cpp \
-    saveassociationstofiledialog.cpp
+    saveassociationstofiledialog.cpp \
+    loadscientistsfromfiledialog.cpp \
+    loadcomputersfromfile.cpp
 
 HEADERS  += mainwindow.h \
     persons.h \
@@ -43,7 +45,9 @@ HEADERS  += mainwindow.h \
     updatescientist.h \
     savescientiststofiledialog.h \
     savecomputerstofiledialog.h \
-    saveassociationstofiledialog.h
+    saveassociationstofiledialog.h \
+    loadscientistsfromfiledialog.h \
+    loadcomputersfromfile.h
 
 FORMS    += mainwindow.ui \
     addscientistdialog.ui \
@@ -52,7 +56,9 @@ FORMS    += mainwindow.ui \
     updatescientist.ui \
     savescientiststofiledialog.ui \
     savecomputerstofiledialog.ui \
-    saveassociationstofiledialog.ui
+    saveassociationstofiledialog.ui \
+    loadscientistsfromfiledialog.ui \
+    loadcomputersfromfile.ui
 
 RESOURCES += \
     resources.qrc
