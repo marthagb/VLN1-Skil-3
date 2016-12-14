@@ -20,6 +20,10 @@ public:
 
     bool getAdd();
 
+    void setScientistList(vector<Persons> S);
+
+    void setComputerList(vector<Computer> C);
+
 private slots:
     void on_cancelAddAssociationButton_clicked();
 
