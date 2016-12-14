@@ -151,10 +151,10 @@ void MainWindow::on_updateScientistButton_clicked()
             string dY = " ";
             serve.updateScientist(4,dY,n);
         }
-
     }
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
+    ui->updateScientistButton->setEnabled(false);
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
