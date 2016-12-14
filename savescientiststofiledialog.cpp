@@ -12,3 +12,25 @@ saveScientistsToFileDialog::~saveScientistsToFileDialog()
 {
     delete ui;
 }
+
+void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
+{
+    save = true;
+    this->close();
+}
+
+std::string saveScientistsToFileDialog::getInput()
+{
+    return ui->InputForTextFileName->text().toStdString();
+}
+
+bool saveScientistsToFileDialog::getSave()
+{
+    return save;
+}
+
+void saveScientistsToFileDialog::on_cancelSaveScientistsToFile_clicked()
+{
+    save = false;
+    this->close();
+}
