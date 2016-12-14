@@ -3,6 +3,7 @@
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
 #include "addassociationdialog.h"
+#include "updatescientist.h"
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -60,7 +61,9 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
-
+    updatescientist updateScientist;
+    updateScientist.setModal(true);
+    updateScientist.exec();
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
