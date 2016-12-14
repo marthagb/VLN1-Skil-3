@@ -39,3 +39,19 @@ bool addAssociationDialog::getAdd()
 {
     return add;
 }
+
+void addAssociationDialog::setScientistList(vector<Persons> S)
+{
+    for (unsigned int i = 0; i < S.size(); i++)
+    {
+        ui->scientistList->addItem(new QListWidgetItem(QString::fromStdString(S[i].getName())));
+    }
+}
+
+void addAssociationDialog::setComputerList(vector<Computer> C)
+{
+    for (unsigned int i = 0; i < C.size(); i++)
+    {
+        ui->computersList->addItem(new QListWidgetItem(QString::fromStdString(C[i].getComputerName())));
+    }
+}
