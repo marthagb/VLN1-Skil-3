@@ -5,6 +5,7 @@
 using namespace std;
 
 const int MAX = 25;
+const int MIN = 3;
 
 //Default Constructor
 validation::validation()
@@ -94,6 +95,12 @@ bool validation::validYear(const string& s, int& year)
 bool validation::validComputerName (const string& n)
 {
     return n.size() <= MAX;
+}
+
+//Makes sure the computer name isn't too short.
+bool validation::validComputerNameShort(const string& n)
+{
+    return n.size() >= MIN;
 }
 
 //checks through the validName function whether the type is good, and that it's not too long.
