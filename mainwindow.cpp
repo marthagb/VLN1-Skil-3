@@ -168,7 +168,10 @@ void MainWindow::on_addScientistsFromFileButton_clicked()
     if(loadScientists.getLoad())
     {
         string input = loadScientists.getInput();
-        serve.addScientistsFromFile(input);
+        if (!(serve.addScientistsFromFile(input)))
+        {
+            //errormessage
+        }
     }
     showScientists(serve.listScientists());
 }
@@ -276,7 +279,10 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     if(comp.getLoad())
     {
         string input = comp.getInput();
-        serve.addComputersFromFile(input);
+        if (!(serve.addComputersFromFile(input)))
+        {
+            //Errormessage
+        }
     }
     showComputers(serve.listComputers());
 }
