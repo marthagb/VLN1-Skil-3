@@ -23,6 +23,10 @@ public:
 
     std::string getName();
     std::string getGender();
+    std::string getBirthYear();
+    std::string getDeathYear();
+    bool getCheckBox();
+
     bool getUpdate();
 
 private slots:

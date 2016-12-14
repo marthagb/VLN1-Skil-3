@@ -135,10 +135,23 @@ void MainWindow::on_updateScientistButton_clicked()
 
     if(updateScientist.getUpdate())
     {
-        string name = updateScientist.getName();  //name update
+        string name = updateScientist.getName();            //name update
         serve.updateScientist(1, name, n);
-        string gender = updateScientist.getGender();  //gender update
+        string gender = updateScientist.getGender();        //gender update
         serve.updateScientist(2,gender,n);
+        string birthYear = updateScientist.getBirthYear();  //birthYear update
+        serve.updateScientist(3,birthYear,n);
+        if(!updateScientist.getCheckBox())
+        {
+            string deathYear = updateScientist.getDeathYear();  //deathYear update
+            serve.updateScientist(4,deathYear,n);
+        }
+        else
+        {
+            string dY = " ";
+            serve.updateScientist(4,dY,n);
+        }
+
     }
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
