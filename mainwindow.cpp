@@ -138,8 +138,11 @@ void MainWindow::on_updateScientistButton_clicked()
 
     if(updateScientist.getUpdate())
     {
-        string name = updateScientist.getName();            //name update
+        string name = updateScientist.getName();            //name update--
+        if(valid.validName(name))
+        {
         serve.updateScientist(1, name, n);
+
         string gender = updateScientist.getGender();        //gender update
         serve.updateScientist(2,gender,n);
         string birthYear = updateScientist.getBirthYear();  //birthYear update
@@ -154,10 +157,12 @@ void MainWindow::on_updateScientistButton_clicked()
             string dY = " ";
             serve.updateScientist(4,dY,n);
         }
-    }
+
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
     ui->updateScientistButton->setEnabled(false);
+}
+        }
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
