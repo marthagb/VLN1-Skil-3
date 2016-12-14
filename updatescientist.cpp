@@ -96,3 +96,9 @@ void updatescientist::on_updateScientistButton_clicked()
     update = true;
     this->close();
 }
+
+void updatescientist::on_cancelUpdateScientistButton_clicked()
+{
+    update = false;
+    this->close();
+}

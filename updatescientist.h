@@ -32,6 +32,8 @@ public:
 private slots:
     void on_updateScientistButton_clicked();
 
+    void on_cancelUpdateScientistButton_clicked();
+
 private:
     Ui::updatescientist *ui;
 
