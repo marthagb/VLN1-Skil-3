@@ -91,16 +91,10 @@ bool validation::validYear(const string& s, int& year)
     return year >= 0 && year <= currentYear;
 }
 
-//Makes sure the computer name isn't too long.
+//Makes sure the computer name isn't too short or too long.
 bool validation::validComputerName (const string& n)
 {
-    return n.size() <= MAX;
-}
-
-//Makes sure the computer name isn't too short.
-bool validation::validComputerNameShort(const string& n)
-{
-    return n.size() >= MIN;
+    return n.size() >= MIN && n.size() <= MAX;
 }
 
 //checks through the validName function whether the type is good, and that it's not too long.

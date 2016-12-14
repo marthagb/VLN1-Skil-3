@@ -267,7 +267,7 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
-        if(valid.validComputerName(name) && valid.validComputerNameShort(name))
+        if(valid.validComputerName(name))
         {
             serve.updateComputer(1,name,n);
         }

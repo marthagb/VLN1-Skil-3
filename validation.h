@@ -16,7 +16,6 @@ public:
     bool genderCheck(char& gender);
     bool validYear(const string& s, int& year);
     bool validComputerName (const string& n);
-    bool validComputerNameShort(const string& n);
     bool validComputerType(const string& s);
     bool maxLengthOfScientistName(const string& s);
 };
