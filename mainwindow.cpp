@@ -34,7 +34,7 @@ void MainWindow::on_addScientistButton_clicked()
     {
         addNewScientist(addScientist.newScientist());
         showScientists(serve.listScientists());
-    }
+    }   
 }
 
 void MainWindow::addNewScientist(const Persons &p)
@@ -291,4 +291,9 @@ void MainWindow::on_actionAdd_Association_triggered()
 void MainWindow::on_actionExit_Program_triggered()
 {
     close();
+}
+
+void MainWindow::on_scientistTable_clicked(const QModelIndex &index)
+{
+    ui->updateScientistButton->setEnabled(true);
 }

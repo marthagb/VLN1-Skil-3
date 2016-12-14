@@ -63,6 +63,8 @@ private slots:
 
     void on_actionExit_Program_triggered();
 
+    void on_scientistTable_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
