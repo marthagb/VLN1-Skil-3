@@ -3,6 +3,7 @@
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
 #include "addassociationdialog.h"
+#include "updatescientist.h"
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -42,7 +43,7 @@ void MainWindow::on_addScientistButton_clicked()
             else if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 1)
             {
                 int reply = QMessageBox::question(this, "Inconsistent years", "A person can not die before they are born!\nTry again?",
-                                                                            QMessageBox::Yes | QMessageBox::No);
+                                                  QMessageBox::Yes | QMessageBox::No);
                 if (reply == QMessageBox::Yes)
                 {
                     on_addScientistButton_clicked();
@@ -55,7 +56,7 @@ void MainWindow::on_addScientistButton_clicked()
             else if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 2)
             {
                 int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
-                                                                            QMessageBox::Yes | QMessageBox::No);
+                                                  QMessageBox::Yes | QMessageBox::No);
                 if (reply == QMessageBox::Yes)
                 {
                     on_addScientistButton_clicked();
@@ -69,7 +70,7 @@ void MainWindow::on_addScientistButton_clicked()
         else
         {
             int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
-                                                                        QMessageBox::Yes | QMessageBox::No);
+                                              QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
                 on_addScientistButton_clicked();
@@ -89,27 +90,26 @@ void MainWindow::addNewScientist(const Persons &p)
 
 void MainWindow::on_deleteScientistButton_clicked()
 {
-    if (!ui->scientistTable->selectedItems().isEmpty())
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist(s)?",
+                                      QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
     {
-        int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist(s)?",
-                                                                    QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes)
-        {
-            int r = ui->scientistTable->currentRow();
-            string n = ui->scientistTable->item(r, 0)->text().toStdString();
-            serve.deleteScientist(n);
-            showScientists(serve.listScientists());
-        }
-        else if (reply == QMessageBox::No)
-        {
+        int r = ui->scientistTable->currentRow();
+        string n = ui->scientistTable->item(r, 0)->text().toStdString();
+        serve.deleteScientist(n);
+        showScientists(serve.listScientists());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
-        }
     }
 }
 
 void MainWindow::on_updateScientistButton_clicked()
 {
-
+    updatescientist updateScientist;
+    updateScientist.setModal(true);
+    updateScientist.exec();
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
@@ -150,7 +150,7 @@ void MainWindow::on_addComputerButton_clicked()
             else
             {
                 int reply = QMessageBox::question(this, "Type not valid", "Invalid input for type!\nTry again?",
-                                                                            QMessageBox::Yes | QMessageBox::No);
+                                                  QMessageBox::Yes | QMessageBox::No);
                 if (reply == QMessageBox::Yes)
                 {
                     on_addComputerButton_clicked();
@@ -164,7 +164,7 @@ void MainWindow::on_addComputerButton_clicked()
         else
         {
             int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
-                                                                        QMessageBox::Yes | QMessageBox::No);
+                                              QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
                 on_addComputerButton_clicked();
@@ -184,21 +184,18 @@ void MainWindow::addNewComputer(const Computer &c)
 
 void MainWindow::on_deleteComputerButton_clicked()
 {
-    if (!ui->scientistTable->selectedItems().isEmpty())
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer(s)?",
+                                      QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
     {
-        int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer(s)?",
-                                                                    QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes)
-        {
-            int r = ui->computersTable->currentRow();
-            string n =ui->computersTable->item(r, 0)->text().toStdString();
-            serve.deleteComputer(n);
-            showComputers(serve.listComputers());
-        }
-        else if (reply == QMessageBox::No)
-        {
+        int r = ui->computersTable->currentRow();
+        string n =ui->computersTable->item(r, 0)->text().toStdString();
+        serve.deleteComputer(n);
+        showComputers(serve.listComputers());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
-        }
     }
 }
 
@@ -241,22 +238,19 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
 
 void MainWindow::on_deleteAssociationButton_clicked()
 {
-    if (!ui->associationsTable->selectedItems().isEmpty())
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association(s)?",
+                                      QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
     {
-        int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association(s)?",
-                                                                    QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes)
-        {
-            int r = ui->associationsTable->currentRow();
-            string sN = ui->associationsTable->item(r, 0)->text().toStdString();
-            string cN = ui->associationsTable->item(r, 1)->text().toStdString();
-            serve.deleteAssociation(sN, cN);
-            showAssociations(serve.listAssociations());
-        }
-        else if (reply == QMessageBox::No)
-        {
+        int r = ui->associationsTable->currentRow();
+        string sN = ui->associationsTable->item(r, 0)->text().toStdString();
+        string cN = ui->associationsTable->item(r, 1)->text().toStdString();
+        serve.deleteAssociation(sN, cN);
+        showAssociations(serve.listAssociations());
+    }
+    else if (reply == QMessageBox::No)
+    {
 
-        }
     }
 }
 
@@ -376,4 +370,22 @@ void MainWindow::on_actionAdd_Association_triggered()
 void MainWindow::on_actionExit_Program_triggered()
 {
     close();
+}
+
+void MainWindow::on_scientistTable_clicked()
+{
+    ui->updateScientistButton->setEnabled(true);
+    ui->deleteScientistButton->setEnabled(true);
+}
+
+void MainWindow::on_computersTable_clicked()
+{
+    ui->updateComputerButton->setEnabled(true);
+    ui->deleteComputerButton->setEnabled(true);
+}
+
+void MainWindow::on_associationsTable_clicked()
+{
+    ui->updateAssociationButton->setEnabled(true);
+    ui->deleteAssociationButton->setEnabled(true);
 }
