@@ -25,7 +25,7 @@ private slots:
     void on_cancelSaveScientistsToFile_clicked();
 
 
-    void on_saveToFileLabel_linkActivated(const QString &link);
+  //  void on_saveToFileLabel_linkActivated(const QString &link);
 
 private:
     Ui::saveScientistsToFileDialog *ui;
