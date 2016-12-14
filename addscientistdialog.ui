@@ -185,6 +185,15 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>nameInput</tabstop>
+  <tabstop>genderBox</tabstop>
+  <tabstop>birthYearEdit</tabstop>
+  <tabstop>diedCheckBox</tabstop>
+  <tabstop>deathYearEdit</tabstop>
+  <tabstop>addScientistButton</tabstop>
+  <tabstop>cancelAddScientistButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
