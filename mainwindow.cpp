@@ -262,7 +262,23 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
-        serve.updateComputer(1,name,n);
+        if(valid.validComputerName(name) && valid.validComputerNameShort(name))
+        {
+            serve.updateComputer(1,name,n);
+        }
+        else
+        {
+            int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
+                                              QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                on_addComputerButton_clicked();
+            }
+            else if (reply == QMessageBox::No)
+            {
+
+            }
+        }
         string yearMade = updatecomputer.getYearMade();
         serve.updateComputer(2,yearMade,n);
         string type = updatecomputer.getType();
@@ -483,4 +499,177 @@ void MainWindow::on_associationsTable_clicked()
 {
     ui->updateAssociationButton->setEnabled(true);
     ui->deleteAssociationButton->setEnabled(true);
+}
+
+void MainWindow::searchScientist()
+{
+    serve.sortScientists(1,1);
+    vector<Persons> people = serve.listScientists();
+    vector<Persons> P;
+    vector<int> v;
+    if (ui->searchScientistsByBox->currentText().toStdString() == "Name")
+    {
+        string n = ui->searchInputScientists->text().toStdString();
+        v = serve.searchScientistByName(n);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Gender")
+    {
+        char g = ui->searchInputScientists->text().toStdString()[0];
+        v = serve.searchScientistByGender(g);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Year of Birth")
+    {
+        int y = ui->searchInputScientists->text().toUInt();
+        v = serve.searchScientistByBirthYear(y);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year Range")
+    {
+        int f = ui->searchInputScientists->text().toUInt();
+        int l = ui->lastYearInputScientist->text().toUInt();
+        v = serve.searchScientistByYearRange(f, l);
+    }
+    for (unsigned int i  = 0; i < v.size(); i++)
+    {
+        P.push_back(people[v[i]]);
+    }
+    showScientists(P);
+}
+
+void MainWindow::searchComputer()
+{
+    serve.sortComputers(1,1);
+    vector<Computer> computers = serve.listComputers();
+    vector<Computer> C;
+    vector<int> v;
+    if (ui->searchComputersByBox->currentText().toStdString() == "Name")
+    {
+        string n = ui->searchInputComputers->text().toStdString();
+        v = serve.searchComputerByName(n);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Made")
+    {
+        int y = ui->searchInputComputers->text().toUInt();
+        v = serve.searchComputerByYearMade(y);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Range")
+    {
+        int f = ui->searchInputComputers->text().toUInt();
+        int l = ui->lastYearInputComputers->text().toUInt();
+        v = serve.searchComputerByYearRange(f, l);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Type")
+    {
+        string t = ui->searchInputComputers->text().toStdString();
+        v = serve.searchComputerByType(t);
+    }
+    for (unsigned int i = 0; i < v.size(); i++)
+    {
+        C.push_back(computers[v[i]]);
+    }
+    showComputers(C);
+}
+
+void MainWindow::searchAssociation()
+{
+    serve.sortAssociations(0,1);
+    vector<Association> assocs = serve.listAssociations();
+    vector<Association> A;
+    vector<int> v;
+    if (ui->searchAssocByBox->currentText().toStdString() == "Scientist Name")
+    {
+        string sN = ui->searchInputAssociations->text().toStdString();
+        v = serve.searchAssocBySciName(sN);
+    }
+    else if (ui->searchAssocByBox->currentText().toStdString() == "Computer Name")
+    {
+        string cN = ui->searchInputAssociations->text().toStdString();
+        v = serve.searchAssocByCompName(cN);
+    }
+    else if (ui->searchAssocByBox->currentText().toStdString() == "Year Made")
+    {
+        int y = ui->searchInputAssociations->text().toUInt();
+        v = serve.searchAssocByYear(y);
+    }
+    else if (ui->searchAssocByBox->currentText().toStdString() == "Year Range")
+    {
+        int f = ui->searchInputAssociations->text().toUInt();
+        int l = ui->lastYearInputAssoc->text().toUInt();
+        v = serve.searchAssocByYearRange(f, l);
+    }
+    else if (ui->searchAssocByBox->currentText().toStdString() == "Computer Type")
+    {
+        string t = ui->searchInputAssociations->text().toStdString();
+        v = serve.searchAssocByCompType(t);
+    }
+    for (unsigned int i = 0; i < v.size(); i++)
+    {
+        A.push_back(assocs[v[i]]);
+    }
+    showAssociations(A);
+}
+
+void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Birth Year Range")
+    {
+        ui->lastYearInputScientist->setEnabled(true);
+    }
+    else
+    {
+        ui->lastYearInputScientist->setEnabled(false);
+    }
+}
+
+void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Year Range")
+    {
+        ui->lastYearInputComputers->setEnabled(true);
+    }
+    else
+    {
+        ui->lastYearInputComputers->setEnabled(false);
+    }
+}
+
+void MainWindow::on_searchAssocByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Year Range")
+    {
+        ui->lastYearInputAssoc->setEnabled(true);
+    }
+    else
+    {
+        ui->lastYearInputAssoc->setEnabled(false);
+    }
+}
+
+void MainWindow::on_searchInputScientists_returnPressed()
+{
+    searchScientist();
+}
+
+void MainWindow::on_searchInputComputers_returnPressed()
+{
+    searchComputer();
+}
+
+void MainWindow::on_searchInputAssociations_returnPressed()
+{
+    searchAssociation();
+}
+
+void MainWindow::on_lastYearInputScientist_returnPressed()
+{
+    searchScientist();
+}
+
+void MainWindow::on_lastYearInputComputers_returnPressed()
+{
+    searchComputer();
+}
+
+void MainWindow::on_lastYearInputAssoc_returnPressed()
+{
+    searchAssociation();
 }
