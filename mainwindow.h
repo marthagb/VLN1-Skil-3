@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "servicelayer.h"
 #include "validation.h"
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;
