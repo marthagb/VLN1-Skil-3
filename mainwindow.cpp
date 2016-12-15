@@ -288,10 +288,33 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
+        string yearMade = updatecomputer.getYearMade();
+        string type = updatecomputer.getType();
+        string built = updatecomputer.getBuilt();
 
         if(valid.validComputerName(name))
         {
-            serve.updateComputer(1,name,n);
+            if (yearMade != "0")
+            {
+                serve.updateComputer(1,name,n);
+                serve.updateComputer(2,yearMade,n);
+                serve.updateComputer(3,type,n);
+                serve.updateComputer(4,built,n);
+            }
+            else
+            {
+                int reply = QMessageBox::question(this, "Year not valid", "Invalid input for year!\nTry again?",
+                                                  QMessageBox::Yes | QMessageBox::No);
+
+                if (reply == QMessageBox::Yes)
+                {
+                    on_addComputerButton_clicked();
+                }
+                else if (reply == QMessageBox::No)
+                {
+                    ui->statusBar->showMessage("Update computer cancelled", 2500);
+                }
+            }
         }
         else
         {
@@ -307,13 +330,6 @@ void MainWindow::on_updateComputerButton_clicked()
                 ui->statusBar->showMessage("Update computer cancelled", 2500);
             }
         }
-
-        string yearMade = updatecomputer.getYearMade();
-        serve.updateComputer(2,yearMade,n);
-        string type = updatecomputer.getType();
-        serve.updateComputer(3,type,n);
-        string built = updatecomputer.getBuilt();
-        serve.updateComputer(4,built,n);
     }
 
     serve.sortComputers(1,1);
