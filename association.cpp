@@ -76,6 +76,7 @@ ostream& operator << (ostream& out, const Association& a)
     {
         out << "Not Built" << "\t";
     }
+
     out << a.getComputerType() << endl;
 
     return out;

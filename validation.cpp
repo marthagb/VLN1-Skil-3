@@ -18,6 +18,7 @@ bool validation::validName(const string& s)
 {
     //Checks if 's' is empty or contains characters other than letters and spaces
     string::const_iterator it = s.begin();
+
     while (it != s.end() && (isalpha(*it) || *it == ' '))
     {
         it++;
@@ -74,14 +75,17 @@ bool validation::validYear(const string& s, int& year)
 {
     string::const_iterator it = s.begin();
     //Checks if the string 's' is a number
+
     while (it != s.end() && isdigit(*it))
     {
         it++;
     }
+
     if (s.empty() || it != s.end())
     {
         return false;
     }
+
     //Checks if 'year' is positive and lower than current year
     year = atoi(s.c_str());
     time_t t = time(NULL);

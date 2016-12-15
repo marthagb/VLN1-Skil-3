@@ -10,9 +10,11 @@ class Association
 {
     Persons scientist;
     Computer computer;
+
 public:
     Association();
     Association(Persons p, Computer c);
+
     string getScientistName() const;
     string getComputerName() const;
     int getYearMade() const;

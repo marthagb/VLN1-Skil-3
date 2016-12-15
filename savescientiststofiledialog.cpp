@@ -9,7 +9,6 @@ saveScientistsToFileDialog::saveScientistsToFileDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-
 saveScientistsToFileDialog::~saveScientistsToFileDialog()
 {
     delete ui;
@@ -18,6 +17,7 @@ saveScientistsToFileDialog::~saveScientistsToFileDialog()
 void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
 {
     ServiceLayer serve;
+
     if(!serve.saveScientistsToFile(ui->InputForTextFileName->text().toStdString()))
     {
         ui->ErrorLabelSaveScientists->setText("<span style ='color: #ff0000 '> Could not load from file </span>");

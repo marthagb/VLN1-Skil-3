@@ -18,6 +18,7 @@ class Computer
 public:
     Computer();
     Computer(string n, int yM, string t, bool b);
+
     string getComputerName() const;
     int getYearMade() const;
     string getType() const;

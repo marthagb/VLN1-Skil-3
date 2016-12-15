@@ -44,6 +44,7 @@ void updateComputer::setBuilt(const std::string b)
 std::string updateComputer::getName()
 {
     std::string name = ui->updateComputerNameLineEdit->text().toStdString();
+
     return name;
 }
 
@@ -51,18 +52,21 @@ std::string updateComputer::getYearMade()
 {
     int yM = ui->updateYearMadeEdit->date().year();
     std::string yearMade = std::to_string(yM);
+
     return yearMade;
 }
 
 std::string updateComputer::getType()
 {
     std::string type = ui->updateComputerTypeComboBox->currentText().toStdString();
+
     return type;
 }
 
 std::string updateComputer::getBuilt()
 {
     std::string built = ui->updateComputerBuiltComboBox->currentText().toStdString();
+
     return built;
 }
 

@@ -14,6 +14,7 @@ using namespace std;
 class DataLayer
 {
     QSqlDatabase db;
+
     vector<Persons> scientists;
     vector<Computer> computers;
     vector<Association> associations;

@@ -31,11 +31,14 @@ Persons addScientistDialog::newScientist()
     char g = ui->genderBox->currentText().toStdString()[0];
     int bY = ui->birthYearEdit->date().year();
     int dY = 0;
+
     if (!ui->diedCheckBox->isChecked())
     {
         dY = ui->deathYearEdit->date().year();
     }
+
     Persons p(n, g, bY, dY);
+
     return p;
 }
 

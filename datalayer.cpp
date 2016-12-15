@@ -13,6 +13,7 @@ vector<Persons> DataLayer::getScientistVector()
     {
         readScientists(1,1);
     }
+
     return scientists;
 }
 
@@ -22,6 +23,7 @@ vector<Computer> DataLayer::getComputerVector()
     {
         readComputers(1,1);
     }
+
     return computers;
 }
 
@@ -31,6 +33,7 @@ vector<Association> DataLayer::getAssociationVector()
     {
         readAssociations(0,1);
     }
+
     return associations;
 }
 
@@ -93,6 +96,7 @@ void DataLayer::readScientists(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT Name, Gender, Birthyear, Deathyear FROM Scientists WHERE Deathyear > 0 ORDER BY Deathyear");
+
             while(query.next())
             {
                 string name = query.value("Name").toString().toStdString();
@@ -121,6 +125,7 @@ void DataLayer::readScientists(int orderBy, int ascOrDesc)
                 Persons p(name, g, bY, dY);
                 S.push_back(p);
             }
+
             query.exec("SELECT Name, Gender, Birthyear, Deathyear FROM Scientists WHERE Deathyear > 0 ORDER BY Deathyear DESC");
         }
     }
@@ -136,6 +141,7 @@ void DataLayer::readScientists(int orderBy, int ascOrDesc)
         Persons p(name, g, bY, dY);
         S.push_back(p);
     }
+
     db.close();
     scientists = S;
 }
@@ -148,6 +154,7 @@ bool DataLayer::addScientist(const Persons& p)
     {
         readScientists(1,1);
     }
+
     for (unsigned int i = 0; i < scientists.size(); i++)
     {
         if (scientists[i] == p)
@@ -162,10 +169,12 @@ bool DataLayer::addScientist(const Persons& p)
 
     query.prepare("INSERT INTO Scientists(Name, Gender, Birthyear, Deathyear, Alive) "
                   "VALUES (:Name, :Gender, :Birthyear, :Deathyear, :Alive)");
+
     query.bindValue(0, QString::fromStdString(p.getName()));
     query.bindValue(1, QVariant(p.getGender()).toChar());
     query.bindValue(2, QVariant(p.getBirthYear()));
     query.bindValue(3, QVariant(p.getDeathYear()));
+
     if (p.getAlive())
     {
         query.bindValue(4, QString::fromStdString("Yes"));
@@ -180,6 +189,7 @@ bool DataLayer::addScientist(const Persons& p)
     db.close();
 
     scientists.push_back(p);
+
     return true;
 }
 
@@ -194,6 +204,7 @@ bool DataLayer::addScientistsFromFile(string input)
     if (in.fail())
     {
         in.close();
+
         return false;
     }
     else
@@ -210,6 +221,7 @@ bool DataLayer::addScientistsFromFile(string input)
                 addScientist(p);
             }
         }
+
         in.close();
 
         return true;
@@ -253,6 +265,7 @@ vector<int> DataLayer::searchScientistByName(const string name)
     while (query.next())
     {
         int id = query.value("ID").toUInt();
+
         for (unsigned int i = 0; i < sIDs.size(); i++)
         {
             if (id == sIDs[i])
@@ -264,6 +277,7 @@ vector<int> DataLayer::searchScientistByName(const string name)
     }
 
     db.close();
+
     return vSN;
 }
 
@@ -282,6 +296,7 @@ vector<int> DataLayer::searchScientistByGender(const char gender)
     while (query.next())
     {
         int id = query.value("ID").toUInt();
+
         for (unsigned int i = 0; i < sIDs.size(); i++)
         {
             if (id == sIDs[i])
@@ -293,6 +308,7 @@ vector<int> DataLayer::searchScientistByGender(const char gender)
     }
 
     db.close();
+
     return vSG;
 }
 
@@ -311,6 +327,7 @@ vector<int> DataLayer::searchScientistByBirthYear(const int year)
     while (query.next())
     {
         int id = query.value("ID").toUInt();
+
         for (unsigned int i = 0; i < sIDs.size(); i++)
         {
             if (id == sIDs[i])
@@ -322,6 +339,7 @@ vector<int> DataLayer::searchScientistByBirthYear(const int year)
     }
 
     db.close();
+
     return vSBY;
 }
 
@@ -340,6 +358,7 @@ vector<int> DataLayer::searchScientistByYearRange(const int f, const int l)
     while (query.next())
     {
         int id = query.value("ID").toUInt();
+
         for (unsigned int i = 0; i < sIDs.size(); i++)
         {
             if (id == sIDs[i])
@@ -351,6 +370,7 @@ vector<int> DataLayer::searchScientistByYearRange(const int f, const int l)
     }
 
     db.close();
+
     return vSBR;
 }
 
@@ -367,6 +387,7 @@ void DataLayer::deleteScientist(string n)
 
     readScientists(1,1);
     int s = associations.size();
+
     for (int i = s; i >= 0; i--)
     {
         if (associations[i].getScientistName() == n)
@@ -389,7 +410,7 @@ bool DataLayer::saveScientistsToFile(string input)
 
    if(out.fail())
    {
-               return false;
+       return false;
    }
     else
    {
@@ -403,6 +424,7 @@ bool DataLayer::saveScientistsToFile(string input)
            out << left << scientists[i].getName();
            out.width(26 - scientists[i].getName().length());
            out << ";" << "\t" << scientists[i].getGender() << "\t" << scientists[i].getBirthYear() << "\t";
+
            if(scientists[i].getAlive())
            {
                out << "Alive" << endl;
@@ -412,11 +434,14 @@ bool DataLayer::saveScientistsToFile(string input)
                out << scientists[i].getDeathYear() << endl;
            }
        }
+
        out << "_____________________________________________________" << endl;
 
     }
-           out.close();
-           return true;
+
+   out.close();
+
+   return true;
 }
 
 //Updates the scientist whose name is 'name'
@@ -514,6 +539,7 @@ void DataLayer::readComputers(int orderBy, int ascOrDesc)
     }
 
     vector<Computer> C;
+
     while(query.next())
     {
         string n = query.value("ComputerName").toString().toStdString();
@@ -521,6 +547,7 @@ void DataLayer::readComputers(int orderBy, int ascOrDesc)
         string t = query.value("Type").toString().toStdString();
         string built = query.value("BuiltOrNot").toString().toStdString();
         bool b = false;
+
         if (built == "Built")
         {
             b = true;
@@ -529,6 +556,7 @@ void DataLayer::readComputers(int orderBy, int ascOrDesc)
         Computer c(n, yM, t, b);
         C.push_back(c);
     }
+
     db.close();
     computers = C;
 }
@@ -541,6 +569,7 @@ bool DataLayer::addComputer(const Computer& c)
     {
         readComputers(1,1);
     }
+
     for (unsigned int i = 0; i < computers.size(); i++)
     {
         if (computers[i] == c)
@@ -555,9 +584,11 @@ bool DataLayer::addComputer(const Computer& c)
 
     query.prepare("INSERT INTO Computers(ComputerName, YearMade, Type, BuiltOrNot) "
                           "VALUES (:ComputerName, :YearMade, :Type, :BuiltOrNot)");
+
     query.bindValue(0, QString::fromStdString(c.getComputerName()));
     query.bindValue(1, QVariant(c.getYearMade()));
     query.bindValue(2, QString::fromStdString(c.getType()));
+
     if (c.getBuiltOrNot())
     {
         query.bindValue(3, QString::fromStdString("Built"));
@@ -566,11 +597,13 @@ bool DataLayer::addComputer(const Computer& c)
     {
         query.bindValue(3, QString::fromStdString("Not Built"));
     }
+
     query.exec();
 
     db.close();
 
     computers.push_back(c);
+
     return true;
 }
 
@@ -585,6 +618,7 @@ bool DataLayer::addComputersFromFile(string input)
     if (in.fail())
     {
         in.close();
+
         return false;
     }
     else
@@ -596,11 +630,13 @@ bool DataLayer::addComputersFromFile(string input)
             //Checks if person is valid, i.e. has a valid name, gender, birthyear and deathyear.
             //An invalid person will not be added.
             Computer compare;
+
             if (c != compare)
             {
                 addComputer(c);
             }
         }
+
         in.close();
 
         return true;
@@ -626,6 +662,7 @@ vector<int> DataLayer::getComputerIDs()
     }
 
     db.close();
+
     return cID;
 }
 
@@ -644,6 +681,7 @@ vector<int> DataLayer::searchComputerByName(const string name)
     while (query.next())
     {
         int id = query.value("ComputerID").toUInt();
+
         for (unsigned int i = 0; i < cIDs.size(); i++)
         {
             if (id == cIDs[i])
@@ -655,6 +693,7 @@ vector<int> DataLayer::searchComputerByName(const string name)
     }
 
     db.close();
+
     return vCBN;
 }
 
@@ -673,6 +712,7 @@ vector<int> DataLayer::searchComputerByYearMade(const int year)
     while (query.next())
     {
         int id = query.value("ComputerID").toUInt();
+
         for (unsigned int i = 0; i < cIDs.size(); i++)
         {
             if (id == cIDs[i])
@@ -684,6 +724,7 @@ vector<int> DataLayer::searchComputerByYearMade(const int year)
     }
 
     db.close();
+
     return vCYM;
 }
 
@@ -702,6 +743,7 @@ vector<int> DataLayer::searchComputerByYearRange(const int f, const int l)
     while (query.next())
     {
         int id = query.value("ComputerID").toUInt();
+
         for (unsigned int i = 0; i < cIDs.size(); i++)
         {
             if (id == cIDs[i])
@@ -713,6 +755,7 @@ vector<int> DataLayer::searchComputerByYearRange(const int f, const int l)
     }
 
     db.close();
+
     return vCYR;
 }
 
@@ -731,6 +774,7 @@ vector<int> DataLayer::searchComputerByType(const string type)
     while (query.next())
     {
         int id = query.value("ComputerID").toUInt();
+
         for (unsigned int i = 0; i < cIDs.size(); i++)
         {
             if (id == cIDs[i])
@@ -742,6 +786,7 @@ vector<int> DataLayer::searchComputerByType(const string type)
     }
 
     db.close();
+
     return vCBT;
 }
 
@@ -758,6 +803,7 @@ void DataLayer::deleteComputer(string n)
 
     readComputers(1,1);
     int s = associations.size();
+
     for (int i = s; i >= 0; i--)
     {
         if (associations[i].getComputerName() == n)
@@ -775,30 +821,32 @@ bool DataLayer::saveComputersToFile(string input)
         readComputers(1,1);
     }
 
-   ofstream out;
-   out.open(input);
+    ofstream out;
+    out.open(input);
 
-   if(out.fail())
-   {
-         return false;
-   }
+    if(out.fail())
+    {
+        return false;
+    }
     else
-   {
-       out.width(20);
-       out << left << "Name";
-       out << "\tYear\t";
-       out.width(30);
-       out << "Computer Type\t" << "Built?" << endl;
-       out << "___________________________________________________________________________________" << endl;
-       out << endl;
-       for(size_t i = 0; i < computers.size(); i++)
-       {
+    {
+        out.width(20);
+        out << left << "Name";
+        out << "\tYear\t";
+        out.width(30);
+        out << "Computer Type\t" << "Built?" << endl;
+        out << "___________________________________________________________________________________" << endl;
+        out << endl;
+
+        for(size_t i = 0; i < computers.size(); i++)
+        {
             out << left << computers[i].getComputerName();
             out.width(20 - computers[i].getComputerName().length());
             out << ";" << "\t" << computers[i].getYearMade() << "\t" ;
             out << left << computers[i].getType();
             out.width(25 - computers[i].getType().length());
             out << ";" << "\t" ;
+
             if(computers[i].getBuiltOrNot())
             {
                 out << "Built;" << endl;
@@ -807,13 +855,14 @@ bool DataLayer::saveComputersToFile(string input)
             {
                 out << "Not built;" << endl;
             }
+        }
 
-       }
-       out << "___________________________________________________________________________________" << endl;
-
+        out << "___________________________________________________________________________________" << endl;
     }
-           out.close();
-           return true;
+
+    out.close();
+
+    return true;
 }
 
 //Updates the computer of the name 'name'
@@ -971,13 +1020,16 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
 
     vector<string> sN;
     vector<string> cN;
+
     while(query.next())
     {
         sN.push_back(query.value("Name").toString().toStdString());
         cN.push_back(query.value("ComputerName").toString().toStdString());
     }
+
     db.close();
     vector<Association> A;
+
     for (unsigned int i = 0; i < sN.size(); i++)
     {
         Persons s = getScientistVector()[searchScientistByName(sN[i])[0]];
@@ -985,6 +1037,7 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         Association a(s, c);
         A.push_back(a);
     }
+
     associations = A;
 }
 
@@ -996,6 +1049,7 @@ bool DataLayer::addAssociation(const Association& a)
     {
         readAssociations(1,1);
     }
+
     for (unsigned int i = 0; i < associations.size(); i++)
     {
         if (associations[i] == a)
@@ -1003,12 +1057,14 @@ bool DataLayer::addAssociation(const Association& a)
             return false;
         }
     }
+
     int sID = 0, cID = 0;
     db.open();
     QSqlQuery query1(db);
 
     query1.exec("SELECT ID FROM Scientists "
                            "WHERE Name LIKE '" + QString::fromStdString(a.getScientistName()) + "'");
+
     while (query1.next())
     {
         sID = query1.value("ID").toUInt();
@@ -1018,6 +1074,7 @@ bool DataLayer::addAssociation(const Association& a)
 
     query2.exec("SELECT ComputerID FROM Computers "
                            "WHERE ComputerName LIKE '" + QString::fromStdString(a.getComputerName()) + "'");
+
     while (query2.next())
     {
         cID = query2.value("ComputerID").toUInt();
@@ -1031,6 +1088,7 @@ bool DataLayer::addAssociation(const Association& a)
     db.close();
 
     associations.push_back(a);
+
     return true;
 }
 
@@ -1045,6 +1103,7 @@ vector<int> DataLayer::getAssociationIDs()
     QSqlQuery query(db);
 
     query.exec("SELECT ConnectionID FROM Associations ORDER BY ConnectionID");
+
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
@@ -1052,6 +1111,7 @@ vector<int> DataLayer::getAssociationIDs()
     }
 
     db.close();
+
     return aID;
 }
 
@@ -1073,6 +1133,7 @@ vector<int> DataLayer::searchAssocBySciName(const string sN)
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
+
         for (unsigned int i = 0; i < aID.size(); i++)
         {
             if (id == aID[i])
@@ -1084,6 +1145,7 @@ vector<int> DataLayer::searchAssocBySciName(const string sN)
     }
 
     db.close();
+
     return vASN;
 }
 
@@ -1104,6 +1166,7 @@ vector<int> DataLayer::searchAssocByCompName(const string cN)
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
+
         for (unsigned int i = 0; i < aID.size(); i++)
         {
             if (id == aID[i])
@@ -1115,6 +1178,7 @@ vector<int> DataLayer::searchAssocByCompName(const string cN)
     }
 
     db.close();
+
     return vACN;
 }
 
@@ -1135,6 +1199,7 @@ vector<int> DataLayer::searchAssocByYear(const int year)
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
+
         for (unsigned int i = 0; i < aID.size(); i++)
         {
             if (id == aID[i])
@@ -1146,6 +1211,7 @@ vector<int> DataLayer::searchAssocByYear(const int year)
     }
 
     db.close();
+
     return vAY;
 }
 
@@ -1166,6 +1232,7 @@ vector<int> DataLayer::searchAssocByYearRange(const int f, const int l)
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
+
         for (unsigned int i = 0; i < aID.size(); i++)
         {
             if (id == aID[i])
@@ -1177,6 +1244,7 @@ vector<int> DataLayer::searchAssocByYearRange(const int f, const int l)
     }
 
     db.close();
+
     return vAYR;
 }
 
@@ -1197,6 +1265,7 @@ vector<int> DataLayer::searchAssocByCompType(const string type)
     while (query.next())
     {
         int id = query.value("ConnectionID").toUInt();
+
         for (unsigned int i = 0; i < aID.size(); i++)
         {
             if (id == aID[i])
@@ -1208,6 +1277,7 @@ vector<int> DataLayer::searchAssocByCompType(const string type)
     }
 
     db.close();
+
     return vACT;
 }
 
@@ -1220,6 +1290,7 @@ void DataLayer::deleteAssociation(string sN, string cN)
 
     query1.exec("SELECT ID FROM Scientists "
                 "WHERE Name LIKE '" + QString::fromStdString(sN) + "'");
+
     while (query1.next())
     {
         sID = query1.value("ID").toUInt();
@@ -1229,6 +1300,7 @@ void DataLayer::deleteAssociation(string sN, string cN)
 
     query2.exec("SELECT ComputerID FROM Computers "
                 "WHERE ComputerName LIKE '" + QString::fromStdString(cN) + "'");
+
     while (query2.next())
     {
         cID = query2.value("ComputerID").toUInt();
@@ -1268,8 +1340,8 @@ bool DataLayer::saveAssociationsToFile(string input)
         out.width(15);
         out << "Built?\t" << "Computer Type" << endl;
         out << "______________________________________________________________________________________________________________________" << endl;
-
         out << endl;
+
         for(size_t i = 0; i < associations.size(); i++)
         {
             out << associations[i];
@@ -1278,6 +1350,8 @@ bool DataLayer::saveAssociationsToFile(string input)
         out << "______________________________________________________________________________________________________________________" << endl;
 
     }
+
     out.close();
+
     return true;
 }

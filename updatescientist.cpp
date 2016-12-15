@@ -51,12 +51,14 @@ void updatescientist::setCheckBox()
 std::string updatescientist::getName()
 {
     std::string name = ui->updateNameInput->text().toStdString();
+
     return name;
 }
 
 std::string updatescientist::getGender()
 {
     std::string gender = ui->updateGenderBox->currentText().toStdString();
+
     return gender;
 }
 
@@ -64,6 +66,7 @@ std::string updatescientist::getBirthYear()
 {
     int bY = ui->updateBirthYear->date().year();
     std::string birthYear = std::to_string(bY);
+
     return birthYear;
 }
 
@@ -71,6 +74,7 @@ std::string updatescientist::getDeathYear()
 {
     int dY = ui->updateDeathYear->date().year();
     std::string deathYear = std::to_string(dY);
+
     return deathYear;
 }
 

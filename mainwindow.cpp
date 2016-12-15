@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->mainOptions->setCurrentIndex(0);
+
     showScientists(serve.listScientists());
 }
 
@@ -28,50 +29,50 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-
-}
-
 void MainWindow::on_addScientistButton_clicked()
 {
     addScientistDialog addScientist;
     addScientist.setModal(true);
     addScientist.exec();
+
     if (addScientist.getAdd())
     {
         Persons s = addScientist.newScientist();
+
         if (valid.maxLengthOfScientistName(s.getName()))
         {
             if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
             {
                 addNewScientist(s);
+
                 showScientists(serve.listScientists());
             }
             else if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 1)
             {
                 int reply = QMessageBox::question(this, "Inconsistent years", "A person can not die before they are born!\nTry again?",
                                                   QMessageBox::Yes | QMessageBox::No);
+
                 if (reply == QMessageBox::Yes)
                 {
                     on_addScientistButton_clicked();
                 }
                 else if (reply == QMessageBox::No)
                 {
-
+                    ui->statusBar->showMessage("Add scientist cancelled", 2500);
                 }
             }
             else if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 2)
             {
                 int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
                                                   QMessageBox::Yes | QMessageBox::No);
+
                 if (reply == QMessageBox::Yes)
                 {
                     on_addScientistButton_clicked();
                 }
                 else if (reply == QMessageBox::No)
                 {
-
+                    ui->statusBar->showMessage("Add scientist cancelled", 2500);
                 }
             }
         }
@@ -79,13 +80,14 @@ void MainWindow::on_addScientistButton_clicked()
         {
             int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
                                               QMessageBox::Yes | QMessageBox::No);
+
             if (reply == QMessageBox::Yes)
             {
                 on_addScientistButton_clicked();
             }
             else if (reply == QMessageBox::No)
             {
-
+                ui->statusBar->showMessage("Add scientist cancelled", 2500);
             }
         }
     }
@@ -100,16 +102,18 @@ void MainWindow::on_deleteScientistButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist?",
                                       QMessageBox::Yes | QMessageBox::No);
+
     if (reply == QMessageBox::Yes)
     {
         int r = ui->scientistTable->currentRow();
         string n = ui->scientistTable->item(r, 0)->text().toStdString();
         serve.deleteScientist(n);
+
         showScientists(serve.listScientists());
     }
     else if (reply == QMessageBox::No)
     {
-
+        ui->statusBar->showMessage("Delete scientist cancelled", 2500);
     }
 }
 
@@ -144,6 +148,7 @@ void MainWindow::on_updateScientistButton_clicked()
     {
         string name = updateScientist.getName();            //name update--
         serve.updateScientist(1, name, n);
+
         if(valid.validName(name))
         {
             string gender = updateScientist.getGender();        //gender update
@@ -154,6 +159,7 @@ void MainWindow::on_updateScientistButton_clicked()
             if(!updateScientist.getCheckBox())
             {
                 string deathYear = updateScientist.getDeathYear();  //deathYear update
+
                 if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
                 {
                     serve.updateScientist(4,deathYear,n);
@@ -164,17 +170,16 @@ void MainWindow::on_updateScientistButton_clicked()
             else if(updateScientist.getCheckBox())
             {
                 string dY = " ";
+
                 if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
                 {
                     serve.updateScientist(4,birthYear,n);
                     serve.updateScientist(4,dY,n);
                 }
             }
-
-
         }
-
     }
+
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
     ui->updateScientistButton->setEnabled(false);
@@ -202,40 +207,34 @@ void MainWindow::on_saveScientistsToFileButton_clicked()
     }
 }
 
-void MainWindow::on_ascendingRadioButton_clicked()
-{
-
-}
-
-void MainWindow::on_descendingRadioButton_clicked()
-{
-
-}
-
 void MainWindow::on_addComputerButton_clicked()
 {
     addComputerDialog addComputer;
     addComputer.setModal(true);
     addComputer.exec();
+
     if (addComputer.getAdd())
     {
         Computer c = addComputer.newComputer();
+
         if (valid.validComputerName(c.getComputerName()))
         {
             addNewComputer(c);
+
             showComputers(serve.listComputers());
         }
         else
         {
             int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
                                               QMessageBox::Yes | QMessageBox::No);
+
             if (reply == QMessageBox::Yes)
             {
                 on_addComputerButton_clicked();
             }
             else if (reply == QMessageBox::No)
             {
-
+                ui->statusBar->showMessage("Add computer cancelled", 2500);
             }
         }
     }
@@ -250,16 +249,18 @@ void MainWindow::on_deleteComputerButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer?",
                                       QMessageBox::Yes | QMessageBox::No);
+
     if (reply == QMessageBox::Yes)
     {
         int r = ui->computersTable->currentRow();
         string n =ui->computersTable->item(r, 0)->text().toStdString();
         serve.deleteComputer(n);
+
         showComputers(serve.listComputers());
     }
     else if (reply == QMessageBox::No)
     {
-
+        ui->statusBar->showMessage("Delete computer cancelled", 2500);
     }
 }
 
@@ -282,6 +283,7 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
+
         if(valid.validComputerName(name))
         {
             serve.updateComputer(1,name,n);
@@ -290,15 +292,17 @@ void MainWindow::on_updateComputerButton_clicked()
         {
             int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
                                               QMessageBox::Yes | QMessageBox::No);
+
             if (reply == QMessageBox::Yes)
             {
                 on_addComputerButton_clicked();
             }
             else if (reply == QMessageBox::No)
             {
-
+                ui->statusBar->showMessage("Update computer cancelled", 2500);
             }
         }
+
         string yearMade = updatecomputer.getYearMade();
         serve.updateComputer(2,yearMade,n);
         string type = updatecomputer.getType();
@@ -341,9 +345,11 @@ void MainWindow::on_addAssociationButton_clicked()
     addAssociation.setScientistList(serve.listScientists());
     addAssociation.setComputerList(serve.listComputers());
     addAssociation.exec();
+
     if (addAssociation.getAdd())
     {
         addNewAssociation(addAssociation.newAssociation()[0], addAssociation.newAssociation()[1]);
+
         showAssociations(serve.listAssociations());
     }
 }
@@ -362,17 +368,19 @@ void MainWindow::on_deleteAssociationButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
                                       QMessageBox::Yes | QMessageBox::No);
+
     if (reply == QMessageBox::Yes)
     {
         int r = ui->associationsTable->currentRow();
         string sN = ui->associationsTable->item(r, 0)->text().toStdString();
         string cN = ui->associationsTable->item(r, 1)->text().toStdString();
         serve.deleteAssociation(sN, cN);
+
         showAssociations(serve.listAssociations());
     }
     else if (reply == QMessageBox::No)
     {
-
+        ui->statusBar->showMessage("Delete association cancelled", 2500);
     }
 }
 
@@ -404,15 +412,18 @@ void MainWindow::showScientists(vector<Persons> S)
     ui->scientistTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Born")));
     ui->scientistTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Died")));
     ui->scientistTable->setHorizontalHeaderItem(4, new QTableWidgetItem(QString::fromStdString("Age")));
+
     for (unsigned int i = 0; i < S.size(); i++)
     {
         ui->scientistTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(S[i].getName())));
         ui->scientistTable->setItem(i, 1, new QTableWidgetItem(QString(QVariant(S[i].getGender()).toChar())));
         ui->scientistTable->setItem(i, 2, new QTableWidgetItem(QVariant(S[i].getBirthYear()).toString()));
+
         if (!S[i].getAlive())
         {
             ui->scientistTable->setItem(i, 3, new QTableWidgetItem(QVariant(S[i].getDeathYear()).toString()));
         }
+
         ui->scientistTable->setItem(i, 4, new QTableWidgetItem(QVariant(S[i].getAge()).toString()));
     }
 }
@@ -425,11 +436,13 @@ void MainWindow::showComputers(vector<Computer> C)
     ui->computersTable->setHorizontalHeaderItem(1, new QTableWidgetItem(QString::fromStdString("Year Made")));
     ui->computersTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Type")));
     ui->computersTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Built?")));
+
     for (unsigned int i = 0; i < C.size(); i++)
     {
         ui->computersTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(C[i].getComputerName())));
         ui->computersTable->setItem(i, 1, new QTableWidgetItem(QVariant(C[i].getYearMade()).toString()));
         ui->computersTable->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(C[i].getType())));
+
         if (C[i].getBuiltOrNot())
         {
             ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Built")));
@@ -450,11 +463,13 @@ void MainWindow::showAssociations(vector<Association> A)
     ui->associationsTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Year Made")));
     ui->associationsTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Built?")));
     ui->associationsTable->setHorizontalHeaderItem(4, new QTableWidgetItem(QString::fromStdString("Computer Type")));
+
     for (unsigned int i = 0; i < A.size(); i++)
     {
         ui->associationsTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(A[i].getScientistName())));
         ui->associationsTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(A[i].getComputerName())));
         ui->associationsTable->setItem(i, 2, new QTableWidgetItem(QVariant(A[i].getYearMade()).toString()));
+
         if (A[i].getBuiltOrNot())
         {
             ui->associationsTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Built")));
@@ -463,6 +478,7 @@ void MainWindow::showAssociations(vector<Association> A)
         {
             ui->associationsTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Not Built")));
         }
+
         ui->associationsTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(A[i].getComputerType())));
     }
 }
@@ -527,6 +543,7 @@ void MainWindow::searchScientist()
     vector<Persons> people = serve.listScientists();
     vector<Persons> P;
     vector<int> v;
+
     if (ui->searchScientistsByBox->currentText().toStdString() == "Name")
     {
         string n = ui->searchInputScientists->text().toStdString();
@@ -548,10 +565,12 @@ void MainWindow::searchScientist()
         int l = ui->lastYearInputScientist->text().toUInt();
         v = serve.searchScientistByYearRange(f, l);
     }
+
     for (unsigned int i  = 0; i < v.size(); i++)
     {
         P.push_back(people[v[i]]);
     }
+
     showScientists(P);
 }
 
@@ -561,6 +580,7 @@ void MainWindow::searchComputer()
     vector<Computer> computers = serve.listComputers();
     vector<Computer> C;
     vector<int> v;
+
     if (ui->searchComputersByBox->currentText().toStdString() == "Name")
     {
         string n = ui->searchInputComputers->text().toStdString();
@@ -582,10 +602,12 @@ void MainWindow::searchComputer()
         string t = ui->searchInputComputers->text().toStdString();
         v = serve.searchComputerByType(t);
     }
+
     for (unsigned int i = 0; i < v.size(); i++)
     {
         C.push_back(computers[v[i]]);
     }
+
     showComputers(C);
 }
 
@@ -595,6 +617,7 @@ void MainWindow::searchAssociation()
     vector<Association> assocs = serve.listAssociations();
     vector<Association> A;
     vector<int> v;
+
     if (ui->searchAssocByBox->currentText().toStdString() == "Scientist Name")
     {
         string sN = ui->searchInputAssociations->text().toStdString();
@@ -621,10 +644,12 @@ void MainWindow::searchAssociation()
         string t = ui->searchInputAssociations->text().toStdString();
         v = serve.searchAssocByCompType(t);
     }
+
     for (unsigned int i = 0; i < v.size(); i++)
     {
         A.push_back(assocs[v[i]]);
     }
+
     showAssociations(A);
 }
 
