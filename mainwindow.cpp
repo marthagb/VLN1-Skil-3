@@ -35,7 +35,7 @@ void MainWindow::on_addScientistButton_clicked()
     addScientist.setModal(true);
     addScientist.exec();
 
-    if (addScientist.getAdd() && !addScientist.close())
+    if (addScientist.getAdd())
     {
         Persons s = addScientist.newScientist();
 
@@ -196,7 +196,7 @@ void MainWindow::on_updateScientistButton_clicked()
             }
             else if(updateScientist.getCheckBox())
             {
-                deathYear = " ";
+                deathYear = "0";
                 serve.updateScientist(4, deathYear, n);
 
                 if(b < 1894)
@@ -268,7 +268,7 @@ void MainWindow::on_addComputerButton_clicked()
     addComputer.setModal(true);
     addComputer.exec();
 
-    if (addComputer.getAdd() && !addComputer.close())
+    if (addComputer.getAdd())
     {
         Computer c = addComputer.newComputer();
 
@@ -420,7 +420,7 @@ void MainWindow::on_addAssociationButton_clicked()
     addAssociation.setComputerList(serve.listComputers());
     addAssociation.exec();
 
-    if (addAssociation.getAdd() && !addAssociation.close())
+    if (addAssociation.getAdd())
     {
         addNewAssociation(addAssociation.newAssociation()[0], addAssociation.newAssociation()[1]);
 

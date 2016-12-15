@@ -25,6 +25,8 @@ private slots:
 
     void on_addScientistButton_clicked();
 
+    void on_addScientistDialog_rejected();
+
 private:
     Ui::addScientistDialog *ui;
 

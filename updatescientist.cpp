@@ -57,7 +57,7 @@ std::string updatescientist::getName()
 
 std::string updatescientist::getGender()
 {
-    std::string gender = ui->updateGenderBox->currentText().toStdString();
+    std::string gender = ui->updateGenderBox->currentText().toStdString().substr(0, 1);
 
     return gender;
 }

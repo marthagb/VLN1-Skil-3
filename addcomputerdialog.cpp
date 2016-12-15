@@ -40,3 +40,8 @@ bool addComputerDialog::getAdd()
 {
     return add;
 }
+
+void addComputerDialog::on_addComputerDialog_rejected()
+{
+    add = false;
+}

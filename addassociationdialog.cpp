@@ -56,3 +56,8 @@ void addAssociationDialog::setComputerList(vector<Computer> C)
         ui->computersList->addItem(new QListWidgetItem(QString::fromStdString(C[i].getComputerName())));
     }
 }
+
+void addAssociationDialog::on_addAssociationDialog_rejected()
+{
+    add = false;
+}

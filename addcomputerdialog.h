@@ -26,6 +26,8 @@ private slots:
 
     void on_addComputerButton_clicked();
 
+    void on_addComputerDialog_rejected();
+
 private:
     Ui::addComputerDialog *ui;
 

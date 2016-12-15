@@ -29,6 +29,8 @@ private slots:
 
     void on_addAssociationButton_clicked();
 
+    void on_addAssociationDialog_rejected();
+
 private:
     Ui::addAssociationDialog *ui;
 

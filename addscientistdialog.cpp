@@ -46,3 +46,8 @@ bool addScientistDialog::getAdd()
 {
     return add;
 }
+
+void addScientistDialog::on_addScientistDialog_rejected()
+{
+    add = false;
+}
