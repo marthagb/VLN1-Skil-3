@@ -149,10 +149,11 @@ void MainWindow::on_updateScientistButton_clicked()
     if(updateScientist.getUpdate())
     {
         string name = updateScientist.getName();            //name update--
-        serve.updateScientist(1, name, n);
 
-        if(valid.validName(name))
+
+        if(valid.maxLengthOfScientistName(name))
         {
+            serve.updateScientist(1, name, n);
             string gender = updateScientist.getGender();        //gender update
             serve.updateScientist(2,gender,n);
             string birthYear = updateScientist.getBirthYear();  //birthYear update
@@ -162,7 +163,7 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 string deathYear = updateScientist.getDeathYear();  //deathYear update
 
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
                 {
                     serve.updateScientist(4,deathYear,n);
                     serve.updateScientist(3,birthYear,n);
@@ -173,7 +174,7 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 string dY = " ";
 
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
                 {
                     serve.updateScientist(4,birthYear,n);
                     serve.updateScientist(4,dY,n);
