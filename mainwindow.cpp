@@ -121,7 +121,7 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
-    Persons s;
+    Persons s ;
 
     int r = ui->scientistTable->currentRow();
     string n = ui->scientistTable->item(r,0)->text().toStdString();
@@ -149,10 +149,11 @@ void MainWindow::on_updateScientistButton_clicked()
     if(updateScientist.getUpdate())
     {
         string name = updateScientist.getName();            //name update--
-        serve.updateScientist(1, name, n);
 
-        if(valid.validName(name))
+
+        if(valid.maxLengthOfScientistName(name))
         {
+            serve.updateScientist(1, name, n);
             string gender = updateScientist.getGender();        //gender update
             serve.updateScientist(2,gender,n);
             string birthYear = updateScientist.getBirthYear();  //birthYear update
@@ -162,7 +163,7 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 string deathYear = updateScientist.getDeathYear();  //deathYear update
 
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
                 {
                     serve.updateScientist(4,deathYear,n);
                     serve.updateScientist(3,birthYear,n);
@@ -173,7 +174,7 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 string dY = " ";
 
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()))
+                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
                 {
                     serve.updateScientist(4,birthYear,n);
                     serve.updateScientist(4,dY,n);
@@ -288,10 +289,33 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
+        string yearMade = updatecomputer.getYearMade();
+        string type = updatecomputer.getType();
+        string built = updatecomputer.getBuilt();
 
         if(valid.validComputerName(name))
         {
-            serve.updateComputer(1,name,n);
+            if (yearMade != "0")
+            {
+                serve.updateComputer(1,name,n);
+                serve.updateComputer(2,yearMade,n);
+                serve.updateComputer(3,type,n);
+                serve.updateComputer(4,built,n);
+            }
+            else
+            {
+                int reply = QMessageBox::question(this, "Year not valid", "Invalid input for year!\nTry again?",
+                                                  QMessageBox::Yes | QMessageBox::No);
+
+                if (reply == QMessageBox::Yes)
+                {
+                    on_addComputerButton_clicked();
+                }
+                else if (reply == QMessageBox::No)
+                {
+                    ui->statusBar->showMessage("Update computer cancelled", 2500);
+                }
+            }
         }
         else
         {
@@ -307,13 +331,6 @@ void MainWindow::on_updateComputerButton_clicked()
                 ui->statusBar->showMessage("Update computer cancelled", 2500);
             }
         }
-
-        string yearMade = updatecomputer.getYearMade();
-        serve.updateComputer(2,yearMade,n);
-        string type = updatecomputer.getType();
-        serve.updateComputer(3,type,n);
-        string built = updatecomputer.getBuilt();
-        serve.updateComputer(4,built,n);
     }
 
     serve.sortComputers(1,1);
