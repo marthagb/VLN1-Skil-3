@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "persons.h"
+#include <QFileDialog>
 
 namespace Ui {
 class addScientistDialog;
@@ -24,6 +25,8 @@ private slots:
     void on_cancelAddScientistButton_clicked();
 
     void on_addScientistButton_clicked();
+
+    void on_btn_image_clicked();
 
 private:
     Ui::addScientistDialog *ui;
