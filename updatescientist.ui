@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>439</width>
-    <height>228</height>
+    <height>237</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -195,6 +195,19 @@
    </property>
    <property name="text">
     <string>Alive</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ErrorLabelUpdateScientists">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>210</y>
+     <width>251</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

@@ -69,6 +69,19 @@ p, li { white-space: pre-wrap; }
     <string>Ok</string>
    </property>
   </widget>
+  <widget class="QLabel" name="ErrorLabelSaveComputer">
+   <property name="geometry">
+    <rect>
+     <x>154</x>
+     <y>120</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

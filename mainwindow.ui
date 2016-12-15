@@ -625,6 +625,19 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QLabel" name="ErrorLabelMainScientists">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>540</y>
+      <width>351</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -632,12 +645,12 @@
      <x>0</x>
      <y>0</y>
      <width>832</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Menu</string>
     </property>
     <addaction name="actionAdd_Scientist"/>
     <addaction name="actionAdd_Computer"/>
@@ -686,6 +699,10 @@
    </property>
   </action>
   <action name="actionExit_Program">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/Images/closeProgram.png</normaloff>:/images/Images/closeProgram.png</iconset>
+   </property>
    <property name="text">
     <string>Exit Program</string>
    </property>

@@ -137,6 +137,7 @@ istream& operator >> (istream& in, Persons& p)
         if (gdr.length() == 1) //checks the length of the gender
         {
             g = gdr.at(0);
+
             if (p.valid.genderCheck(g)) //Makes sure that the gender is valid.
             {
                 if (p.valid.validYear(b, bY)) //checks for a valid birth year.

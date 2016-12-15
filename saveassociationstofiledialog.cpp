@@ -1,5 +1,6 @@
 #include "saveassociationstofiledialog.h"
 #include "ui_saveassociationstofiledialog.h"
+#include "servicelayer.h"
 
 saveAssociationsToFileDialog::saveAssociationsToFileDialog(QWidget *parent) :
     QDialog(parent),
@@ -15,8 +16,17 @@ saveAssociationsToFileDialog::~saveAssociationsToFileDialog()
 
 void saveAssociationsToFileDialog::on_SaveAssociationsToFile_clicked()
 {
-    save = true;
-    this->close();
+    ServiceLayer serve;
+
+    if(!serve.saveScientistsToFile(ui->InputForTextFileNameAssociations->text().toStdString()))
+    {
+        ui->labelassociations->setText("<span style ='color: #ff0000 '> Could not load from file </span>");
+    }
+    else
+    {
+        save = true;
+        this->close();
+    }
 }
 
 void saveAssociationsToFileDialog::on_cancelSaveAssociationsToFile_clicked()

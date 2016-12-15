@@ -32,6 +32,7 @@ vector<string> addAssociationDialog::newAssociation()
     vector<string> a;
     a.push_back(sN);
     a.push_back(cN);
+
     return a;
 }
 

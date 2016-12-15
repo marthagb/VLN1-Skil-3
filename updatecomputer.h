@@ -27,9 +27,6 @@ public:
 
     bool getUpdate();
 
-
-
-
 private slots:
     void on_updateComputerButton_clicked();
 

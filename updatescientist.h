@@ -25,8 +25,8 @@ public:
     std::string getGender();
     std::string getBirthYear();
     std::string getDeathYear();
-    bool getCheckBox();
 
+    bool getCheckBox();
     bool getUpdate();
 
 private slots:

@@ -32,6 +32,7 @@ Computer addComputerDialog::newComputer()
     string t = ui->computerTypeComboBox->currentText().toStdString();
     bool b = ui->computerBuiltComboBox->currentText().toStdString() == "Built";
     Computer c(n, yM, t, b);
+
     return c;
 }
 

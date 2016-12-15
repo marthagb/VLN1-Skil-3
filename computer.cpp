@@ -83,6 +83,7 @@ ostream& operator << (ostream& out, const Computer& c)
     {
         out << "Built" << endl;
     }
+
     return out;
 }
 
@@ -124,6 +125,7 @@ istream& operator >> (istream& in, Computer& c)
         //the default constructor, which, when being loaded, will be skipped.
         else c = def;
     }
+
     else c = def;
 
     return in;

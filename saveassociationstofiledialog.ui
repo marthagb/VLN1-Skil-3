@@ -69,6 +69,19 @@ p, li { white-space: pre-wrap; }
     <string>Ok</string>
    </property>
   </widget>
+  <widget class="QLabel" name="labelassociations">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>130</y>
+     <width>171</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

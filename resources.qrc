@@ -3,5 +3,6 @@
         <file>Images/addAssociation.png</file>
         <file>Images/addComputer.jpg</file>
         <file>Images/addScientist.jpg</file>
+        <file>Images/closeProgram.png</file>
     </qresource>
 </RCC>

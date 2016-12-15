@@ -28,10 +28,6 @@ private slots:
 
     void on_saveScientistsToFileButton_clicked();
 
-    void on_ascendingRadioButton_clicked();
-
-    void on_descendingRadioButton_clicked();
-
     void on_addComputerButton_clicked();
 
     void on_deleteComputerButton_clicked();
@@ -49,8 +45,6 @@ private slots:
     void on_updateAssociationButton_clicked();
 
     void on_saveAssocToFileButton_clicked();
-
-    void on_pushButton_clicked();
 
 
     void on_mainOptions_currentChanged(int index);
@@ -96,9 +90,11 @@ private:
     void showScientists(vector<Persons> S);
     void showComputers(vector<Computer> C);
     void showAssociations(vector<Association> A);
+
     void addNewScientist(const Persons& p);
     void addNewComputer(const Computer& c);
     void addNewAssociation(const string sN, const string cN);
+
     void searchScientist();
     void searchComputer();
     void searchAssociation();

@@ -69,12 +69,12 @@ p, li { white-space: pre-wrap; }
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="saveToFileLabel">
+  <widget class="QLabel" name="ErrorLabelSaveScientists">
    <property name="geometry">
     <rect>
-     <x>224</x>
+     <x>144</x>
      <y>150</y>
-     <width>111</width>
+     <width>191</width>
      <height>20</height>
     </rect>
    </property>
