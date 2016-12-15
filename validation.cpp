@@ -112,3 +112,8 @@ bool validation::maxLengthOfScientistName(const string& s)
 {
     return validName(s) && s.size() <= 50;
 }
+
+bool validation::validAssociation(const int bY, const int dY, const int yM)
+{
+    return yM > bY && (yM <= dY || dY == 0);
+}

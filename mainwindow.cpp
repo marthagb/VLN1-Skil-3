@@ -35,7 +35,7 @@ void MainWindow::on_addScientistButton_clicked()
     addScientist.setModal(true);
     addScientist.exec();
 
-    if (addScientist.getAdd())
+    if (addScientist.getAdd() && !addScientist.close())
     {
         Persons s = addScientist.newScientist();
 
@@ -216,7 +216,7 @@ void MainWindow::on_addComputerButton_clicked()
     addComputer.setModal(true);
     addComputer.exec();
 
-    if (addComputer.getAdd())
+    if (addComputer.getAdd() && !addComputer.close())
     {
         Computer c = addComputer.newComputer();
 
@@ -352,7 +352,7 @@ void MainWindow::on_addAssociationButton_clicked()
     addAssociation.setComputerList(serve.listComputers());
     addAssociation.exec();
 
-    if (addAssociation.getAdd())
+    if (addAssociation.getAdd() && !addAssociation.close())
     {
         addNewAssociation(addAssociation.newAssociation()[0], addAssociation.newAssociation()[1]);
 
@@ -366,8 +366,24 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
     Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
     serve.sortComputers(1,1);
     Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
-    Association a(s, c);
-    serve.addAssociation(a);
+    if (valid.validAssociation(s.getBirthYear(), s.getDeathYear(), c.getYearMade()))
+    {
+        Association a(s, c);
+        serve.addAssociation(a);
+    }
+    else
+    {
+        int reply = QMessageBox::question(this, "Inconsistent years", "Scientist was not alive when computer was made\nTry again?",
+                                          QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            on_addAssociationButton_clicked();
+        }
+        else
+        {
+
+        }
+    }
 }
 
 void MainWindow::on_deleteAssociationButton_clicked()
@@ -539,7 +555,6 @@ void MainWindow::on_computersTable_clicked()
 
 void MainWindow::on_associationsTable_clicked()
 {
-    ui->updateAssociationButton->setEnabled(true);
     ui->deleteAssociationButton->setEnabled(true);
 }
 

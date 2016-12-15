@@ -18,6 +18,7 @@ public:
     bool validComputerName (const string& n);
     bool validComputerType(const string& s);
     bool maxLengthOfScientistName(const string& s);
+    bool validAssociation(const int bY, const int dY, const int yM);
 };
 
 
