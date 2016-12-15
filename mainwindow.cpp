@@ -121,8 +121,7 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
-    Persons s ;
-
+    Persons s;
     int r = ui->scientistTable->currentRow();
     string n = ui->scientistTable->item(r,0)->text().toStdString();
     string g = ui->scientistTable->item(r,1)->text().toStdString();
@@ -148,37 +147,89 @@ void MainWindow::on_updateScientistButton_clicked()
 
     if(updateScientist.getUpdate())
     {
-        string name = updateScientist.getName();            //name update--
-
+        string name = updateScientist.getName();            //name update
 
         if(valid.maxLengthOfScientistName(name))
         {
             serve.updateScientist(1, name, n);
-            string gender = updateScientist.getGender();        //gender update
-            serve.updateScientist(2,gender,n);
-            string birthYear = updateScientist.getBirthYear();  //birthYear update
-            //serve.updateScientist(3,birthYear,n);
+            string gender = updateScientist.getGender();
+            serve.updateScientist(2, gender, n);
+
+            string birthYear = updateScientist.getBirthYear();
+            int b = atoi(birthYear.c_str());
+            string deathYear = updateScientist.getDeathYear();
+            int d = atoi(deathYear.c_str());
 
             if(!updateScientist.getCheckBox())
             {
-                string deathYear = updateScientist.getDeathYear();  //deathYear update
-
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
+                if(valid.birthChecks(b, d) == 0)
                 {
-                    serve.updateScientist(4,deathYear,n);
-                    serve.updateScientist(3,birthYear,n);
+                    serve.updateScientist(3, birthYear, n);
+                    serve.updateScientist(4, deathYear, n);
                 }
-                //  serve.updateScientist(4,deathYear,n);
+                else if (valid.birthChecks(b, d) == 1)
+                {
+                    int reply = QMessageBox::question(this, "Inconsistent years", "A person can not die before they are born!\nTry again?",
+                                                                      QMessageBox::Yes | QMessageBox::No);
+                    if (reply == QMessageBox::Yes)
+                    {
+                        on_updateScientistButton_clicked();
+                    }
+                    else if (reply == QMessageBox::No)
+                    {
+                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+                    }
+                }
+                else if (valid.birthChecks(b, d) == 2)
+                {
+                    int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
+                                                      QMessageBox::Yes | QMessageBox::No);
+                    if (reply == QMessageBox::Yes)
+                    {
+                        on_updateScientistButton_clicked();
+                    }
+                    else if (reply == QMessageBox::No)
+                    {
+                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+                    }
+                }
             }
             else if(updateScientist.getCheckBox())
             {
-                string dY = " ";
+                deathYear = " ";
+                serve.updateScientist(4, deathYear, n);
 
-                if(valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
+                if(b < 1894)
                 {
-                    serve.updateScientist(4,birthYear,n);
-                    serve.updateScientist(4,dY,n);
+                    int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
+                                                      QMessageBox::Yes | QMessageBox::No);
+                    if (reply == QMessageBox::Yes)
+                    {
+                        on_updateScientistButton_clicked();
+                    }
+                    else if (reply == QMessageBox::No)
+                    {
+                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+                    }
                 }
+                else
+                {
+                    serve.updateScientist(3, birthYear, n);
+                }
+            }
+        }
+        else if (!valid.maxLengthOfScientistName(name))
+        {
+            int reply = QMessageBox::question(this, "Name not valid", "Invalid input for name!\nTry again?",
+                                              QMessageBox::Yes | QMessageBox::No);
+
+            if (reply == QMessageBox::Yes)
+            {
+                on_updateScientistButton_clicked();
+            }
+            else if (reply == QMessageBox::No)
+            {
+                ui->statusBar->showMessage("Update scientist cancelled", 2500);
             }
         }
     }
