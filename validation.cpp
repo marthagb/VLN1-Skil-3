@@ -108,12 +108,14 @@ bool validation::validComputerName (const string& n)
         {
             counter++;
         }
-        else
+
+        if (counter > numbersInRow)
         {
-            if (counter > numbersInRow)
-            {
-                numbersInRow = counter;
-            }
+            numbersInRow = counter;
+        }
+
+        if (!(isdigit(*it)))
+        {
             counter = 0;
         }
     }
