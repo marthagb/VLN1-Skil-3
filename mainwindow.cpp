@@ -109,6 +109,8 @@ void MainWindow::on_deleteScientistButton_clicked()
     {
 
     }
+    ui->deleteScientistButton->setEnabled(false);
+    ui->updateScientistButton->setEnabled(false);
 }
 
 void MainWindow::on_updateScientistButton_clicked()
@@ -158,6 +160,7 @@ void MainWindow::on_updateScientistButton_clicked()
     serve.sortScientists(1,1);
     showScientists(serve.listScientists());
     ui->updateScientistButton->setEnabled(false);
+    ui->deleteScientistButton->setEnabled(false);
 }
 
 void MainWindow::on_addScientistsFromFileButton_clicked()
@@ -241,6 +244,8 @@ void MainWindow::on_deleteComputerButton_clicked()
     {
 
     }
+    ui->deleteComputerButton->setEnabled(false);
+    ui->updateComputerButton->setEnabled(false);
 }
 
 void MainWindow::on_updateComputerButton_clicked()
@@ -290,6 +295,7 @@ void MainWindow::on_updateComputerButton_clicked()
     serve.sortComputers(1,1);
     showComputers(serve.listComputers());
     ui->updateComputerButton->setEnabled(false);
+    ui->deleteComputerButton->setEnabled(false);
 }
 
 void MainWindow::on_saveComputersToFileButton_clicked()

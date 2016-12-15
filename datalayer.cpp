@@ -357,6 +357,14 @@ vector<int> DataLayer::searchScientistByYearRange(const int f, const int l)
 //Deletes scientists whose names contain 'n' as a substring.
 void DataLayer::deleteScientist(string n)
 {
+    int s = associations.size();
+    for (int i = s-1; i >= 0; i--)
+    {
+        if (associations[i].getScientistName() == n)
+        {
+            deleteAssociation(n, associations[i].getComputerName());
+        }
+    }
     db.open();
 
     QSqlQuery query(db);
@@ -366,14 +374,6 @@ void DataLayer::deleteScientist(string n)
     db.close();
 
     readScientists(1,1);
-    int s = associations.size();
-    for (int i = s; i >= 0; i--)
-    {
-        if (associations[i].getScientistName() == n)
-        {
-            deleteAssociation(n, associations[i].getComputerName());
-        }
-    }
 }
 
 //Saves a list of the scientists in the database to the file 'input'.
@@ -748,6 +748,14 @@ vector<int> DataLayer::searchComputerByType(const string type)
 //Deletes computers with names that contain 'n' as a substring.
 void DataLayer::deleteComputer(string n)
 {
+    int s = associations.size();
+    for (int i = s-1; i >= 0; i--)
+    {
+        if (associations[i].getComputerName() == n)
+        {
+            deleteAssociation(associations[i].getScientistName(), n);
+        }
+    }
     db.open();
 
     QSqlQuery query(db);
@@ -757,14 +765,6 @@ void DataLayer::deleteComputer(string n)
     db.close();
 
     readComputers(1,1);
-    int s = associations.size();
-    for (int i = s; i >= 0; i--)
-    {
-        if (associations[i].getComputerName() == n)
-        {
-            deleteAssociation(associations[i].getScientistName(), n);
-        }
-    }
 }
 
 //Saves a list of the computers in the database to the file 'input'.
