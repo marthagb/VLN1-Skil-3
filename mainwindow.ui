@@ -30,7 +30,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideMiddle</enum>
@@ -523,26 +523,10 @@
        <string>Delete</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="updateAssociationButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Update</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="saveAssocToFileButton">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>270</x>
         <y>470</y>
         <width>93</width>
         <height>28</height>
@@ -732,7 +716,6 @@
   <tabstop>associationsTable</tabstop>
   <tabstop>addAssociationButton</tabstop>
   <tabstop>deleteAssociationButton</tabstop>
-  <tabstop>updateAssociationButton</tabstop>
   <tabstop>saveAssocToFileButton</tabstop>
  </tabstops>
  <resources>

@@ -98,6 +98,33 @@ bool validation::validYear(const string& s, int& year)
 //Makes sure the computer name isn't too short or too long.
 bool validation::validComputerName (const string& n)
 {
+    string::const_iterator it = n.begin();
+    int numbersInRow = 0;
+    int counter = 0;
+    while (it != n.end())
+    {
+        it++;
+        if (isdigit(*it))
+        {
+            counter++;
+        }
+
+        if (counter > numbersInRow)
+        {
+            numbersInRow = counter;
+        }
+
+        if (!(isdigit(*it)))
+        {
+            counter = 0;
+        }
+    }
+
+    if (numbersInRow > 4)
+    {
+        return false;
+    }
+
     return n.size() >= MIN && n.size() <= MAX;
 }
 
@@ -111,4 +138,9 @@ bool validation::validComputerType(const string& s)
 bool validation::maxLengthOfScientistName(const string& s)
 {
     return validName(s) && s.size() <= 50;
+}
+
+bool validation::validAssociation(const int bY, const int dY, const int yM)
+{
+    return yM > bY && (yM <= dY || dY == 0);
 }

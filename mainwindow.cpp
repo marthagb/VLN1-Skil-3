@@ -35,7 +35,7 @@ void MainWindow::on_addScientistButton_clicked()
     addScientist.setModal(true);
     addScientist.exec();
 
-    if (addScientist.getAdd())
+    if (addScientist.getAdd() && !addScientist.close())
     {
         Persons s = addScientist.newScientist();
 
@@ -268,7 +268,7 @@ void MainWindow::on_addComputerButton_clicked()
     addComputer.setModal(true);
     addComputer.exec();
 
-    if (addComputer.getAdd())
+    if (addComputer.getAdd() && !addComputer.close())
     {
         Computer c = addComputer.newComputer();
 
@@ -340,10 +340,33 @@ void MainWindow::on_updateComputerButton_clicked()
     if(updatecomputer.getUpdate())
     {
         string name = updatecomputer.getName();
+        string yearMade = updatecomputer.getYearMade();
+        string type = updatecomputer.getType();
+        string built = updatecomputer.getBuilt();
 
         if(valid.validComputerName(name))
         {
-            serve.updateComputer(1,name,n);
+            if (yearMade != "0")
+            {
+                serve.updateComputer(1,name,n);
+                serve.updateComputer(2,yearMade,n);
+                serve.updateComputer(3,type,n);
+                serve.updateComputer(4,built,n);
+            }
+            else
+            {
+                int reply = QMessageBox::question(this, "Year not valid", "Invalid input for year!\nTry again?",
+                                                  QMessageBox::Yes | QMessageBox::No);
+
+                if (reply == QMessageBox::Yes)
+                {
+                    on_addComputerButton_clicked();
+                }
+                else if (reply == QMessageBox::No)
+                {
+                    ui->statusBar->showMessage("Update computer cancelled", 2500);
+                }
+            }
         }
         else
         {
@@ -359,13 +382,6 @@ void MainWindow::on_updateComputerButton_clicked()
                 ui->statusBar->showMessage("Update computer cancelled", 2500);
             }
         }
-
-        string yearMade = updatecomputer.getYearMade();
-        serve.updateComputer(2,yearMade,n);
-        string type = updatecomputer.getType();
-        serve.updateComputer(3,type,n);
-        string built = updatecomputer.getBuilt();
-        serve.updateComputer(4,built,n);
     }
 
     serve.sortComputers(1,1);
@@ -404,7 +420,7 @@ void MainWindow::on_addAssociationButton_clicked()
     addAssociation.setComputerList(serve.listComputers());
     addAssociation.exec();
 
-    if (addAssociation.getAdd())
+    if (addAssociation.getAdd() && !addAssociation.close())
     {
         addNewAssociation(addAssociation.newAssociation()[0], addAssociation.newAssociation()[1]);
 
@@ -418,8 +434,24 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
     Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
     serve.sortComputers(1,1);
     Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
-    Association a(s, c);
-    serve.addAssociation(a);
+    if (valid.validAssociation(s.getBirthYear(), s.getDeathYear(), c.getYearMade()))
+    {
+        Association a(s, c);
+        serve.addAssociation(a);
+    }
+    else
+    {
+        int reply = QMessageBox::question(this, "Inconsistent years", "Scientist was not alive when computer was made\nTry again?",
+                                          QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            on_addAssociationButton_clicked();
+        }
+        else
+        {
+
+        }
+    }
 }
 
 void MainWindow::on_deleteAssociationButton_clicked()
@@ -591,7 +623,6 @@ void MainWindow::on_computersTable_clicked()
 
 void MainWindow::on_associationsTable_clicked()
 {
-    ui->updateAssociationButton->setEnabled(true);
     ui->deleteAssociationButton->setEnabled(true);
 }
 
