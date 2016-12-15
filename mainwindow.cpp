@@ -121,7 +121,7 @@ void MainWindow::on_deleteScientistButton_clicked()
 
 void MainWindow::on_updateScientistButton_clicked()
 {
-    Persons s;
+    Persons s ;
 
     int r = ui->scientistTable->currentRow();
     string n = ui->scientistTable->item(r,0)->text().toStdString();
