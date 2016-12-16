@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->noAssociationFoundLabel->hide();
 
     showScientists(serve.listScientists());
+    ui->statusBar->showMessage("Try double-clicking on a scientist", 30000);
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +84,8 @@ void MainWindow::on_scientistTable_clicked()
 // show more information about them with a picture if it exists
 void MainWindow::on_scientistTable_doubleClicked()
 {
+    ui->statusBar->clearMessage();
+
     int r = ui->scientistTable->currentRow();
     QString n = ui->scientistTable->item(r, 0)->text();
     QString bY = ui->scientistTable->item(r, 2)->text();
@@ -263,7 +266,7 @@ void MainWindow::on_addScientistButton_clicked()
                 }
                 else if (reply == QMessageBox::No)
                 {
-                    ui->statusBar->showMessage("Add scientist cancelled", 2500);
+
                 }
             }
             else if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 2)
@@ -277,7 +280,7 @@ void MainWindow::on_addScientistButton_clicked()
                 }
                 else if (reply == QMessageBox::No)
                 {
-                    ui->statusBar->showMessage("Add scientist cancelled", 2500);
+
                 }
             }
         }
@@ -292,7 +295,7 @@ void MainWindow::on_addScientistButton_clicked()
             }
             else if (reply == QMessageBox::No)
             {
-                ui->statusBar->showMessage("Add scientist cancelled", 2500);
+
             }
         }
     }
@@ -325,7 +328,7 @@ void MainWindow::on_deleteScientistButton_clicked()
     }
     else if (reply == QMessageBox::No)
     {
-        ui->statusBar->showMessage("Delete scientist cancelled", 2500);
+
     }
 
     ui->deleteScientistButton->setEnabled(false);
@@ -402,7 +405,7 @@ void MainWindow::on_updateScientistButton_clicked()
                     }
                     else if (reply == QMessageBox::No)
                     {
-                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+
                     }
                 }
                 else if (valid.birthChecks(b, d) == 2)
@@ -416,7 +419,7 @@ void MainWindow::on_updateScientistButton_clicked()
                     }
                     else if (reply == QMessageBox::No)
                     {
-                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+
                     }
                 }
             }
@@ -441,7 +444,7 @@ void MainWindow::on_updateScientistButton_clicked()
                     }
                     else if (reply == QMessageBox::No)
                     {
-                        ui->statusBar->showMessage("Update scientist cancelled", 2500);
+
                     }
                 }
                 else
@@ -461,7 +464,7 @@ void MainWindow::on_updateScientistButton_clicked()
             }
             else if (reply == QMessageBox::No)
             {
-                ui->statusBar->showMessage("Update scientist cancelled", 2500);
+
             }
         }
     }
@@ -671,7 +674,7 @@ void MainWindow::on_addComputerButton_clicked()
             }
             else if (reply == QMessageBox::No)
             {
-                ui->statusBar->showMessage("Add computer cancelled", 2500);
+
             }
         }
     }
@@ -705,7 +708,7 @@ void MainWindow::on_deleteComputerButton_clicked()
     }
     else if (reply == QMessageBox::No)
     {
-        ui->statusBar->showMessage("Delete computer cancelled", 2500);
+
     }
 
     ui->deleteComputerButton->setEnabled(false);
@@ -758,7 +761,7 @@ void MainWindow::on_updateComputerButton_clicked()
                 }
                 else if (reply == QMessageBox::No)
                 {
-                    ui->statusBar->showMessage("Update computer cancelled", 2500);
+
                 }
             }
         }
@@ -773,7 +776,7 @@ void MainWindow::on_updateComputerButton_clicked()
             }
             else if (reply == QMessageBox::No)
             {
-                ui->statusBar->showMessage("Update computer cancelled", 2500);
+
             }
         }
     }
@@ -1012,7 +1015,7 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
         }
         else
         {
-            ui->statusBar->showMessage("Add association cancelled", 2500);
+
         }
     }
 }
@@ -1041,7 +1044,7 @@ void MainWindow::on_deleteAssociationButton_clicked()
     }
     else if (reply == QMessageBox::No)
     {
-        ui->statusBar->showMessage("Delete association cancelled", 2500);
+
     }
 }
 
