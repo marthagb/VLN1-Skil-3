@@ -18,6 +18,16 @@ public:
 
     void setImage(QPixmap qp);
 
+    void setName(QString n);
+
+    void setBirthYear(QString bY);
+
+    void setDeathYear(QString dY);
+
+    void setAge(QString a);
+
+    void setFunFact(QString fF);
+
     void ShowPicture();
 
 private:
