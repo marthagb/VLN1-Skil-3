@@ -141,6 +141,9 @@
             <pointsize>9</pointsize>
            </font>
           </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -542,7 +545,7 @@
      <x>0</x>
      <y>0</y>
      <width>830</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

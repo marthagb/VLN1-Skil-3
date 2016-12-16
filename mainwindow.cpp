@@ -13,6 +13,7 @@
 #include "loadcomputersfromfile.h"
 #include "updatescientist.h"
 #include "updatecomputer.h"
+#include "scientistsinformationwindowdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

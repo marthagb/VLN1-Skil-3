@@ -66,7 +66,6 @@ void addScientistDialog::on_btn_image_clicked()
         }
         else
         {
-
             //TODO: error check
         }
     }

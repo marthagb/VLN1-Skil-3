@@ -405,43 +405,43 @@ bool DataLayer::saveScientistsToFile(string input)
         readScientists(1,1);
     }
 
-   ofstream out;
-   out.open(input);
+    ofstream out;
+    out.open(input);
 
-   if(out.fail())
-   {
-       return false;
-   }
+    if(out.fail())
+    {
+        return false;
+    }
     else
-   {
-       out.width(26);
-       out << left << "Name";
-       out << "\tGender\tBorn\tDied" << endl;
-       out << "_____________________________________________________" << endl;
+    {
+        out.width(26);
+        out << left << "Name";
+        out << "\tGender\tBorn\tDied" << endl;
+        out << "_____________________________________________________" << endl;
 
-       for(size_t i = 0; i < scientists.size(); i++)
-       {
-           out << left << scientists[i].getName();
-           out.width(26 - scientists[i].getName().length());
-           out << ";" << "\t" << scientists[i].getGender() << "\t" << scientists[i].getBirthYear() << "\t";
+        for(size_t i = 0; i < scientists.size(); i++)
+        {
+            out << left << scientists[i].getName();
+            out.width(26 - scientists[i].getName().length());
+            out << ";" << "\t" << scientists[i].getGender() << "\t" << scientists[i].getBirthYear() << "\t";
 
-           if(scientists[i].getAlive())
-           {
-               out << "Alive" << endl;
-           }
-           else
-           {
-               out << scientists[i].getDeathYear() << endl;
-           }
-       }
+            if(scientists[i].getAlive())
+            {
+                out << "Alive" << endl;
+            }
+            else
+            {
+                out << scientists[i].getDeathYear() << endl;
+            }
+        }
 
-       out << "_____________________________________________________" << endl;
+        out << "_____________________________________________________" << endl;
 
     }
 
-   out.close();
+    out.close();
 
-   return true;
+    return true;
 }
 
 //Updates the scientist whose name is 'name'
@@ -583,7 +583,7 @@ bool DataLayer::addComputer(const Computer& c)
     QSqlQuery query(db);
 
     query.prepare("INSERT INTO Computers(ComputerName, YearMade, Type, BuiltOrNot) "
-                          "VALUES (:ComputerName, :YearMade, :Type, :BuiltOrNot)");
+                  "VALUES (:ComputerName, :YearMade, :Type, :BuiltOrNot)");
 
     query.bindValue(0, QString::fromStdString(c.getComputerName()));
     query.bindValue(1, QVariant(c.getYearMade()));
@@ -907,18 +907,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY a.ConnectionID");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY a.ConnectionID");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY a.ConnectionID DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY a.ConnectionID DESC");
         }
     }
     else if (orderBy == 1)
@@ -926,18 +926,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY s.Name");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY s.Name");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY s.Name DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY s.Name DESC");
         }
     }
     else if (orderBy == 2)
@@ -945,18 +945,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.ComputerName");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.ComputerName");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.ComputerName DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.ComputerName DESC");
         }
     }
     else if (orderBy == 3)
@@ -964,18 +964,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.YearMade");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.YearMade");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.YearMade DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.YearMade DESC");
         }
     }
     else if (orderBy == 4)
@@ -983,18 +983,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.BuiltOrNot");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.BuiltOrNot");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.BuiltOrNot DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.BuiltOrNot DESC");
         }
     }
     else if (orderBy == 5)
@@ -1002,18 +1002,18 @@ void DataLayer::readAssociations(int orderBy, int ascOrDesc)
         if (ascOrDesc == 1)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.Type");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.Type");
         }
         else if (ascOrDesc == 2)
         {
             query.exec("SELECT s.Name, c.ComputerName "
-                             "FROM Scientists s "
-                             "INNER JOIN Associations a ON s.ID = a.ScientistID "
-                             "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
-                             "ORDER BY c.Type DESC");
+                       "FROM Scientists s "
+                       "INNER JOIN Associations a ON s.ID = a.ScientistID "
+                       "INNER JOIN Computers c ON a.ComputerID = c.ComputerID "
+                       "ORDER BY c.Type DESC");
         }
     }
 
@@ -1062,7 +1062,7 @@ bool DataLayer::addAssociation(const Association& a)
     QSqlQuery query1(db);
 
     query1.exec("SELECT ID FROM Scientists "
-                           "WHERE Name LIKE '" + QString::fromStdString(a.getScientistName()) + "'");
+                "WHERE Name LIKE '" + QString::fromStdString(a.getScientistName()) + "'");
 
     while (query1.next())
     {
@@ -1072,7 +1072,7 @@ bool DataLayer::addAssociation(const Association& a)
     QSqlQuery query2(db);
 
     query2.exec("SELECT ComputerID FROM Computers "
-                           "WHERE ComputerName LIKE '" + QString::fromStdString(a.getComputerName()) + "'");
+                "WHERE ComputerName LIKE '" + QString::fromStdString(a.getComputerName()) + "'");
 
     while (query2.next())
     {
@@ -1082,7 +1082,7 @@ bool DataLayer::addAssociation(const Association& a)
     QSqlQuery query3(db);
 
     query3.exec("INSERT INTO Associations(ScientistID, ComputerID) "
-                           "VALUES (" + QVariant(sID).toString() + ", " + QVariant(cID).toString() + ")");
+                "VALUES (" + QVariant(sID).toString() + ", " + QVariant(cID).toString() + ")");
 
     db.close();
 
