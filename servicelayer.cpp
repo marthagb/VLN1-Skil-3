@@ -61,6 +61,11 @@ bool ServiceLayer::saveScientistsToFile(string input)
     return dl.saveScientistsToFile(input);
 }
 
+void ServiceLayer::addPicToScientist(QString filename, string name)
+{
+    dl.addPicToScientists(filename, name);
+}
+
 vector<Computer> ServiceLayer::listComputers()
 {
     return dl.getComputerVector();

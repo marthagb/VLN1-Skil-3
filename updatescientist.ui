@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Update Scientist</string>
   </property>
   <widget class="QDateEdit" name="updateDeathYear">
    <property name="geometry">

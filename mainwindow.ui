@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Main Menu</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -626,7 +626,7 @@
      <x>0</x>
      <y>0</y>
      <width>830</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -661,7 +661,7 @@
   <action name="actionAdd_Scientist">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/Images/addScientist.jpg</normaloff>:/images/Images/addScientist.jpg</iconset>
+     <normaloff>:/images/Images/addScientist2.png</normaloff>:/images/Images/addScientist2.png</iconset>
    </property>
    <property name="text">
     <string>Add Scientist</string>
@@ -670,7 +670,7 @@
   <action name="actionAdd_Computer">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/Images/addComputer.jpg</normaloff>:/images/Images/addComputer.jpg</iconset>
+     <normaloff>:/images/Images/addComputer2.png</normaloff>:/images/Images/addComputer2.png</iconset>
    </property>
    <property name="text">
     <string>Add Computer</string>
@@ -679,7 +679,7 @@
   <action name="actionAdd_Association">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/images/Images/addAssociation.png</normaloff>:/images/Images/addAssociation.png</iconset>
+     <normaloff>:/images/Images/link.png</normaloff>:/images/Images/link.png</iconset>
    </property>
    <property name="text">
     <string>Add Association</string>
