@@ -27,8 +27,6 @@ private slots:
 
     void on_addScientistButton_clicked();
 
-    void on_addScientistDialog_rejected();
-
     void on_btn_image_clicked();
 
 private:

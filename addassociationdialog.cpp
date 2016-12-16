@@ -57,11 +57,6 @@ void addAssociationDialog::setComputerList(vector<Computer> C)
     }
 }
 
-void addAssociationDialog::on_addAssociationDialog_rejected()
-{
-    add = false;
-}
-
 void addAssociationDialog::on_scientistList_clicked()
 {
     if (ui->computersList->selectedItems().size() != 0)
