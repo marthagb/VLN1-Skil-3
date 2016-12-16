@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>620</width>
-    <height>443</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QLabel" name="loadImageLabel">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>241</width>
-     <height>241</height>
+     <x>160</x>
+     <y>50</y>
+     <width>300</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="font">
@@ -34,24 +34,39 @@
   <widget class="QLabel" name="ScientistsNameLabel">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>270</y>
-     <width>61</width>
-     <height>21</height>
+     <x>130</x>
+     <y>360</y>
+     <width>360</width>
+     <height>40</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>16</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Name</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="ScientistsYearBornLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>340</y>
-     <width>71</width>
-     <height>16</height>
+     <x>60</x>
+     <y>450</y>
+     <width>130</width>
+     <height>40</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Born:</string>
@@ -60,11 +75,17 @@
   <widget class="QLabel" name="ScientistsYearOfDeathLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>360</y>
-     <width>91</width>
-     <height>16</height>
+     <x>270</x>
+     <y>450</y>
+     <width>130</width>
+     <height>40</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Died:</string>
@@ -73,14 +94,53 @@
   <widget class="QLabel" name="ScientistsFunFactLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>380</y>
-     <width>91</width>
-     <height>16</height>
+     <x>60</x>
+     <y>540</y>
+     <width>521</width>
+     <height>91</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>10</pointsize>
+     <stylestrategy>PreferDefault</stylestrategy>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
    <property name="text">
-    <string>Fun Fact:</string>
+    <string>Fun fact:</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ScientistAgeLabel">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>450</y>
+     <width>80</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Rockwell</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Age:</string>
    </property>
   </widget>
  </widget>

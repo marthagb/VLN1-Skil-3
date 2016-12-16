@@ -973,11 +973,18 @@ void MainWindow::on_lastYearInputAssoc_returnPressed()
 void MainWindow::on_scientistTable_doubleClicked()
 {
     int r = ui->scientistTable->currentRow();
-    string n = ui->scientistTable->item(r, 0)->text().toStdString();
-    QPixmap qp = serve.showPicOfScientists(n);
+    QString n = ui->scientistTable->item(r, 0)->text();
+    QString bY = ui->scientistTable->item(r, 2)->text();
+    QString dY = ui->scientistTable->item(r, 3)->text();
+    QString a = ui->scientistTable->item(r, 4)->text();
+    QPixmap qp = serve.showPicOfScientists(n.toStdString());
     ScientistsInformationWindowDialog sID;
     sID.setModal(true);
     sID.setImage(qp);
+    sID.setName(n);
+    sID.setBirthYear(bY);
+    sID.setDeathYear(dY);
+    sID.setAge(a);
     sID.ShowPicture();
     sID.exec();
 
