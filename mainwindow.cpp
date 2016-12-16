@@ -428,6 +428,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 {
                     serve.addPicToScientist(updateScientist.getFile(), name);
                 }
+                serve.addFunFact(updateScientist.getFunFact(), name);
 
                 if(b < 1894)
                 {

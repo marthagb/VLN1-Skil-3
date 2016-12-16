@@ -7,7 +7,6 @@ ScientistsInformationWindowDialog::ScientistsInformationWindowDialog(QWidget *pa
     ui(new Ui::ScientistsInformationWindowDialog)
 {
     ui->setupUi(this);
-
 }
 
 ScientistsInformationWindowDialog::~ScientistsInformationWindowDialog()
