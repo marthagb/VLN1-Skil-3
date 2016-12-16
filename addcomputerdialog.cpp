@@ -14,17 +14,21 @@ addComputerDialog::~addComputerDialog()
     delete ui;
 }
 
+//Closes the window when the cancel button is pressed
 void addComputerDialog::on_cancelAddComputerButton_clicked()
 {
     this->close();
 }
 
+//Add becomes true, so a person is added.
 void addComputerDialog::on_addComputerButton_clicked()
 {
     add = true;
     this->close();
 }
 
+//Takes in Computer name, yearMade, type and if it was built
+//and returns it to the vector.
 Computer addComputerDialog::newComputer()
 {
     string n = ui->computerNameLineEdit->text().toStdString();

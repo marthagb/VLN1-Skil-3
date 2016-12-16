@@ -78,12 +78,13 @@ void addScientistDialog::on_btn_image_clicked()
     }
 }
 
-
+// Returns the name of the image.
 QString addScientistDialog::getFile()
 {
     return imageName;
 }
 
+//Checks if the user pushed the load image button
 bool addScientistDialog::getBtnImageClicked()
 {
     return hasImage;
