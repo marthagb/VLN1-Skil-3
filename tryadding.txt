@@ -1,0 +1,7 @@
+Name                      	Gender	Born	Died
+_____________________________________________________
+Dennis Ritchie;           	M	1941	2011
+Per Brich Hansen;         	M	1938	2007
+Sophie Wilson;            	F	1957	Alive
+Tim Berners Lee;          	M	1955	Alive
+_____________________________________________________

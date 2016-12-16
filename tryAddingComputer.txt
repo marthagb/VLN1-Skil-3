@@ -1,0 +1,7 @@
+Name                	Year	Computer type	                Built?
+___________________________________________________________________________________
+
+Pegasus 1;          	1956	Electronic Computer;     	Built;
+The Mallock Machine;	1933	Electronic Computer;     	Built;
+The Z1;             	1936	Electronic Computer;     	Built;
+___________________________________________________________________________________
