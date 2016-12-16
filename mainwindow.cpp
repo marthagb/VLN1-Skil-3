@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainOptions->setCurrentIndex(0);
     ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
     ui->lastYearInputScientist->hide();
+    ui->noScientistFoundLabel->hide();
+    ui->noComputerFoundLabel->hide();
+    ui->noAssociationFoundLabel->hide();
 
     showScientists(serve.listScientists());
 }
@@ -161,7 +164,7 @@ void MainWindow::on_updateScientistButton_clicked()
         {
             serve.updateScientist(1, name, n);
             string gender = updateScientist.getGender();
-            serve.updateScientist(2, gender, n);
+            serve.updateScientist(2, gender, name);
 
             string birthYear = updateScientist.getBirthYear();
             int b = atoi(birthYear.c_str());
@@ -172,8 +175,8 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 if(valid.birthChecks(b, d) == 0)
                 {
-                    serve.updateScientist(3, birthYear, n);
-                    serve.updateScientist(4, deathYear, n);
+                    serve.updateScientist(3, birthYear, name);
+                    serve.updateScientist(4, deathYear, name);
                 }
                 else if (valid.birthChecks(b, d) == 1)
                 {
@@ -207,7 +210,7 @@ void MainWindow::on_updateScientistButton_clicked()
             else if(updateScientist.getCheckBox())
             {
                 deathYear = "0";
-                serve.updateScientist(4, deathYear, n);
+                serve.updateScientist(4, deathYear, name);
 
                 if(b < 1894)
                 {
@@ -225,7 +228,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 }
                 else
                 {
-                    serve.updateScientist(3, birthYear, n);
+                    serve.updateScientist(3, birthYear, name);
                 }
             }
         }
@@ -375,9 +378,9 @@ void MainWindow::on_updateComputerButton_clicked()
             if (yearMade != "0")
             {
                 serve.updateComputer(1,name,n);
-                serve.updateComputer(2,yearMade,n);
-                serve.updateComputer(3,type,n);
-                serve.updateComputer(4,built,n);
+                serve.updateComputer(2,yearMade,name);
+                serve.updateComputer(3,type,name);
+                serve.updateComputer(4,built,name);
             }
             else
             {
@@ -705,7 +708,16 @@ void MainWindow::searchScientist()
         P.push_back(people[v[i]]);
     }
 
-    showScientists(P);
+    if (P.size() == 0)
+    {
+        ui->noScientistFoundLabel->show();
+        QTimer::singleShot(3000, ui->noScientistFoundLabel, &QLabel::hide);
+        showScientists(serve.listScientists());
+    }
+    else
+    {
+        showScientists(P);
+    }
 }
 
 void MainWindow::searchComputer()
@@ -742,7 +754,16 @@ void MainWindow::searchComputer()
         C.push_back(computers[v[i]]);
     }
 
-    showComputers(C);
+    if(C.size() == 0)
+    {
+        ui->noComputerFoundLabel->show();
+        QTimer::singleShot(3000, ui->noComputerFoundLabel, &QLabel::hide);
+        showComputers(serve.listComputers());
+    }
+    else
+    {
+        showComputers(C);
+    }
 
 }
 
@@ -785,7 +806,16 @@ void MainWindow::searchAssociation()
         A.push_back(assocs[v[i]]);
     }
 
-    showAssociations(A);
+    if(A.size() == 0)
+    {
+        ui->noAssociationFoundLabel->show();
+        QTimer::singleShot(3000, ui->noAssociationFoundLabel, &QLabel::hide);
+        showAssociations(serve.listAssociations());
+    }
+    else
+    {
+        showAssociations(A);
+    }
 }
 
 void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
