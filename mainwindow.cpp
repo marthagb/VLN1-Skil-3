@@ -894,7 +894,8 @@ void MainWindow::searchAssociation()
     }
 }
 
-// Shows the
+// Shows the Enter name/ gender/ birthYear/ BirthYearRange in light gray in the search boxes
+// and you can write over them without have-ing to erase them
 void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
 {
     if (arg1.toStdString() == "Name")
@@ -924,6 +925,8 @@ void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1
     }
 }
 
+// Shows the Enter name/ year/ birthYearRange/Type in light gray in the search boxes
+// and you can write over them without have-ing to erase them
 void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
 {
     if (arg1.toStdString() == "Name")
@@ -953,6 +956,9 @@ void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
     }
 }
 
+// Shows the Enter name/ year/ YearRange/ ComputerType
+// Type in light gray in the search boxes
+// and you can write over them without have-ing to erase them
 void MainWindow::on_searchAssocByBox_currentTextChanged(const QString &arg1)
 {
     if (arg1.toStdString() == "Scientist Name")
@@ -1027,6 +1033,8 @@ void MainWindow::on_lastYearInputAssoc_returnPressed()
     ui->lastYearInputAssoc->clear();
 }
 
+// when a scientist row is double clicked then it will
+// show more information about them with a picture if it exists
 void MainWindow::on_scientistTable_doubleClicked()
 {
     int r = ui->scientistTable->currentRow();

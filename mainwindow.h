@@ -19,68 +19,40 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addScientistButton_clicked();
-
-    void on_deleteScientistButton_clicked();
-
-    void on_updateScientistButton_clicked();
-
-    void on_addScientistsFromFileButton_clicked();
-
-    void on_saveScientistsToFileButton_clicked();
-
-    void on_addComputerButton_clicked();
-
-    void on_deleteComputerButton_clicked();
-
-    void on_updateComputerButton_clicked();
-
-    void on_saveComputersToFileButton_clicked();
-
-    void on_addComputersFromFileButton_clicked();
-
-    void on_addAssociationButton_clicked();
-
-    void on_deleteAssociationButton_clicked();
-
-    void on_saveAssocToFileButton_clicked();
-
-
     void on_mainOptions_currentChanged(int index);
+        void on_actionExit_Program_triggered();
 
-    void on_actionAdd_Scientist_triggered();
+        void on_scientistTable_clicked();
+        void on_scientistTable_doubleClicked();
+        void on_searchInputScientists_returnPressed();
+        void on_searchScientistsByBox_currentTextChanged(const QString &arg1);
+        void on_addScientistButton_clicked();
+        void on_actionAdd_Scientist_triggered();
+        void on_deleteScientistButton_clicked();
+        void on_updateScientistButton_clicked();
+        void on_addScientistsFromFileButton_clicked();
+        void on_saveScientistsToFileButton_clicked();
+        void on_lastYearInputScientist_returnPressed();
 
-    void on_actionAdd_Computer_triggered();
+        void on_computersTable_clicked();
+        void on_searchInputComputers_returnPressed();
+        void on_searchComputersByBox_currentTextChanged(const QString &arg1);
+        void on_addComputerButton_clicked();
+        void on_actionAdd_Computer_triggered();
+        void on_deleteComputerButton_clicked();
+        void on_updateComputerButton_clicked();
+        void on_addComputersFromFileButton_clicked();
+        void on_saveComputersToFileButton_clicked();
+        void on_lastYearInputComputers_returnPressed();
 
-    void on_actionAdd_Association_triggered();
-
-    void on_actionExit_Program_triggered();
-
-    void on_scientistTable_clicked();
-
-    void on_computersTable_clicked();
-
-    void on_associationsTable_clicked();
-
-    void on_searchScientistsByBox_currentTextChanged(const QString &arg1);
-
-    void on_searchComputersByBox_currentTextChanged(const QString &arg1);
-
-    void on_searchAssocByBox_currentTextChanged(const QString &arg1);
-
-    void on_searchInputScientists_returnPressed();
-
-    void on_searchInputComputers_returnPressed();
-
-    void on_searchInputAssociations_returnPressed();
-
-    void on_lastYearInputScientist_returnPressed();
-
-    void on_lastYearInputComputers_returnPressed();
-
-    void on_lastYearInputAssoc_returnPressed();
-
-    void on_scientistTable_doubleClicked();
+        void on_associationsTable_clicked();
+        void on_searchInputAssociations_returnPressed();
+        void on_searchAssocByBox_currentTextChanged(const QString &arg1);
+        void on_addAssociationButton_clicked();
+        void on_actionAdd_Association_triggered();
+        void on_deleteAssociationButton_clicked();
+        void on_saveAssocToFileButton_clicked();
+        void on_lastYearInputAssoc_returnPressed();
 
 private:
     Ui::MainWindow *ui;
