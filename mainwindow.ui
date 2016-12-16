@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideMiddle</enum>
@@ -289,11 +289,17 @@
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
@@ -491,11 +497,17 @@
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
@@ -663,7 +675,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_Scientist">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/Images/addScientist2.png</normaloff>:/images/Images/addScientist2.png</iconset>
    </property>
    <property name="text">
@@ -672,7 +684,7 @@
   </action>
   <action name="actionAdd_Computer">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/Images/addComputer2.png</normaloff>:/images/Images/addComputer2.png</iconset>
    </property>
    <property name="text">
@@ -681,7 +693,7 @@
   </action>
   <action name="actionAdd_Association">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/Images/link.png</normaloff>:/images/Images/link.png</iconset>
    </property>
    <property name="text">
@@ -690,7 +702,7 @@
   </action>
   <action name="actionExit_Program">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/images/Images/closeProgram.png</normaloff>:/images/Images/closeProgram.png</iconset>
    </property>
    <property name="text">
@@ -717,8 +729,6 @@
   <tabstop>addAssociationButton</tabstop>
   <tabstop>mainOptions</tabstop>
  </tabstops>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

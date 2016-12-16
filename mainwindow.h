@@ -82,10 +82,6 @@ private slots:
 
     void on_scientistTable_doubleClicked();
 
-    void on_associationsTable_doubleClicked(const QModelIndex &index);
-
-    void on_scientistTable_doubleClicked(const QModelIndex &index);
-
 private:
     Ui::MainWindow *ui;
 
