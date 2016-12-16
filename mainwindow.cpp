@@ -436,7 +436,7 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     comp.exec();
     if (comp.getLoad())
     {
-        if (!serve.addScientistsFromFile(comp.getFile()))
+        if (!serve.addComputersFromFile(comp.getFile()))
         {
             int reply = QMessageBox::question(this, "File Error", "Could not load from file\nTry again?",
                                               QMessageBox::Yes | QMessageBox::No);

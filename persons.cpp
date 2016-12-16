@@ -149,6 +149,7 @@ istream& operator >> (istream& in, Persons& p)
                         p.birthYear = bY;
                         p.alive = true;
                         p.deathYear = 0;
+                        p.age = CURRENT_YEAR - bY;
                     }
                     else if(p.valid.validYear(d, dY) && p.valid.birthChecks(bY, dY) == 0) //Checks whether the death year is valid, and whether it's consistent with the birth year.
                     {
@@ -157,6 +158,7 @@ istream& operator >> (istream& in, Persons& p)
                         p.birthYear = bY;
                         p.deathYear = dY;
                         p.alive = false;
+                        p.age = dY - bY;
                     }
                     //Each of these, if it fails the validity checks, will make p a person equal to a person with
                     //the default constructor, which, when being loaded, will be skipped.

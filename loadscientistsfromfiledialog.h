@@ -24,6 +24,8 @@ private slots:
 
     void on_ButtonCancel_clicked();
 
+    void on_InputForTextFileName_returnPressed();
+
 private:
     Ui::LoadScientistsFromFileDialog *ui;
 
