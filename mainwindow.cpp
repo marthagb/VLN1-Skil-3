@@ -534,6 +534,7 @@ void MainWindow::on_saveAssocToFileButton_clicked()
 
 void MainWindow::showScientists(vector<Persons> S)
 {
+    ui->scientistTable->setSortingEnabled(false);
     ui->scientistTable->clear();
     ui->scientistTable->setRowCount(S.size());
     ui->scientistTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
@@ -555,10 +556,12 @@ void MainWindow::showScientists(vector<Persons> S)
 
         ui->scientistTable->setItem(i, 4, new QTableWidgetItem(QVariant(S[i].getAge()).toString()));
     }
+    ui->scientistTable->setSortingEnabled(true);
 }
 
 void MainWindow::showComputers(vector<Computer> C)
 {
+    ui->computersTable->setSortingEnabled(false);
     ui->computersTable->clear();
     ui->computersTable->setRowCount(C.size());
     ui->computersTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
@@ -581,10 +584,12 @@ void MainWindow::showComputers(vector<Computer> C)
             ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Not Built")));
         }
     }
+    ui->computersTable->setSortingEnabled(true);
 }
 
 void MainWindow::showAssociations(vector<Association> A)
 {
+    ui->associationsTable->setSortingEnabled(false);
     ui->associationsTable->clear();
     ui->associationsTable->setRowCount(A.size());
     ui->associationsTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Scientist")));
@@ -610,6 +615,7 @@ void MainWindow::showAssociations(vector<Association> A)
 
         ui->associationsTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(A[i].getComputerType())));
     }
+    ui->associationsTable->setSortingEnabled(true);
 }
 
 void MainWindow::on_mainOptions_currentChanged(int index)
