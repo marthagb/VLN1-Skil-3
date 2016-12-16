@@ -6,6 +6,7 @@ updatescientist::updatescientist(QWidget *parent) :
     ui(new Ui::updatescientist)
 {
     ui->setupUi(this);
+    hasImage = false;
 }
 
 updatescientist::~updatescientist()
@@ -105,4 +106,43 @@ void updatescientist::on_cancelUpdateScientistButton_clicked()
 {
     update = false;
     this->close();
+}
+
+QString updatescientist::getFile()
+{
+    return imageName;
+}
+bool updatescientist::getUpdatePictureButton()
+{
+    return hasImage;
+}
+
+void updatescientist::setPic(QPixmap qp)
+{
+
+    ui->UpdatePictureLabel->setPixmap(qp);
+    ui->UpdatePictureLabel->setScaledContents(true);
+}
+
+void updatescientist::on_UpdatePictureButton_clicked()
+{
+    QString filename = QFileDialog::getOpenFileName(this, ("Choose"), "", tr("images(*.png *.jpg *.jpeg *.bmp *.gif)"));
+
+    if(QString::compare(filename, QString()) != 0)
+    {
+        QImage image;
+        bool valid = image.load(filename);
+
+        if(valid)
+        {
+            image = image.scaledToWidth(ui->UpdatePictureLabel->width(), Qt::SmoothTransformation);
+            ui->UpdatePictureLabel->setPixmap(QPixmap::fromImage(image));
+            hasImage = true;
+            imageName = filename;
+        }
+        else
+        {
+            //TODO: error check
+        }
+    }
 }
