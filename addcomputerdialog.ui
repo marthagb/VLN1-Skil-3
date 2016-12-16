@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add Computer</string>
   </property>
   <widget class="QLineEdit" name="computerNameLineEdit">
    <property name="geometry">

@@ -4,5 +4,8 @@
         <file>Images/addComputer.jpg</file>
         <file>Images/addScientist.jpg</file>
         <file>Images/closeProgram.png</file>
+        <file>Images/link.png</file>
+        <file>Images/addComputer2.png</file>
+        <file>Images/addScientist2.png</file>
     </qresource>
 </RCC>
