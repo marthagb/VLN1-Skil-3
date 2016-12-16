@@ -14,6 +14,7 @@ saveAssociationsToFileDialog::~saveAssociationsToFileDialog()
     delete ui;
 }
 
+//Saves the selected data to file and closes the dialog
 void saveAssociationsToFileDialog::on_SaveAssociationsToFile_clicked()
 {
     ServiceLayer serve;
@@ -29,6 +30,7 @@ void saveAssociationsToFileDialog::on_SaveAssociationsToFile_clicked()
     }
 }
 
+//Save to file cancelled and dialog closed
 void saveAssociationsToFileDialog::on_cancelSaveAssociationsToFile_clicked()
 {
     save = false;
