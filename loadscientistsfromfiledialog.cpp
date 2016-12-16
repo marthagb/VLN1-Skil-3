@@ -1,6 +1,5 @@
 #include "loadscientistsfromfiledialog.h"
 #include "ui_loadscientistsfromfiledialog.h"
-#include "servicelayer.h"
 
 using namespace std;
 
@@ -9,6 +8,7 @@ LoadScientistsFromFileDialog::LoadScientistsFromFileDialog(QWidget *parent) :
     ui(new Ui::LoadScientistsFromFileDialog)
 {
     ui->setupUi(this);
+    load = false;
 }
 
 LoadScientistsFromFileDialog::~LoadScientistsFromFileDialog()
@@ -18,19 +18,22 @@ LoadScientistsFromFileDialog::~LoadScientistsFromFileDialog()
 
 void LoadScientistsFromFileDialog::on_ButtonLoad_clicked()
 {
-    ServiceLayer serve;
-
-    if (!serve.addScientistsFromFile(ui->InputForTextFileName->text().toStdString()))
-    {
-        ui->LabelErrorMessage->setText("<span style ='color: #ff0000 '> Could not load from file </span>");
-    }
-    else
-    {
-        this->close();
-    }
+    file = ui->InputForTextFileName->text().toStdString();
+    load = true;
+    this->close();
 }
 
 void LoadScientistsFromFileDialog::on_ButtonCancel_clicked()
 {
     this->close();
+}
+
+bool LoadScientistsFromFileDialog::getLoad()
+{
+    return load;
+}
+
+string LoadScientistsFromFileDialog::getFile()
+{
+    return file;
 }
