@@ -6,6 +6,7 @@ addAssociationDialog::addAssociationDialog(QWidget *parent) :
     ui(new Ui::addAssociationDialog)
 {
     ui->setupUi(this);
+    add = false;
 }
 
 addAssociationDialog::~addAssociationDialog()
@@ -15,7 +16,6 @@ addAssociationDialog::~addAssociationDialog()
 
 void addAssociationDialog::on_cancelAddAssociationButton_clicked()
 {
-    add = false;
     this->close();
 }
 
@@ -60,4 +60,20 @@ void addAssociationDialog::setComputerList(vector<Computer> C)
 void addAssociationDialog::on_addAssociationDialog_rejected()
 {
     add = false;
+}
+
+void addAssociationDialog::on_scientistList_clicked()
+{
+    if (ui->computersList->selectedItems().size() != 0)
+    {
+        ui->addAssociationButton->setEnabled(true);
+    }
+}
+
+void addAssociationDialog::on_computersList_clicked()
+{
+    if (ui->scientistList->selectedItems().size() != 0)
+    {
+        ui->addAssociationButton->setEnabled(true);
+    }
 }

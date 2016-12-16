@@ -34,6 +34,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="addAssociationButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -64,12 +67,12 @@
     <rect>
      <x>30</x>
      <y>40</y>
-     <width>81</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Scientists</string>
+    <string>Select a scientist:</string>
    </property>
   </widget>
   <widget class="QLabel" name="computersListLabel">
@@ -77,12 +80,12 @@
     <rect>
      <x>310</x>
      <y>40</y>
-     <width>81</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Computers</string>
+    <string>Select a computer:</string>
    </property>
   </widget>
  </widget>

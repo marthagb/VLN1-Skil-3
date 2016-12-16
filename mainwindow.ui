@@ -6,629 +6,542 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>832</width>
-    <height>629</height>
+    <width>830</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="mainOptions">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>841</width>
-      <height>571</height>
-     </rect>
-    </property>
-    <property name="accessibleName">
-     <string/>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="currentIndex">
-     <number>2</number>
-    </property>
-    <property name="elideMode">
-     <enum>Qt::ElideMiddle</enum>
-    </property>
-    <widget class="QWidget" name="scientistsTab">
-     <attribute name="title">
-      <string>Scientists</string>
-     </attribute>
-     <widget class="QTableWidget" name="scientistTable">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>120</y>
-        <width>761</width>
-        <height>331</height>
-       </rect>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="mainOptions">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Rockwell</family>
+        <pointsize>8</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
       </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="textElideMode">
+      <property name="elideMode">
        <enum>Qt::ElideMiddle</enum>
       </property>
-      <property name="showGrid">
-       <bool>true</bool>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>false</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Gender</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Birthyear</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Deathyear</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Age</string>
-       </property>
-      </column>
+      <widget class="QWidget" name="scientistsTab">
+       <attribute name="title">
+        <string>Scientists</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
+         <widget class="QComboBox" name="searchScientistsByBox">
+          <item>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Birth Year</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Birth Year Range</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="addScientistsFromFileButton">
+          <property name="text">
+           <string>Add from file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="updateScientistButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Update</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="saveScientistsToFileButton">
+          <property name="text">
+           <string>Save to file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="searchLabelScientists">
+          <property name="text">
+           <string>Search by:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="addScientistButton">
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="deleteScientistButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="6">
+         <widget class="QTableWidget" name="scientistTable">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Rockwell</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="textElideMode">
+           <enum>Qt::ElideMiddle</enum>
+          </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>151</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Birthyear</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Deathyear</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Age</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QLineEdit" name="searchInputScientists"/>
+        </item>
+       </layout>
+       <widget class="QLineEdit" name="lastYearInputScientist">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>100</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="computersTab">
+       <attribute name="title">
+        <string>Computers</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="searchLabelComputers">
+          <property name="text">
+           <string>Search by:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="6">
+         <widget class="QTableWidget" name="computersTable">
+          <property name="font">
+           <font>
+            <family>Rockwell</family>
+           </font>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>189</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year Made</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Built?</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="searchComputersByBox">
+          <item>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Year Made</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Year Range</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QLineEdit" name="searchInputComputers"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="addComputerButton">
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="deleteComputerButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="updateComputerButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Update</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="saveComputersToFileButton">
+          <property name="text">
+           <string>Save to file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="addComputersFromFileButton">
+          <property name="text">
+           <string>Add from file</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+       <widget class="QLineEdit" name="lastYearInputComputers">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>100</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="associationsTab">
+       <attribute name="title">
+        <string>Associations</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="3" column="0">
+         <widget class="QPushButton" name="addAssociationButton">
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="saveAssocToFileButton">
+          <property name="text">
+           <string>Save to file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="deleteAssociationButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="searchLabelAssociations">
+          <property name="text">
+           <string>Search by:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QTableWidget" name="associationsTable">
+          <property name="font">
+           <font>
+            <family>Rockwell</family>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>151</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Scientist Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Computer Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year Made</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Built?</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="searchAssocByBox">
+          <item>
+           <property name="text">
+            <string>Scientist Name</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Computer Name</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Year Made</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Year Range</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Computer Type</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QLineEdit" name="searchInputAssociations"/>
+        </item>
+       </layout>
+       <widget class="QLineEdit" name="lastYearInputAssoc">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>100</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
-     <widget class="QLineEdit" name="searchInputScientists">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>381</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="searchScientistsByBox">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>40</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Gender</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year of Birth</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Birth Year Range</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year of Death</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QPushButton" name="addScientistButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="deleteScientistButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="updateScientistButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Update</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="saveScientistsToFileButton">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save to file</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addScientistsFromFileButton">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add from file</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="searchLabelScientists">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>55</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lastYearInputScientist">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>610</x>
-        <y>40</y>
-        <width>113</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="computersTab">
-     <attribute name="title">
-      <string>Computers</string>
-     </attribute>
-     <widget class="QTableWidget" name="computersTable">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>120</y>
-        <width>761</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <column>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Year Made</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Type</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Built?</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QPushButton" name="addComputerButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="deleteComputerButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="updateComputerButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Update</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="saveComputersToFileButton">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save to file</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="addComputersFromFileButton">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add from file</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="searchComputersByBox">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>40</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year Made</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year Range</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Type</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="searchInputComputers">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>381</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="searchLabelComputers">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>55</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lastYearInputComputers">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>610</x>
-        <y>40</y>
-        <width>113</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="associationsTab">
-     <attribute name="title">
-      <string>Associations</string>
-     </attribute>
-     <widget class="QTableWidget" name="associationsTable">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>120</y>
-        <width>761</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <column>
-       <property name="text">
-        <string>Scientist Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Computer Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Year Made</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Built?</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Type</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QPushButton" name="addAssociationButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="deleteAssociationButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="saveAssocToFileButton">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>470</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save to file</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="searchInputAssociations">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>381</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="searchLabelAssociations">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>55</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Search:</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="searchAssocByBox">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>40</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>Scientist Name</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Computer Name</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year Made</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Year Range</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Computer Type</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="lastYearInputAssoc">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>590</x>
-        <y>40</y>
-        <width>113</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="ErrorLabelMainScientists">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>540</y>
-      <width>351</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>832</width>
+     <width>830</width>
      <height>26</height>
     </rect>
    </property>
@@ -694,29 +607,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>mainOptions</tabstop>
-  <tabstop>searchInputScientists</tabstop>
   <tabstop>searchScientistsByBox</tabstop>
+  <tabstop>searchInputScientists</tabstop>
+  <tabstop>lastYearInputScientist</tabstop>
   <tabstop>scientistTable</tabstop>
   <tabstop>addScientistButton</tabstop>
-  <tabstop>deleteScientistButton</tabstop>
-  <tabstop>updateScientistButton</tabstop>
-  <tabstop>saveScientistsToFileButton</tabstop>
-  <tabstop>addScientistsFromFileButton</tabstop>
-  <tabstop>searchInputComputers</tabstop>
   <tabstop>searchComputersByBox</tabstop>
+  <tabstop>searchInputComputers</tabstop>
+  <tabstop>lastYearInputComputers</tabstop>
   <tabstop>computersTable</tabstop>
   <tabstop>addComputerButton</tabstop>
-  <tabstop>deleteComputerButton</tabstop>
-  <tabstop>updateComputerButton</tabstop>
-  <tabstop>saveComputersToFileButton</tabstop>
-  <tabstop>addComputersFromFileButton</tabstop>
-  <tabstop>searchInputAssociations</tabstop>
   <tabstop>searchAssocByBox</tabstop>
+  <tabstop>searchInputAssociations</tabstop>
+  <tabstop>lastYearInputAssoc</tabstop>
   <tabstop>associationsTable</tabstop>
   <tabstop>addAssociationButton</tabstop>
-  <tabstop>deleteAssociationButton</tabstop>
-  <tabstop>saveAssocToFileButton</tabstop>
+  <tabstop>mainOptions</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>
