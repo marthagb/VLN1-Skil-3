@@ -350,6 +350,7 @@ void MainWindow::on_updateScientistButton_clicked()
     updateScientist.setGender(g);
     updateScientist.setBirthYear(bY);
     updateScientist.setPic(serve.showPicOfScientists(n));
+    updateScientist.setFunFact(serve.getFunFact(n));
 
     if(ui->scientistTable->item(r,3))
     {
