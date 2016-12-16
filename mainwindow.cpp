@@ -848,26 +848,22 @@ void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1
     {
         ui->lastYearInputScientist->hide();
         ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->searchInputScientists->setGeometry(11, 40, 380, 22);
     }
     else if (arg1.toStdString() == "Gender")
     {
         ui->lastYearInputScientist->hide();
         ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter gender"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
     }
     else if (arg1.toStdString() == "Birth Year")
     {
         ui->lastYearInputScientist->hide();
         ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
     }
     else if (arg1.toStdString() == "Birth Year Range")
     {
         ui->lastYearInputScientist->show();
         ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter first year"));
         ui->lastYearInputScientist->setPlaceholderText(QString::fromStdString("Enter last year"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
     }
 }
 
@@ -877,26 +873,22 @@ void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
     {
         ui->lastYearInputComputers->hide();
         ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
     }
     else if (arg1.toStdString() == "Year Made")
     {
         ui->lastYearInputComputers->hide();
         ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
     }
     else if (arg1.toStdString() == "Year Range")
     {
         ui->lastYearInputComputers->show();
         ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter first year"));
-        ui->lastYearInputComputers->setText(QString::fromStdString("Enter last year"));
-        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
+        ui->lastYearInputComputers->setPlaceholderText(QString::fromStdString("Enter last year"));
     }
     else if (arg1.toStdString() == "Type")
     {
         ui->lastYearInputComputers->hide();
         ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter type"));
-        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
     }
 }
 
@@ -906,32 +898,27 @@ void MainWindow::on_searchAssocByBox_currentTextChanged(const QString &arg1)
     {
         ui->lastYearInputAssoc->hide();
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
     }
     else if (arg1.toStdString() == "Computer Name")
     {
         ui->lastYearInputAssoc->hide();
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter computer name"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
     }
     else if (arg1.toStdString() == "Year Made")
     {
         ui->lastYearInputAssoc->hide();
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
     }
     else if (arg1.toStdString() == "Year Range")
     {
         ui->lastYearInputAssoc->show();
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter first year"));
         ui->lastYearInputAssoc->setPlaceholderText(QString::fromStdString("Enter last year"));
-        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
     }
     else if (arg1.toStdString() == "Computer Type")
     {
         ui->lastYearInputAssoc->hide();
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter type"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
     }
 }
 

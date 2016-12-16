@@ -44,6 +44,7 @@ public:
     void updateScientist(int variable, string value, string name);
     void addPicToScientists(QString filename, string name);
     QPixmap showPicOfScientists(string name);
+    QString getFunFact(string name);
 
     void readComputers(int orderBy, int ascOrDesc);
     vector<int> searchComputerByName(const string n);

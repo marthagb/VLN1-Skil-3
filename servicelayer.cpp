@@ -71,6 +71,11 @@ QPixmap ServiceLayer::showPicOfScientists(string name)
     return dl.showPicOfScientists(name);
 }
 
+QString ServiceLayer::getFunFact(string name)
+{
+    return dl.getFunFact(name);
+}
+
 vector<Computer> ServiceLayer::listComputers()
 {
     return dl.getComputerVector();

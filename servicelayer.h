@@ -24,6 +24,7 @@ public:
     bool saveScientistsToFile(string input);
     void addPicToScientist(QString filename, string name);
     QPixmap showPicOfScientists(string name);
+    QString getFunFact(string name);
 
     vector<Computer> listComputers();
     void sortComputers(int orderBy, int ascOrDesc);

@@ -474,6 +474,20 @@ void DataLayer::updateScientist(int variable, string value, string name)
     db.close();
 }
 
+QString DataLayer::getFunFact(string name)
+{
+    db.open();
+    QSqlQuery query(db);
+
+    query.exec("SELECT 'Fun Fact' From Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
+    query.first();
+    QString fF = query.value("Fun Fact").toString();
+
+    db.close();
+
+    return fF;
+}
+
 //Reads computers from database
 //'orderBy' and 'ascOrDesc' determine how the data is ordered
 void DataLayer::readComputers(int orderBy, int ascOrDesc)
