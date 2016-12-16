@@ -83,6 +83,12 @@ p, li { white-space: pre-wrap; }
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>textForSaveToFileComputer</tabstop>
+  <tabstop>InputForTextFileNameComputer</tabstop>
+  <tabstop>SaveComputersToFile</tabstop>
+  <tabstop>cancelSaveComputersToFile</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

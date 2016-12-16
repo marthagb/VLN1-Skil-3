@@ -211,6 +211,15 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>updateNameInput</tabstop>
+  <tabstop>updateGenderBox</tabstop>
+  <tabstop>updateBirthYear</tabstop>
+  <tabstop>updateDeathYear</tabstop>
+  <tabstop>aliveCheckBox</tabstop>
+  <tabstop>updateScientistButton</tabstop>
+  <tabstop>cancelUpdateScientistButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
