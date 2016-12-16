@@ -216,6 +216,10 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 deathYear = "0";
                 serve.updateScientist(4, deathYear, name);
+                if(updateScientist.getUpdatePictureButton())
+                {
+                    serve.addPicToScientist(updateScientist.getFile(), name);
+                }
 
                 if(b < 1894)
                 {
