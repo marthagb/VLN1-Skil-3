@@ -14,17 +14,21 @@ addAssociationDialog::~addAssociationDialog()
     delete ui;
 }
 
+//Closes the window when the cancel button is pressed
 void addAssociationDialog::on_cancelAddAssociationButton_clicked()
 {
     this->close();
 }
 
+// Add is true, so the association goes through
 void addAssociationDialog::on_addAssociationButton_clicked()
 {
     add = true;
     this->close();
 }
 
+//takes in two strings (one for scientists and one for computers)
+//and adds them together
 vector<string> addAssociationDialog::newAssociation()
 {
     string sN = ui->scientistList->currentItem()->text().toStdString();
@@ -41,6 +45,7 @@ bool addAssociationDialog::getAdd()
     return add;
 }
 
+//Lists the scientists
 void addAssociationDialog::setScientistList(vector<Persons> S)
 {
     for (unsigned int i = 0; i < S.size(); i++)
@@ -49,6 +54,7 @@ void addAssociationDialog::setScientistList(vector<Persons> S)
     }
 }
 
+//Lists the computers
 void addAssociationDialog::setComputerList(vector<Computer> C)
 {
     for (unsigned int i = 0; i < C.size(); i++)
@@ -57,6 +63,8 @@ void addAssociationDialog::setComputerList(vector<Computer> C)
     }
 }
 
+//Checks if the size of the vector is 0
+// if it is notzero then you can add association
 void addAssociationDialog::on_scientistList_clicked()
 {
     if (ui->computersList->selectedItems().size() != 0)
@@ -65,6 +73,8 @@ void addAssociationDialog::on_scientistList_clicked()
     }
 }
 
+//Checks if the size of the vector is 0
+// if it is notzero then you can add association
 void addAssociationDialog::on_computersList_clicked()
 {
     if (ui->scientistList->selectedItems().size() != 0)

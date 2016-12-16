@@ -16,6 +16,7 @@ LoadScientistsFromFileDialog::~LoadScientistsFromFileDialog()
     delete ui;
 }
 
+//Loads the file and closes the dialog
 void LoadScientistsFromFileDialog::on_ButtonLoad_clicked()
 {
     file = ui->InputForTextFileName->text().toStdString();
@@ -23,6 +24,7 @@ void LoadScientistsFromFileDialog::on_ButtonLoad_clicked()
     this->close();
 }
 
+//Load cancelled and dialog closed
 void LoadScientistsFromFileDialog::on_ButtonCancel_clicked()
 {
     this->close();
@@ -38,6 +40,7 @@ string LoadScientistsFromFileDialog::getFile()
     return file;
 }
 
+//If enter is pressed the file will be loaded
 void LoadScientistsFromFileDialog::on_InputForTextFileName_returnPressed()
 {
     on_ButtonLoad_clicked();

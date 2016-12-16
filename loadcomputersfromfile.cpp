@@ -15,6 +15,7 @@ LoadComputersFromFile::~LoadComputersFromFile()
     delete ui;
 }
 
+//Loads the file and closes the dialog
 void LoadComputersFromFile::on_ButtonLoad_clicked()
 {
     file = ui->InputForTextFileName->text().toStdString();
@@ -22,6 +23,7 @@ void LoadComputersFromFile::on_ButtonLoad_clicked()
     this->close();
 }
 
+//Load cancelled and closes the dialog
 void LoadComputersFromFile::on_ButtonCancel_clicked()
 {
     this->close();
@@ -37,6 +39,7 @@ string LoadComputersFromFile::getFile()
     return file;
 }
 
+//If enter is pressed the file will load
 void LoadComputersFromFile::on_InputForTextFileName_returnPressed()
 {
     on_ButtonLoad_clicked();

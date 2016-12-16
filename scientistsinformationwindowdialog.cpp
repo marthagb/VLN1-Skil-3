@@ -45,6 +45,7 @@ void ScientistsInformationWindowDialog::setFunFact(QString fF)
     ui->ScientistsFunFactLabel->setText(QString::fromStdString("Fun fact: ")+fF);
 }
 
+//displays the picture and scales it
 void ScientistsInformationWindowDialog::ShowPicture()
 {
     ui->loadImageLabel->text().clear();
