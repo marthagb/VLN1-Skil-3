@@ -89,3 +89,8 @@ bool addScientistDialog::getBtnImageClicked()
 {
     return hasImage;
 }
+
+QString addScientistDialog::getFunFact()
+{
+    return ui->funFactInput->text();
+}

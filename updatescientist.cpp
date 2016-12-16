@@ -6,6 +6,7 @@ updatescientist::updatescientist(QWidget *parent) :
     ui(new Ui::updatescientist)
 {
     ui->setupUi(this);
+    update = false;
     hasImage = false;
 }
 
@@ -58,6 +59,11 @@ void updatescientist::setCheckBox()
     ui->aliveCheckBox->setChecked(true);
 }
 
+void updatescientist::setFunFact(QString fF)
+{
+    ui->updateFunFactInput->setText(fF);
+}
+
 //Updates the name in the dialog
 std::string updatescientist::getName()
 {
@@ -103,6 +109,12 @@ bool updatescientist::getCheckBox()
     {
         return false;
     }
+}
+
+QString updatescientist::getFunFact()
+{
+    QString fF = ui->updateFunFactInput->text();
+    return fF;
 }
 
 bool updatescientist::getUpdate()

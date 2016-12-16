@@ -86,7 +86,11 @@ void MainWindow::on_scientistTable_doubleClicked()
     int r = ui->scientistTable->currentRow();
     QString n = ui->scientistTable->item(r, 0)->text();
     QString bY = ui->scientistTable->item(r, 2)->text();
-    QString dY = ui->scientistTable->item(r, 3)->text();
+    QString dY;
+    if (ui->scientistTable->item(r, 3))
+    {
+        dY = ui->scientistTable->item(r, 3)->text();
+    }
     QString a = ui->scientistTable->item(r, 4)->text();
     QString fF = serve.getFunFact(n.toStdString());
     QPixmap qp = serve.showPicOfScientists(n.toStdString());
@@ -244,6 +248,7 @@ void MainWindow::on_addScientistButton_clicked()
                 {
                     serve.addPicToScientist(addScientist.getFile(), s.getName());
                 }
+                serve.addFunFact(addScientist.getFunFact(), s.getName());
 
                 showScientists(serve.listScientists());
             }
@@ -383,6 +388,7 @@ void MainWindow::on_updateScientistButton_clicked()
                     {
                         serve.addPicToScientist(updateScientist.getFile(), name);
                     }
+                    serve.addFunFact(updateScientist.getFunFact(), name);
                 }
                 else if (valid.birthChecks(b, d) == 1)
                 {

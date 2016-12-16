@@ -474,20 +474,6 @@ void DataLayer::updateScientist(int variable, string value, string name)
     db.close();
 }
 
-QString DataLayer::getFunFact(string name)
-{
-    db.open();
-    QSqlQuery query(db);
-
-    query.exec("SELECT funFact From Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
-    query.first();
-    QString fF = query.value(0).toString();
-
-    db.close();
-
-    return fF;
-}
-
 //Reads computers from database
 //'orderBy' and 'ascOrDesc' determine how the data is ordered
 void DataLayer::readComputers(int orderBy, int ascOrDesc)
@@ -1399,4 +1385,28 @@ QPixmap DataLayer::showPicOfScientists(string name)
     outPixmap.loadFromData(outByteArray);
     db.close();
     return outPixmap;
+}
+
+void DataLayer::addFunFact(QString fF, string name)
+{
+    db.open();
+    QSqlQuery query(db);
+
+    query.exec("UPDATE Scientists SET funFact = '" + fF + "' WHERE Name = '" + QString::fromStdString(name) + "'");
+
+    db.close();
+}
+
+QString DataLayer::getFunFact(string name)
+{
+    db.open();
+    QSqlQuery query(db);
+
+    query.exec("SELECT funFact From Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
+    query.first();
+    QString fF = query.value(0).toString();
+
+    db.close();
+
+    return fF;
 }

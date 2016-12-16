@@ -71,6 +71,11 @@ QPixmap ServiceLayer::showPicOfScientists(string name)
     return dl.showPicOfScientists(name);
 }
 
+void ServiceLayer::addFunFact(QString fF, string name)
+{
+    dl.addFunFact(fF, name);
+}
+
 QString ServiceLayer::getFunFact(string name)
 {
     return dl.getFunFact(name);

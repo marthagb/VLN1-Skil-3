@@ -32,6 +32,8 @@ public:
     QString getFile();
     bool getUpdatePictureButton();
     void setPic(QPixmap qp);
+    void setFunFact(QString fF);
+    QString getFunFact();
 
 private slots:
     void on_updateScientistButton_clicked();

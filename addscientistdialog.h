@@ -26,6 +26,8 @@ public:
 
     bool getBtnImageClicked();
 
+    QString getFunFact();
+
 private slots:
     void on_cancelAddScientistButton_clicked();
 
