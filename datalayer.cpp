@@ -1355,6 +1355,8 @@ bool DataLayer::saveAssociationsToFile(string input)
     return true;
 }
 
+//Takes in the name of the scientist
+// And saves the picture blob into the database in column named dataBlob.
 void DataLayer::addPicToScientists(QString filename, string name)
 {
     QFile file(filename);
@@ -1370,6 +1372,7 @@ void DataLayer::addPicToScientists(QString filename, string name)
     db.close();
 }
 
+//Gets the images back from the dataBase
 QPixmap DataLayer::showPicOfScientists(string name)
 {
 
