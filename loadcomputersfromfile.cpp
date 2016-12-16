@@ -7,6 +7,7 @@ LoadComputersFromFile::LoadComputersFromFile(QWidget *parent) :
     ui(new Ui::LoadComputersFromFile)
 {
     ui->setupUi(this);
+    load = false;
 }
 
 LoadComputersFromFile::~LoadComputersFromFile()
@@ -16,19 +17,22 @@ LoadComputersFromFile::~LoadComputersFromFile()
 
 void LoadComputersFromFile::on_ButtonLoad_clicked()
 {
-    ServiceLayer serve;
-
-    if (!serve.addScientistsFromFile(ui->InputForTextFileName->text().toStdString()))
-    {
-        ui->LabelErrorMessage->setText("<span style ='color: #ff0000 '> Could not load from file </span>");
-    }
-    else
-    {
-        this->close();
-    }
+    file = ui->InputForTextFileName->text().toStdString();
+    load = true;
+    this->close();
 }
 
 void LoadComputersFromFile::on_ButtonCancel_clicked()
 {
     this->close();
+}
+
+bool LoadComputersFromFile::getLoad()
+{
+    return load;
+}
+
+string LoadComputersFromFile::getFile()
+{
+    return file;
 }

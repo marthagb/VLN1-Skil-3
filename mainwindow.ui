@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideMiddle</enum>
@@ -196,25 +196,55 @@
            <property name="text">
             <string>Name</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Gender</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
           <column>
            <property name="text">
             <string>Birthyear</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Deathyear</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Age</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
          </widget>
@@ -287,20 +317,44 @@
            <property name="text">
             <string>Name</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Year Made</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
           <column>
            <property name="text">
             <string>Type</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Built?</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
          </widget>
@@ -465,25 +519,55 @@
            <property name="text">
             <string>Scientist Name</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Computer Name</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
           <column>
            <property name="text">
             <string>Year Made</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Built?</string>
            </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
           </column>
           <column>
            <property name="text">
             <string>Type</string>
+           </property>
+           <property name="font">
+            <font>
+             <family>Rockwell</family>
+             <pointsize>9</pointsize>
+            </font>
            </property>
           </column>
          </widget>

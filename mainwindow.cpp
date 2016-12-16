@@ -256,8 +256,22 @@ void MainWindow::on_addScientistsFromFileButton_clicked()
     LoadScientistsFromFileDialog loadScientists;
     loadScientists.setModal(true);
     loadScientists.exec();
-
-    showScientists(serve.listScientists());
+    if (loadScientists.getLoad())
+    {
+        if (!serve.addScientistsFromFile(loadScientists.getFile()))
+        {
+            int reply = QMessageBox::question(this, "File Error", "Could not load from file\nTry again?",
+                                              QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                on_addScientistsFromFileButton_clicked();
+            }
+        }
+        else
+        {
+            showScientists(serve.listScientists());
+        }
+    }
 }
 
 void MainWindow::on_saveScientistsToFileButton_clicked()
@@ -420,8 +434,22 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     LoadComputersFromFile comp;
     comp.setModal(true);
     comp.exec();
-
-    showComputers(serve.listComputers());
+    if (comp.getLoad())
+    {
+        if (!serve.addScientistsFromFile(comp.getFile()))
+        {
+            int reply = QMessageBox::question(this, "File Error", "Could not load from file\nTry again?",
+                                              QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                on_addComputersFromFileButton_clicked();
+            }
+        }
+        else
+        {
+            showComputers(serve.listComputers());
+        }
+    }
 }
 
 void MainWindow::on_addAssociationButton_clicked()

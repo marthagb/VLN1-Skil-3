@@ -15,6 +15,9 @@ public:
     explicit LoadScientistsFromFileDialog(QWidget *parent = 0);
     ~LoadScientistsFromFileDialog();
 
+    bool getLoad();
+
+    std::string getFile();
 
 private slots:
     void on_ButtonLoad_clicked();
@@ -23,6 +26,10 @@ private slots:
 
 private:
     Ui::LoadScientistsFromFileDialog *ui;
+
+    bool load;
+
+    std::string file;
 };
 
 #endif // LOADSCIENTISTSFROMFILEDIALOG_H
