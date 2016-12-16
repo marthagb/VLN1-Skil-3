@@ -6,6 +6,7 @@ addComputerDialog::addComputerDialog(QWidget *parent) :
     ui(new Ui::addComputerDialog)
 {
     ui->setupUi(this);
+    add = false;
 }
 
 addComputerDialog::~addComputerDialog()
@@ -15,7 +16,6 @@ addComputerDialog::~addComputerDialog()
 
 void addComputerDialog::on_cancelAddComputerButton_clicked()
 {
-    add = false;
     this->close();
 }
 
@@ -39,9 +39,4 @@ Computer addComputerDialog::newComputer()
 bool addComputerDialog::getAdd()
 {
     return add;
-}
-
-void addComputerDialog::on_addComputerDialog_rejected()
-{
-    add = false;
 }

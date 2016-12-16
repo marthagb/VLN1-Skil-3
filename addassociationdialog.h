@@ -29,8 +29,6 @@ private slots:
 
     void on_addAssociationButton_clicked();
 
-    void on_addAssociationDialog_rejected();
-
     void on_scientistList_clicked();
 
     void on_computersList_clicked();

@@ -6,6 +6,7 @@ addScientistDialog::addScientistDialog(QWidget *parent) :
     ui(new Ui::addScientistDialog)
 {
     ui->setupUi(this);
+    add = false;
 }
 
 addScientistDialog::~addScientistDialog()
@@ -15,7 +16,6 @@ addScientistDialog::~addScientistDialog()
 
 void addScientistDialog::on_cancelAddScientistButton_clicked()
 {
-    add = false;
     this->close();
 }
 
@@ -45,11 +45,6 @@ Persons addScientistDialog::newScientist()
 bool addScientistDialog::getAdd()
 {
     return add;
-}
-
-void addScientistDialog::on_addScientistDialog_rejected()
-{
-    add = false;
 }
 
 void addScientistDialog::on_btn_image_clicked()
