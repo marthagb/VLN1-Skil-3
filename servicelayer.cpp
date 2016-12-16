@@ -66,6 +66,11 @@ void ServiceLayer::addPicToScientist(QString filename, string name)
     dl.addPicToScientists(filename, name);
 }
 
+QPixmap ServiceLayer::showPicOfScientists(string name)
+{
+    return dl.showPicOfScientists(name);
+}
+
 vector<Computer> ServiceLayer::listComputers()
 {
     return dl.getComputerVector();

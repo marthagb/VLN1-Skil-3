@@ -1369,3 +1369,17 @@ void DataLayer::addPicToScientists(QString filename, string name)
     query.exec();
     db.close();
 }
+
+QPixmap DataLayer::showPicOfScientists(string name)
+{
+
+    db.open();
+    QSqlQuery query(db);
+    query.exec("SELECT dataBlob FROM Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
+    query.first();
+    QByteArray outByteArray = query.value(0).toByteArray();
+    QPixmap outPixmap = QPixmap();
+    outPixmap.loadFromData(outByteArray);
+    db.close();
+    return outPixmap;
+}

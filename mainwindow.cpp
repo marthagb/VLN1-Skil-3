@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mainOptions->setCurrentIndex(0);
     ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
     ui->lastYearInputScientist->hide();
+    ui->noScientistFoundLabel->hide();
+    ui->noComputerFoundLabel->hide();
+    ui->noAssociationFoundLabel->hide();
 
     showScientists(serve.listScientists());
 }
@@ -161,7 +164,7 @@ void MainWindow::on_updateScientistButton_clicked()
         {
             serve.updateScientist(1, name, n);
             string gender = updateScientist.getGender();
-            serve.updateScientist(2, gender, n);
+            serve.updateScientist(2, gender, name);
 
             string birthYear = updateScientist.getBirthYear();
             int b = atoi(birthYear.c_str());
@@ -172,8 +175,8 @@ void MainWindow::on_updateScientistButton_clicked()
             {
                 if(valid.birthChecks(b, d) == 0)
                 {
-                    serve.updateScientist(3, birthYear, n);
-                    serve.updateScientist(4, deathYear, n);
+                    serve.updateScientist(3, birthYear, name);
+                    serve.updateScientist(4, deathYear, name);
                 }
                 else if (valid.birthChecks(b, d) == 1)
                 {
@@ -207,7 +210,7 @@ void MainWindow::on_updateScientistButton_clicked()
             else if(updateScientist.getCheckBox())
             {
                 deathYear = "0";
-                serve.updateScientist(4, deathYear, n);
+                serve.updateScientist(4, deathYear, name);
 
                 if(b < 1894)
                 {
@@ -225,7 +228,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 }
                 else
                 {
-                    serve.updateScientist(3, birthYear, n);
+                    serve.updateScientist(3, birthYear, name);
                 }
             }
         }
@@ -375,9 +378,9 @@ void MainWindow::on_updateComputerButton_clicked()
             if (yearMade != "0")
             {
                 serve.updateComputer(1,name,n);
-                serve.updateComputer(2,yearMade,n);
-                serve.updateComputer(3,type,n);
-                serve.updateComputer(4,built,n);
+                serve.updateComputer(2,yearMade,name);
+                serve.updateComputer(3,type,name);
+                serve.updateComputer(4,built,name);
             }
             else
             {
@@ -531,6 +534,7 @@ void MainWindow::on_saveAssocToFileButton_clicked()
 
 void MainWindow::showScientists(vector<Persons> S)
 {
+    ui->scientistTable->setSortingEnabled(false);
     ui->scientistTable->clear();
     ui->scientistTable->setRowCount(S.size());
     ui->scientistTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
@@ -552,10 +556,12 @@ void MainWindow::showScientists(vector<Persons> S)
 
         ui->scientistTable->setItem(i, 4, new QTableWidgetItem(QVariant(S[i].getAge()).toString()));
     }
+    ui->scientistTable->setSortingEnabled(true);
 }
 
 void MainWindow::showComputers(vector<Computer> C)
 {
+    ui->computersTable->setSortingEnabled(false);
     ui->computersTable->clear();
     ui->computersTable->setRowCount(C.size());
     ui->computersTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
@@ -578,10 +584,12 @@ void MainWindow::showComputers(vector<Computer> C)
             ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Not Built")));
         }
     }
+    ui->computersTable->setSortingEnabled(true);
 }
 
 void MainWindow::showAssociations(vector<Association> A)
 {
+    ui->associationsTable->setSortingEnabled(false);
     ui->associationsTable->clear();
     ui->associationsTable->setRowCount(A.size());
     ui->associationsTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Scientist")));
@@ -607,6 +615,7 @@ void MainWindow::showAssociations(vector<Association> A)
 
         ui->associationsTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(A[i].getComputerType())));
     }
+    ui->associationsTable->setSortingEnabled(true);
 }
 
 void MainWindow::on_mainOptions_currentChanged(int index)
@@ -686,6 +695,10 @@ void MainWindow::searchScientist()
     else if (ui->searchScientistsByBox->currentText().toStdString() == "Gender")
     {
         char g = ui->searchInputScientists->text().toStdString()[0];
+        if(!isupper(g))
+        {
+            g = toupper(g);
+        }
         v = serve.searchScientistByGender(g);
     }
     else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year")
@@ -705,7 +718,16 @@ void MainWindow::searchScientist()
         P.push_back(people[v[i]]);
     }
 
-    showScientists(P);
+    if (P.size() == 0)
+    {
+        ui->noScientistFoundLabel->show();
+        QTimer::singleShot(3000, ui->noScientistFoundLabel, &QLabel::hide);
+        showScientists(serve.listScientists());
+    }
+    else
+    {
+        showScientists(P);
+    }
 }
 
 void MainWindow::searchComputer()
@@ -742,7 +764,16 @@ void MainWindow::searchComputer()
         C.push_back(computers[v[i]]);
     }
 
-    showComputers(C);
+    if(C.size() == 0)
+    {
+        ui->noComputerFoundLabel->show();
+        QTimer::singleShot(3000, ui->noComputerFoundLabel, &QLabel::hide);
+        showComputers(serve.listComputers());
+    }
+    else
+    {
+        showComputers(C);
+    }
 
 }
 
@@ -785,7 +816,16 @@ void MainWindow::searchAssociation()
         A.push_back(assocs[v[i]]);
     }
 
-    showAssociations(A);
+    if(A.size() == 0)
+    {
+        ui->noAssociationFoundLabel->show();
+        QTimer::singleShot(3000, ui->noAssociationFoundLabel, &QLabel::hide);
+        showAssociations(serve.listAssociations());
+    }
+    else
+    {
+        showAssociations(A);
+    }
 }
 
 void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
@@ -922,9 +962,13 @@ void MainWindow::on_lastYearInputAssoc_returnPressed()
 
 void MainWindow::on_scientistTable_doubleClicked()
 {
-
+    int r = ui->scientistTable->currentRow();
+    string n = ui->scientistTable->item(r, 0)->text().toStdString();
+    QPixmap qp = serve.showPicOfScientists(n);
     ScientistsInformationWindowDialog sID;
     sID.setModal(true);
+    sID.setImage(qp);
+    sID.ShowPicture();
     sID.exec();
 
 }
