@@ -35,6 +35,190 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// This is connected to the tab order, index 0 is scientists and so on.
+// for search and delete and so on.
+void MainWindow::on_mainOptions_currentChanged(int index)
+{
+    if (index == 0)
+    {
+        ui->searchScientistsByBox->setCurrentText("Name");
+        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
+        ui->lastYearInputScientist->hide();
+        ui->deleteScientistButton->setEnabled(false);
+        ui->updateScientistButton->setEnabled(false);
+        showScientists(serve.listScientists());
+    }
+    else if (index == 1)
+    {
+        ui->searchComputersByBox->setCurrentText("Name");
+        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
+        ui->lastYearInputComputers->hide();
+        ui->deleteComputerButton->setEnabled(false);
+        ui->updateComputerButton->setEnabled(false);
+        showComputers(serve.listComputers());
+    }
+    else if (index == 2)
+    {
+        ui->searchAssocByBox->setCurrentText("Scientist Name");
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
+        ui->lastYearInputAssoc->hide();
+        ui->deleteAssociationButton->setEnabled(false);
+        showAssociations(serve.listAssociations());
+    }
+}
+
+void MainWindow::on_actionExit_Program_triggered()
+{
+    close();
+}
+
+// This is so you can not update or delete without selecting someone
+void MainWindow::on_scientistTable_clicked()
+{
+    ui->updateScientistButton->setEnabled(true);
+    ui->deleteScientistButton->setEnabled(true);
+}
+
+// when a scientist row is double clicked then it will
+// show more information about them with a picture if it exists
+void MainWindow::on_scientistTable_doubleClicked()
+{
+    int r = ui->scientistTable->currentRow();
+    QString n = ui->scientistTable->item(r, 0)->text();
+    QString bY = ui->scientistTable->item(r, 2)->text();
+    QString dY = ui->scientistTable->item(r, 3)->text();
+    QString a = ui->scientistTable->item(r, 4)->text();
+    QPixmap qp = serve.showPicOfScientists(n.toStdString());
+    ScientistsInformationWindowDialog sID;
+    sID.setModal(true);
+    sID.setImage(qp);
+    sID.setName(n);
+    sID.setBirthYear(bY);
+    sID.setDeathYear(dY);
+    sID.setAge(a);
+    sID.ShowPicture();
+    sID.exec();
+
+}
+
+// Shows the scientists in alphabetical order.
+void MainWindow::showScientists(vector<Persons> S)
+{
+    ui->scientistTable->setSortingEnabled(false);
+    ui->scientistTable->clear();
+    ui->scientistTable->setRowCount(S.size());
+    ui->scientistTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
+    ui->scientistTable->setHorizontalHeaderItem(1, new QTableWidgetItem(QString::fromStdString("Gender")));
+    ui->scientistTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Born")));
+    ui->scientistTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Died")));
+    ui->scientistTable->setHorizontalHeaderItem(4, new QTableWidgetItem(QString::fromStdString("Age")));
+
+    for (unsigned int i = 0; i < S.size(); i++)
+    {
+        ui->scientistTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(S[i].getName())));
+        ui->scientistTable->setItem(i, 1, new QTableWidgetItem(QString(QVariant(S[i].getGender()).toChar())));
+        ui->scientistTable->setItem(i, 2, new QTableWidgetItem(QVariant(S[i].getBirthYear()).toString()));
+
+        if (!S[i].getAlive())
+        {
+            ui->scientistTable->setItem(i, 3, new QTableWidgetItem(QVariant(S[i].getDeathYear()).toString()));
+        }
+
+        ui->scientistTable->setItem(i, 4, new QTableWidgetItem(QVariant(S[i].getAge()).toString()));
+    }
+    ui->scientistTable->setSortingEnabled(true);
+}
+
+void MainWindow::on_searchInputScientists_returnPressed()
+{
+    searchScientist();
+    ui->searchInputScientists->clear();
+}
+
+// searches for name/gender/year/yearRange
+// it does not matter if we search for upperCase letters or not
+// and if nothing is searched then it shows the scientists
+void MainWindow::searchScientist()
+{
+    serve.sortScientists(1,1);
+    vector<Persons> people = serve.listScientists();
+    vector<Persons> P;
+    vector<int> v;
+
+    if (ui->searchScientistsByBox->currentText().toStdString() == "Name")
+    {
+        string n = ui->searchInputScientists->text().toStdString();
+        v = serve.searchScientistByName(n);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Gender")
+    {
+        char g = ui->searchInputScientists->text().toStdString()[0];
+        if(!isupper(g))
+        {
+            g = toupper(g);
+        }
+        v = serve.searchScientistByGender(g);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year")
+    {
+        int y = ui->searchInputScientists->text().toUInt();
+        v = serve.searchScientistByBirthYear(y);
+    }
+    else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year Range")
+    {
+        int f = ui->searchInputScientists->text().toUInt();
+        int l = ui->lastYearInputScientist->text().toUInt();
+        v = serve.searchScientistByYearRange(f, l);
+    }
+
+    for (unsigned int i  = 0; i < v.size(); i++)
+    {
+        P.push_back(people[v[i]]);
+    }
+
+    if (P.size() == 0)
+    {
+        ui->noScientistFoundLabel->show();
+        QTimer::singleShot(3000, ui->noScientistFoundLabel, &QLabel::hide);
+        showScientists(serve.listScientists());
+    }
+    else
+    {
+        showScientists(P);
+    }
+}
+
+// Shows the Enter name/ gender/ birthYear/ BirthYearRange in light gray in the search boxes
+// and you can write over them without have-ing to erase them
+void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Name")
+    {
+        ui->lastYearInputScientist->hide();
+        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
+        ui->searchInputScientists->setGeometry(11, 40, 380, 22);
+    }
+    else if (arg1.toStdString() == "Gender")
+    {
+        ui->lastYearInputScientist->hide();
+        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter gender"));
+        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Birth Year")
+    {
+        ui->lastYearInputScientist->hide();
+        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter year"));
+        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Birth Year Range")
+    {
+        ui->lastYearInputScientist->show();
+        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter first year"));
+        ui->lastYearInputScientist->setPlaceholderText(QString::fromStdString("Enter last year"));
+        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
+    }
+}
+
 // When add button is pressed then a add window is executed
 // in the add window you will add name,gender,YearBorn and if the scientist is alive
 // And you have the option to add a picture and fun facts
@@ -110,6 +294,11 @@ void MainWindow::on_addScientistButton_clicked()
 void MainWindow::addNewScientist(const Persons &p)
 {
     serve.addScientist(p);
+}
+
+void MainWindow::on_actionAdd_Scientist_triggered()
+{
+    on_addScientistButton_clicked();
 }
 
 // When you click on the delete button there will pop up a
@@ -314,6 +503,134 @@ void MainWindow::on_saveScientistsToFileButton_clicked()
     }
 }
 
+void MainWindow::on_lastYearInputScientist_returnPressed()
+{
+    searchScientist();
+    ui->searchInputScientists->clear();
+    ui->lastYearInputScientist->clear();
+}
+
+// This is so you can not update or delete without selecting a computer
+void MainWindow::on_computersTable_clicked()
+{
+    ui->updateComputerButton->setEnabled(true);
+    ui->deleteComputerButton->setEnabled(true);
+}
+
+// shows the computers in alphabetical order
+void MainWindow::showComputers(vector<Computer> C)
+{
+    ui->computersTable->setSortingEnabled(false);
+    ui->computersTable->clear();
+    ui->computersTable->setRowCount(C.size());
+    ui->computersTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
+    ui->computersTable->setHorizontalHeaderItem(1, new QTableWidgetItem(QString::fromStdString("Year Made")));
+    ui->computersTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Type")));
+    ui->computersTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Built?")));
+
+    for (unsigned int i = 0; i < C.size(); i++)
+    {
+        ui->computersTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(C[i].getComputerName())));
+        ui->computersTable->setItem(i, 1, new QTableWidgetItem(QVariant(C[i].getYearMade()).toString()));
+        ui->computersTable->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(C[i].getType())));
+
+        if (C[i].getBuiltOrNot())
+        {
+            ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Built")));
+        }
+        else
+        {
+            ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Not Built")));
+        }
+    }
+    ui->computersTable->setSortingEnabled(true);
+}
+
+void MainWindow::on_searchInputComputers_returnPressed()
+{
+    searchComputer();
+    ui->searchInputComputers->clear();
+}
+
+// searches for name/YearMade/YearRange/Type
+// upperCase letter do not matter
+void MainWindow::searchComputer()
+{
+    serve.sortComputers(1,1);
+    vector<Computer> computers = serve.listComputers();
+    vector<Computer> C;
+    vector<int> v;
+
+    if (ui->searchComputersByBox->currentText().toStdString() == "Name")
+    {
+        string n = ui->searchInputComputers->text().toStdString();
+        v = serve.searchComputerByName(n);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Made")
+    {
+        int y = ui->searchInputComputers->text().toUInt();
+        v = serve.searchComputerByYearMade(y);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Range")
+    {
+        int f = ui->searchInputComputers->text().toUInt();
+        int l = ui->lastYearInputComputers->text().toUInt();
+        v = serve.searchComputerByYearRange(f, l);
+    }
+    else if (ui->searchComputersByBox->currentText().toStdString() == "Type")
+    {
+        string t = ui->searchInputComputers->text().toStdString();
+        v = serve.searchComputerByType(t);
+    }
+
+    for (unsigned int i = 0; i < v.size(); i++)
+    {
+        C.push_back(computers[v[i]]);
+    }
+
+    if(C.size() == 0)
+    {
+        ui->noComputerFoundLabel->show();
+        QTimer::singleShot(3000, ui->noComputerFoundLabel, &QLabel::hide);
+        showComputers(serve.listComputers());
+    }
+    else
+    {
+        showComputers(C);
+    }
+}
+
+// Shows the Enter name/ year/ birthYearRange/Type in light gray in the search boxes
+// and you can write over them without have-ing to erase them
+void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Name")
+    {
+        ui->lastYearInputComputers->hide();
+        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
+        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
+    }
+    else if (arg1.toStdString() == "Year Made")
+    {
+        ui->lastYearInputComputers->hide();
+        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter year"));
+        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Year Range")
+    {
+        ui->lastYearInputComputers->show();
+        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter first year"));
+        ui->lastYearInputComputers->setText(QString::fromStdString("Enter last year"));
+        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Type")
+    {
+        ui->lastYearInputComputers->hide();
+        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter type"));
+        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
+    }
+}
+
 // When add button is pressed then a add window is executed
 // in the add window you will add name,YearMade,Type and if it was built
 // if you try to add a computer with invalid input you will be prompted to input again.
@@ -350,9 +667,15 @@ void MainWindow::on_addComputerButton_clicked()
     }
 }
 
+
 void MainWindow::addNewComputer(const Computer &c)
 {
     serve.addComputer(c);
+}
+
+void MainWindow::on_actionAdd_Computer_triggered()
+{
+    on_addComputerButton_clicked();
 }
 
 // When the delete button is pressed you will be asked to confirm
@@ -451,21 +774,6 @@ void MainWindow::on_updateComputerButton_clicked()
     ui->deleteComputerButton->setEnabled(false);
 }
 
-// when the save to file in the computer tab is pressed
-// the computers will be saved to file, it WILL overwrite everything in the file.
-void MainWindow::on_saveComputersToFileButton_clicked()
-{
-    saveComputersToFileDialog saveComp;
-    saveComp.setModal(true);
-    saveComp.exec();
-
-    if(saveComp.getSave())
-    {
-        string input = saveComp.getInput();
-        serve.saveComputersToFile(input);
-    }
-}
-
 // when the add from file button is clicked for computers
 // it will check if it can open the file if not you will get error message
 // otherwise it will read from the file to the database, (you need special format)
@@ -492,6 +800,80 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     }
 }
 
+// when the save to file in the computer tab is pressed
+// the computers will be saved to file, it WILL overwrite everything in the file.
+void MainWindow::on_saveComputersToFileButton_clicked()
+{
+    saveComputersToFileDialog saveComp;
+    saveComp.setModal(true);
+    saveComp.exec();
+
+    if(saveComp.getSave())
+    {
+        string input = saveComp.getInput();
+        serve.saveComputersToFile(input);
+    }
+}
+
+
+void MainWindow::on_lastYearInputComputers_returnPressed()
+{
+    searchComputer();
+    ui->searchInputComputers->clear();
+    ui->lastYearInputComputers->clear();
+}
+
+
+// This is so you can not delete without selecting someone
+void MainWindow::on_associationsTable_clicked()
+{
+    ui->deleteAssociationButton->setEnabled(true);
+}
+
+void MainWindow::on_searchInputAssociations_returnPressed()
+{
+    searchAssociation();
+    ui->searchInputAssociations->clear();
+}
+
+// Shows the Enter name/ year/ YearRange/ ComputerType
+// Type in light gray in the search boxes
+// and you can write over them without have-ing to erase them
+void MainWindow::on_searchAssocByBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Scientist Name")
+    {
+        ui->lastYearInputAssoc->hide();
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
+        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
+    }
+    else if (arg1.toStdString() == "Computer Name")
+    {
+        ui->lastYearInputAssoc->hide();
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter computer name"));
+        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
+    }
+    else if (arg1.toStdString() == "Year Made")
+    {
+        ui->lastYearInputAssoc->hide();
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter year"));
+        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Year Range")
+    {
+        ui->lastYearInputAssoc->show();
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter first year"));
+        ui->lastYearInputAssoc->setPlaceholderText(QString::fromStdString("Enter last year"));
+        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
+    }
+    else if (arg1.toStdString() == "Computer Type")
+    {
+        ui->lastYearInputAssoc->hide();
+        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter type"));
+        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
+    }
+}
+
 // This will bring up a new window where you can choose
 // which computer and what scientist you want to associate
 void MainWindow::on_addAssociationButton_clicked()
@@ -508,131 +890,6 @@ void MainWindow::on_addAssociationButton_clicked()
 
         showAssociations(serve.listAssociations());
     }
-}
-
-// This will associate the scientists and computers
-// if you enter 'wierd' information you will be prompted to input again
-void MainWindow::addNewAssociation(const string sN, const string cN)
-{
-    serve.sortScientists(1,1);
-    Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
-    serve.sortComputers(1,1);
-    Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
-
-    if (valid.validAssociation(s.getBirthYear(), s.getDeathYear(), c.getYearMade()))
-    {
-        Association a(s, c);
-        serve.addAssociation(a);
-    }
-    else
-    {
-        int reply = QMessageBox::question(this, "Inconsistent years", "Scientist was not alive when computer was made\nTry again?",
-                                          QMessageBox::Yes | QMessageBox::No);
-
-        if (reply == QMessageBox::Yes)
-        {
-            on_addAssociationButton_clicked();
-        }
-        else
-        {
-            ui->statusBar->showMessage("Add association cancelled", 2500);
-        }
-    }
-}
-
-// When the delete button in associations is clicked then
-// you will be asked if you are sure you want to delete the association
-// if yes then it will be deleted else it will not
-void MainWindow::on_deleteAssociationButton_clicked()
-{
-    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
-                                      QMessageBox::Yes | QMessageBox::No);
-
-    if (reply == QMessageBox::Yes)
-    {
-        int r = ui->associationsTable->currentRow();
-        string sN = ui->associationsTable->item(r, 0)->text().toStdString();
-        string cN = ui->associationsTable->item(r, 1)->text().toStdString();
-        serve.deleteAssociation(sN, cN);
-
-        showAssociations(serve.listAssociations());
-    }
-    else if (reply == QMessageBox::No)
-    {
-        ui->statusBar->showMessage("Delete association cancelled", 2500);
-    }
-}
-
-// This will bring up a new window which asks you to enter the
-// filename and it will save it to that name
-void MainWindow::on_saveAssocToFileButton_clicked()
-{
-    saveAssociationsToFileDialog saveAssociations;
-    saveAssociations.setModal(true);
-    saveAssociations.exec();
-
-    if(saveAssociations.getSave())
-    {
-        string input = saveAssociations.getInput();
-        serve.saveAssociationsToFile(input);
-    }
-}
-
-// Shows the scientists in alphabetical order.
-void MainWindow::showScientists(vector<Persons> S)
-{
-    ui->scientistTable->setSortingEnabled(false);
-    ui->scientistTable->clear();
-    ui->scientistTable->setRowCount(S.size());
-    ui->scientistTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
-    ui->scientistTable->setHorizontalHeaderItem(1, new QTableWidgetItem(QString::fromStdString("Gender")));
-    ui->scientistTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Born")));
-    ui->scientistTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Died")));
-    ui->scientistTable->setHorizontalHeaderItem(4, new QTableWidgetItem(QString::fromStdString("Age")));
-
-    for (unsigned int i = 0; i < S.size(); i++)
-    {
-        ui->scientistTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(S[i].getName())));
-        ui->scientistTable->setItem(i, 1, new QTableWidgetItem(QString(QVariant(S[i].getGender()).toChar())));
-        ui->scientistTable->setItem(i, 2, new QTableWidgetItem(QVariant(S[i].getBirthYear()).toString()));
-
-        if (!S[i].getAlive())
-        {
-            ui->scientistTable->setItem(i, 3, new QTableWidgetItem(QVariant(S[i].getDeathYear()).toString()));
-        }
-
-        ui->scientistTable->setItem(i, 4, new QTableWidgetItem(QVariant(S[i].getAge()).toString()));
-    }
-    ui->scientistTable->setSortingEnabled(true);
-}
-
-// shows the computers in alphabetical order
-void MainWindow::showComputers(vector<Computer> C)
-{
-    ui->computersTable->setSortingEnabled(false);
-    ui->computersTable->clear();
-    ui->computersTable->setRowCount(C.size());
-    ui->computersTable->setHorizontalHeaderItem(0, new QTableWidgetItem(QString::fromStdString("Name")));
-    ui->computersTable->setHorizontalHeaderItem(1, new QTableWidgetItem(QString::fromStdString("Year Made")));
-    ui->computersTable->setHorizontalHeaderItem(2, new QTableWidgetItem(QString::fromStdString("Type")));
-    ui->computersTable->setHorizontalHeaderItem(3, new QTableWidgetItem(QString::fromStdString("Built?")));
-
-    for (unsigned int i = 0; i < C.size(); i++)
-    {
-        ui->computersTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(C[i].getComputerName())));
-        ui->computersTable->setItem(i, 1, new QTableWidgetItem(QVariant(C[i].getYearMade()).toString()));
-        ui->computersTable->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(C[i].getType())));
-
-        if (C[i].getBuiltOrNot())
-        {
-            ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Built")));
-        }
-        else
-        {
-            ui->computersTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString("Not Built")));
-        }
-    }
-    ui->computersTable->setSortingEnabled(true);
 }
 
 // shows the associations in alphabetical order
@@ -665,180 +922,6 @@ void MainWindow::showAssociations(vector<Association> A)
         ui->associationsTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(A[i].getComputerType())));
     }
     ui->associationsTable->setSortingEnabled(true);
-}
-
-// This is connected to the tab order, index 0 is scientists and so on.
-// for search and delete and so on.
-void MainWindow::on_mainOptions_currentChanged(int index)
-{
-    if (index == 0)
-    {
-        ui->searchScientistsByBox->setCurrentText("Name");
-        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->lastYearInputScientist->hide();
-        ui->deleteScientistButton->setEnabled(false);
-        ui->updateScientistButton->setEnabled(false);
-        showScientists(serve.listScientists());
-    }
-    else if (index == 1)
-    {
-        ui->searchComputersByBox->setCurrentText("Name");
-        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->lastYearInputComputers->hide();
-        ui->deleteComputerButton->setEnabled(false);
-        ui->updateComputerButton->setEnabled(false);
-        showComputers(serve.listComputers());
-    }
-    else if (index == 2)
-    {
-        ui->searchAssocByBox->setCurrentText("Scientist Name");
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
-        ui->lastYearInputAssoc->hide();
-        ui->deleteAssociationButton->setEnabled(false);
-        showAssociations(serve.listAssociations());
-    }
-}
-
-void MainWindow::on_actionAdd_Scientist_triggered()
-{
-    on_addScientistButton_clicked();
-}
-
-void MainWindow::on_actionAdd_Computer_triggered()
-{
-    on_addComputerButton_clicked();
-}
-
-void MainWindow::on_actionAdd_Association_triggered()
-{
-    on_addAssociationButton_clicked();
-}
-
-void MainWindow::on_actionExit_Program_triggered()
-{
-    close();
-}
-
-// This is so you can not update or delete without selecting someone
-void MainWindow::on_scientistTable_clicked()
-{
-    ui->updateScientistButton->setEnabled(true);
-    ui->deleteScientistButton->setEnabled(true);
-}
-
-// This is so you can not update or delete without selecting a computer
-void MainWindow::on_computersTable_clicked()
-{
-    ui->updateComputerButton->setEnabled(true);
-    ui->deleteComputerButton->setEnabled(true);
-}
-
-// This is so you can not delete without selecting someone
-void MainWindow::on_associationsTable_clicked()
-{
-    ui->deleteAssociationButton->setEnabled(true);
-}
-
-// searches for name/gender/year/yearRange
-// it does not matter if we search for upperCase letters or not
-// and if nothing is searched then it shows the scientists
-void MainWindow::searchScientist()
-{
-    serve.sortScientists(1,1);
-    vector<Persons> people = serve.listScientists();
-    vector<Persons> P;
-    vector<int> v;
-
-    if (ui->searchScientistsByBox->currentText().toStdString() == "Name")
-    {
-        string n = ui->searchInputScientists->text().toStdString();
-        v = serve.searchScientistByName(n);
-    }
-    else if (ui->searchScientistsByBox->currentText().toStdString() == "Gender")
-    {
-        char g = ui->searchInputScientists->text().toStdString()[0];
-        if(!isupper(g))
-        {
-            g = toupper(g);
-        }
-        v = serve.searchScientistByGender(g);
-    }
-    else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year")
-    {
-        int y = ui->searchInputScientists->text().toUInt();
-        v = serve.searchScientistByBirthYear(y);
-    }
-    else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year Range")
-    {
-        int f = ui->searchInputScientists->text().toUInt();
-        int l = ui->lastYearInputScientist->text().toUInt();
-        v = serve.searchScientistByYearRange(f, l);
-    }
-
-    for (unsigned int i  = 0; i < v.size(); i++)
-    {
-        P.push_back(people[v[i]]);
-    }
-
-    if (P.size() == 0)
-    {
-        ui->noScientistFoundLabel->show();
-        QTimer::singleShot(3000, ui->noScientistFoundLabel, &QLabel::hide);
-        showScientists(serve.listScientists());
-    }
-    else
-    {
-        showScientists(P);
-    }
-}
-
-// searches for name/YearMade/YearRange/Type
-// upperCase letter do not matter
-void MainWindow::searchComputer()
-{
-    serve.sortComputers(1,1);
-    vector<Computer> computers = serve.listComputers();
-    vector<Computer> C;
-    vector<int> v;
-
-    if (ui->searchComputersByBox->currentText().toStdString() == "Name")
-    {
-        string n = ui->searchInputComputers->text().toStdString();
-        v = serve.searchComputerByName(n);
-    }
-    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Made")
-    {
-        int y = ui->searchInputComputers->text().toUInt();
-        v = serve.searchComputerByYearMade(y);
-    }
-    else if (ui->searchComputersByBox->currentText().toStdString() == "Year Range")
-    {
-        int f = ui->searchInputComputers->text().toUInt();
-        int l = ui->lastYearInputComputers->text().toUInt();
-        v = serve.searchComputerByYearRange(f, l);
-    }
-    else if (ui->searchComputersByBox->currentText().toStdString() == "Type")
-    {
-        string t = ui->searchInputComputers->text().toStdString();
-        v = serve.searchComputerByType(t);
-    }
-
-    for (unsigned int i = 0; i < v.size(); i++)
-    {
-        C.push_back(computers[v[i]]);
-    }
-
-    if(C.size() == 0)
-    {
-        ui->noComputerFoundLabel->show();
-        QTimer::singleShot(3000, ui->noComputerFoundLabel, &QLabel::hide);
-        showComputers(serve.listComputers());
-    }
-    else
-    {
-        showComputers(C);
-    }
-
 }
 
 // searches for scientist name/computer name/year made/ year range
@@ -894,136 +977,77 @@ void MainWindow::searchAssociation()
     }
 }
 
-// Shows the Enter name/ gender/ birthYear/ BirthYearRange in light gray in the search boxes
-// and you can write over them without have-ing to erase them
-void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
+// This will associate the scientists and computers
+// if you enter 'wierd' information you will be prompted to input again
+void MainWindow::addNewAssociation(const string sN, const string cN)
 {
-    if (arg1.toStdString() == "Name")
+    serve.sortScientists(1,1);
+    Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
+    serve.sortComputers(1,1);
+    Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
+
+    if (valid.validAssociation(s.getBirthYear(), s.getDeathYear(), c.getYearMade()))
     {
-        ui->lastYearInputScientist->hide();
-        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->searchInputScientists->setGeometry(11, 40, 380, 22);
+        Association a(s, c);
+        serve.addAssociation(a);
     }
-    else if (arg1.toStdString() == "Gender")
+    else
     {
-        ui->lastYearInputScientist->hide();
-        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter gender"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Birth Year")
-    {
-        ui->lastYearInputScientist->hide();
-        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Birth Year Range")
-    {
-        ui->lastYearInputScientist->show();
-        ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter first year"));
-        ui->lastYearInputScientist->setPlaceholderText(QString::fromStdString("Enter last year"));
-        ui->searchInputScientists->setGeometry(11, 40, 100, 22);
+        int reply = QMessageBox::question(this, "Inconsistent years", "Scientist was not alive when computer was made\nTry again?",
+                                          QMessageBox::Yes | QMessageBox::No);
+
+        if (reply == QMessageBox::Yes)
+        {
+            on_addAssociationButton_clicked();
+        }
+        else
+        {
+            ui->statusBar->showMessage("Add association cancelled", 2500);
+        }
     }
 }
 
-// Shows the Enter name/ year/ birthYearRange/Type in light gray in the search boxes
-// and you can write over them without have-ing to erase them
-void MainWindow::on_searchComputersByBox_currentTextChanged(const QString &arg1)
+void MainWindow::on_actionAdd_Association_triggered()
 {
-    if (arg1.toStdString() == "Name")
+    on_addAssociationButton_clicked();
+}
+
+// When the delete button in associations is clicked then
+// you will be asked if you are sure you want to delete the association
+// if yes then it will be deleted else it will not
+void MainWindow::on_deleteAssociationButton_clicked()
+{
+    int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
+                                      QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes)
     {
-        ui->lastYearInputComputers->hide();
-        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
-        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
+        int r = ui->associationsTable->currentRow();
+        string sN = ui->associationsTable->item(r, 0)->text().toStdString();
+        string cN = ui->associationsTable->item(r, 1)->text().toStdString();
+        serve.deleteAssociation(sN, cN);
+
+        showAssociations(serve.listAssociations());
     }
-    else if (arg1.toStdString() == "Year Made")
+    else if (reply == QMessageBox::No)
     {
-        ui->lastYearInputComputers->hide();
-        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Year Range")
-    {
-        ui->lastYearInputComputers->show();
-        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter first year"));
-        ui->lastYearInputComputers->setText(QString::fromStdString("Enter last year"));
-        ui->searchInputComputers->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Type")
-    {
-        ui->lastYearInputComputers->hide();
-        ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter type"));
-        ui->searchInputComputers->setGeometry(11, 40, 380, 22);
+        ui->statusBar->showMessage("Delete association cancelled", 2500);
     }
 }
 
-// Shows the Enter name/ year/ YearRange/ ComputerType
-// Type in light gray in the search boxes
-// and you can write over them without have-ing to erase them
-void MainWindow::on_searchAssocByBox_currentTextChanged(const QString &arg1)
+// This will bring up a new window which asks you to enter the
+// filename and it will save it to that name
+void MainWindow::on_saveAssocToFileButton_clicked()
 {
-    if (arg1.toStdString() == "Scientist Name")
-    {
-        ui->lastYearInputAssoc->hide();
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
-    }
-    else if (arg1.toStdString() == "Computer Name")
-    {
-        ui->lastYearInputAssoc->hide();
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter computer name"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
-    }
-    else if (arg1.toStdString() == "Year Made")
-    {
-        ui->lastYearInputAssoc->hide();
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter year"));
-        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Year Range")
-    {
-        ui->lastYearInputAssoc->show();
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter first year"));
-        ui->lastYearInputAssoc->setPlaceholderText(QString::fromStdString("Enter last year"));
-        ui->searchInputAssociations->setGeometry(11, 40, 100, 22);
-    }
-    else if (arg1.toStdString() == "Computer Type")
-    {
-        ui->lastYearInputAssoc->hide();
-        ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter type"));
-        ui->searchInputAssociations->setGeometry(11, 40, 380, 22);
-    }
-}
+    saveAssociationsToFileDialog saveAssociations;
+    saveAssociations.setModal(true);
+    saveAssociations.exec();
 
-void MainWindow::on_searchInputScientists_returnPressed()
-{
-    searchScientist();
-    ui->searchInputScientists->clear();
-}
-
-void MainWindow::on_searchInputComputers_returnPressed()
-{
-    searchComputer();
-    ui->searchInputComputers->clear();
-}
-
-void MainWindow::on_searchInputAssociations_returnPressed()
-{
-    searchAssociation();
-    ui->searchInputAssociations->clear();
-}
-
-void MainWindow::on_lastYearInputScientist_returnPressed()
-{
-    searchScientist();
-    ui->searchInputScientists->clear();
-    ui->lastYearInputScientist->clear();
-}
-
-void MainWindow::on_lastYearInputComputers_returnPressed()
-{
-    searchComputer();
-    ui->searchInputComputers->clear();
-    ui->lastYearInputComputers->clear();
+    if(saveAssociations.getSave())
+    {
+        string input = saveAssociations.getInput();
+        serve.saveAssociationsToFile(input);
+    }
 }
 
 void MainWindow::on_lastYearInputAssoc_returnPressed()
@@ -1031,26 +1055,4 @@ void MainWindow::on_lastYearInputAssoc_returnPressed()
     searchAssociation();
     ui->searchInputAssociations->clear();
     ui->lastYearInputAssoc->clear();
-}
-
-// when a scientist row is double clicked then it will
-// show more information about them with a picture if it exists
-void MainWindow::on_scientistTable_doubleClicked()
-{
-    int r = ui->scientistTable->currentRow();
-    QString n = ui->scientistTable->item(r, 0)->text();
-    QString bY = ui->scientistTable->item(r, 2)->text();
-    QString dY = ui->scientistTable->item(r, 3)->text();
-    QString a = ui->scientistTable->item(r, 4)->text();
-    QPixmap qp = serve.showPicOfScientists(n.toStdString());
-    ScientistsInformationWindowDialog sID;
-    sID.setModal(true);
-    sID.setImage(qp);
-    sID.setName(n);
-    sID.setBirthYear(bY);
-    sID.setDeathYear(dY);
-    sID.setAge(a);
-    sID.ShowPicture();
-    sID.exec();
-
 }
