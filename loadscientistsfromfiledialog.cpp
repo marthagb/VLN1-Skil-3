@@ -37,3 +37,8 @@ string LoadScientistsFromFileDialog::getFile()
 {
     return file;
 }
+
+void LoadScientistsFromFileDialog::on_InputForTextFileName_returnPressed()
+{
+    on_ButtonLoad_clicked();
+}

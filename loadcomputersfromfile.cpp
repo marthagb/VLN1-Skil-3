@@ -36,3 +36,8 @@ string LoadComputersFromFile::getFile()
 {
     return file;
 }
+
+void LoadComputersFromFile::on_InputForTextFileName_returnPressed()
+{
+    on_ButtonLoad_clicked();
+}

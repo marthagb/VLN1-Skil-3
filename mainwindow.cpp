@@ -444,7 +444,7 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     comp.exec();
     if (comp.getLoad())
     {
-        if (!serve.addScientistsFromFile(comp.getFile()))
+        if (!serve.addComputersFromFile(comp.getFile()))
         {
             int reply = QMessageBox::question(this, "File Error", "Could not load from file\nTry again?",
                                               QMessageBox::Yes | QMessageBox::No);
@@ -630,6 +630,8 @@ void MainWindow::on_mainOptions_currentChanged(int index)
         ui->searchScientistsByBox->setCurrentText("Name");
         ui->searchInputScientists->setPlaceholderText(QString::fromStdString("Enter name"));
         ui->lastYearInputScientist->hide();
+        ui->deleteScientistButton->setEnabled(false);
+        ui->updateScientistButton->setEnabled(false);
         showScientists(serve.listScientists());
     }
     else if (index == 1)
@@ -637,6 +639,8 @@ void MainWindow::on_mainOptions_currentChanged(int index)
         ui->searchComputersByBox->setCurrentText("Name");
         ui->searchInputComputers->setPlaceholderText(QString::fromStdString("Enter name"));
         ui->lastYearInputComputers->hide();
+        ui->deleteComputerButton->setEnabled(false);
+        ui->updateComputerButton->setEnabled(false);
         showComputers(serve.listComputers());
     }
     else if (index == 2)
@@ -644,6 +648,7 @@ void MainWindow::on_mainOptions_currentChanged(int index)
         ui->searchAssocByBox->setCurrentText("Scientist Name");
         ui->searchInputAssociations->setPlaceholderText(QString::fromStdString("Enter scientist name"));
         ui->lastYearInputAssoc->hide();
+        ui->deleteAssociationButton->setEnabled(false);
         showAssociations(serve.listAssociations());
     }
 }
