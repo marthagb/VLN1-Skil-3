@@ -919,3 +919,17 @@ void MainWindow::on_lastYearInputAssoc_returnPressed()
     ui->searchInputAssociations->clear();
     ui->lastYearInputAssoc->clear();
 }
+
+void MainWindow::on_associationsTable_doubleClicked(const QModelIndex &index)
+{
+
+}
+
+void MainWindow::on_scientistTable_doubleClicked(const QModelIndex &index)
+{
+
+    ScientistsInformationWindowDialog sID;
+    sID.setModal(true);
+    sID.exec();
+
+}
