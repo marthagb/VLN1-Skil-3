@@ -42,7 +42,7 @@ void ScientistsInformationWindowDialog::setAge(QString a)
 
 void ScientistsInformationWindowDialog::setFunFact(QString fF)
 {
-    ui->ScientistsFunFactLabel->setText(QString::fromStdString("Fun fact: ")+fF);
+    ui->ScientistsFunFactLabel->setText(QString::fromStdString("Fun fact:\n")+fF);
 }
 
 //displays the picture and scales it

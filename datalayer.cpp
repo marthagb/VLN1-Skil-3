@@ -479,9 +479,9 @@ QString DataLayer::getFunFact(string name)
     db.open();
     QSqlQuery query(db);
 
-    query.exec("SELECT 'Fun Fact' From Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
+    query.exec("SELECT funFact From Scientists WHERE Name = '" + QString::fromStdString(name) + "'");
     query.first();
-    QString fF = query.value("Fun Fact").toString();
+    QString fF = query.value(0).toString();
 
     db.close();
 

@@ -88,6 +88,7 @@ void MainWindow::on_scientistTable_doubleClicked()
     QString bY = ui->scientistTable->item(r, 2)->text();
     QString dY = ui->scientistTable->item(r, 3)->text();
     QString a = ui->scientistTable->item(r, 4)->text();
+    QString fF = serve.getFunFact(n.toStdString());
     QPixmap qp = serve.showPicOfScientists(n.toStdString());
     ScientistsInformationWindowDialog sID;
     sID.setModal(true);
@@ -96,6 +97,7 @@ void MainWindow::on_scientistTable_doubleClicked()
     sID.setBirthYear(bY);
     sID.setDeathYear(dY);
     sID.setAge(a);
+    sID.setFunFact(fF);
     sID.ShowPicture();
     sID.exec();
 
