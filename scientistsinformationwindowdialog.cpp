@@ -13,4 +13,15 @@ ScientistsInformationWindowDialog::~ScientistsInformationWindowDialog()
     delete ui;
 }
 
+void ScientistsInformationWindowDialog::setImage(QByteArray arr)
+{
+    image = arr;
+}
 
+void ScientistsInformationWindowDialog::ShowPicture()
+{
+    QPixmap outPixmap;
+    outPixmap.loadFromData(image);
+    ui->loadImageLabel->setPixmap(outPixmap);
+    ui->loadImageLabel->show();
+}

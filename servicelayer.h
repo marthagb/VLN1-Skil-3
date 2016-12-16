@@ -23,6 +23,7 @@ public:
     void updateScientist(int variable, string value, string name);
     bool saveScientistsToFile(string input);
     void addPicToScientist(QString filename, string name);
+    QByteArray showPicOfScientists(string name);
 
     vector<Computer> listComputers();
     void sortComputers(int orderBy, int ascOrDesc);
