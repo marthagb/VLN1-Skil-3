@@ -14,7 +14,6 @@ saveScientistsToFileDialog::~saveScientistsToFileDialog()
     delete ui;
 }
 
-//Saves the selected data to file and closes the window
 void saveScientistsToFileDialog::on_saveScientistsToFile_clicked()
 {
     ServiceLayer serve;
@@ -40,7 +39,6 @@ bool saveScientistsToFileDialog::getSave()
     return save;
 }
 
-//Save to file cancelled and dialog closed
 void saveScientistsToFileDialog::on_cancelSaveScientistsToFile_clicked()
 {
     save = false;
