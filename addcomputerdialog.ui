@@ -163,6 +163,7 @@
   <tabstop>computerNameLineEdit</tabstop>
   <tabstop>yearMadeEdit</tabstop>
   <tabstop>computerBuiltComboBox</tabstop>
+  <tabstop>computerTypeComboBox</tabstop>
   <tabstop>addComputerButton</tabstop>
   <tabstop>cancelAddComputerButton</tabstop>
  </tabstops>

@@ -81,6 +81,7 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <tabstops>
+  <tabstop>textForLoadToFile</tabstop>
   <tabstop>InputForTextFileName</tabstop>
   <tabstop>ButtonLoad</tabstop>
   <tabstop>ButtonCancel</tabstop>

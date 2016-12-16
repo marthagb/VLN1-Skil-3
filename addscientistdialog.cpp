@@ -65,7 +65,6 @@ void addScientistDialog::on_btn_image_clicked()
         {
             image = image.scaledToWidth(ui->lbl_image->width(), Qt::SmoothTransformation);
             ui->lbl_image->setPixmap(QPixmap::fromImage(image));
-
         }
         else
         {

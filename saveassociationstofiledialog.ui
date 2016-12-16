@@ -83,6 +83,12 @@ p, li { white-space: pre-wrap; }
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>textForSaveToFileAssociations</tabstop>
+  <tabstop>InputForTextFileNameAssociations</tabstop>
+  <tabstop>SaveAssociationsToFile</tabstop>
+  <tabstop>cancelSaveAssociationsToFile</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

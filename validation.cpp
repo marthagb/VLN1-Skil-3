@@ -104,6 +104,7 @@ bool validation::validComputerName (const string& n)
     while (it != n.end())
     {
         it++;
+
         if (isdigit(*it))
         {
             counter++;

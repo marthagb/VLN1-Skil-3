@@ -115,6 +115,7 @@ void MainWindow::on_deleteScientistButton_clicked()
     {
         ui->statusBar->showMessage("Delete scientist cancelled", 2500);
     }
+
     ui->deleteScientistButton->setEnabled(false);
     ui->updateScientistButton->setEnabled(false);
 }
@@ -171,6 +172,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 {
                     int reply = QMessageBox::question(this, "Inconsistent years", "A person can not die before they are born!\nTry again?",
                                                                       QMessageBox::Yes | QMessageBox::No);
+
                     if (reply == QMessageBox::Yes)
                     {
                         on_updateScientistButton_clicked();
@@ -184,6 +186,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 {
                     int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
                                                       QMessageBox::Yes | QMessageBox::No);
+
                     if (reply == QMessageBox::Yes)
                     {
                         on_updateScientistButton_clicked();
@@ -203,6 +206,7 @@ void MainWindow::on_updateScientistButton_clicked()
                 {
                     int reply = QMessageBox::question(this, "Inconsistent years", "That is too old!\nTry again?",
                                                       QMessageBox::Yes | QMessageBox::No);
+
                     if (reply == QMessageBox::Yes)
                     {
                         on_updateScientistButton_clicked();
@@ -317,6 +321,7 @@ void MainWindow::on_deleteComputerButton_clicked()
     {
         ui->statusBar->showMessage("Delete computer cancelled", 2500);
     }
+
     ui->deleteComputerButton->setEnabled(false);
     ui->updateComputerButton->setEnabled(false);
 }
@@ -434,6 +439,7 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
     Persons s = serve.listScientists()[serve.searchScientistByName(sN)[0]];
     serve.sortComputers(1,1);
     Computer c = serve.listComputers()[serve.searchComputerByName(cN)[0]];
+
     if (valid.validAssociation(s.getBirthYear(), s.getDeathYear(), c.getYearMade()))
     {
         Association a(s, c);
@@ -443,13 +449,14 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
     {
         int reply = QMessageBox::question(this, "Inconsistent years", "Scientist was not alive when computer was made\nTry again?",
                                           QMessageBox::Yes | QMessageBox::No);
+
         if (reply == QMessageBox::Yes)
         {
             on_addAssociationButton_clicked();
         }
         else
         {
-
+            ui->statusBar->showMessage("Add association cancelled", 2500);
         }
     }
 }
@@ -474,11 +481,6 @@ void MainWindow::on_deleteAssociationButton_clicked()
     }
 }
 
-void MainWindow::on_updateAssociationButton_clicked()
-{
-
-}
-
 void MainWindow::on_saveAssocToFileButton_clicked()
 {
     saveAssociationsToFileDialog saveAssociations;
@@ -490,7 +492,6 @@ void MainWindow::on_saveAssocToFileButton_clicked()
         string input = saveAssociations.getInput();
         serve.saveAssociationsToFile(input);
     }
-
 }
 
 void MainWindow::showScientists(vector<Persons> S)

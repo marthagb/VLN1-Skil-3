@@ -159,6 +159,14 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>updateComputerNameLineEdit</tabstop>
+  <tabstop>updateYearMadeEdit</tabstop>
+  <tabstop>updateComputerBuiltComboBox</tabstop>
+  <tabstop>updateComputerTypeComboBox</tabstop>
+  <tabstop>updateComputerButton</tabstop>
+  <tabstop>cancelAddComputerButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

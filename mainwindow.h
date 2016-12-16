@@ -43,8 +43,6 @@ private slots:
 
     void on_deleteAssociationButton_clicked();
 
-    void on_updateAssociationButton_clicked();
-
     void on_saveAssocToFileButton_clicked();
 
 
