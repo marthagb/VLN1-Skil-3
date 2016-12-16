@@ -15,17 +15,21 @@ addScientistDialog::~addScientistDialog()
     delete ui;
 }
 
+//When cancel button is pressed the window closes
 void addScientistDialog::on_cancelAddScientistButton_clicked()
 {
     this->close();
 }
 
+//When add button is pressed then add = true and adds the person
 void addScientistDialog::on_addScientistButton_clicked()
 {
     add = true;
     this->close();
 }
 
+//Takes in name,gender,birthYear and deathYear
+//and puts it in the Persons vector
 Persons addScientistDialog::newScientist()
 {
     string n = ui->nameInput->text().toStdString();
@@ -48,6 +52,9 @@ bool addScientistDialog::getAdd()
     return add;
 }
 
+// When the choose image button is clicked then
+// it takes in the image and shows it back to you
+// And resizes the picture so it fits well.
 void addScientistDialog::on_btn_image_clicked()
 {
     QString filename = QFileDialog::getOpenFileName(this, ("Choose"), "", tr("images(*.png *.jpg *.jpeg *.bmp *.gif)"));
@@ -70,6 +77,7 @@ void addScientistDialog::on_btn_image_clicked()
         }
     }
 }
+
 
 QString addScientistDialog::getFile()
 {
