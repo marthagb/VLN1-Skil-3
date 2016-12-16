@@ -1,5 +1,6 @@
 #include "addscientistdialog.h"
 #include "ui_addscientistdialog.h"
+#include "datalayer.h"
 
 addScientistDialog::addScientistDialog(QWidget *parent) :
     QDialog(parent),
@@ -54,6 +55,7 @@ void addScientistDialog::on_addScientistDialog_rejected()
 
 void addScientistDialog::on_btn_image_clicked()
 {
+    DataLayer dl;
     QString filename = QFileDialog::getOpenFileName(this, ("Choose"), "", tr("images(*.png *.jpg *.jpeg *.bmp *.gif)"));
 
     if(QString::compare(filename, QString()) != 0)
@@ -65,6 +67,9 @@ void addScientistDialog::on_btn_image_clicked()
         {
             image = image.scaledToWidth(ui->lbl_image->width(), Qt::SmoothTransformation);
             ui->lbl_image->setPixmap(QPixmap::fromImage(image));
+            dl.addPicToScientists(filename);
+
+
         }
         else
         {

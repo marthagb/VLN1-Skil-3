@@ -1,5 +1,6 @@
 #include "datalayer.h"
 
+
 DataLayer::DataLayer()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -1352,4 +1353,16 @@ bool DataLayer::saveAssociationsToFile(string input)
     out.close();
 
     return true;
+}
+
+void DataLayer::addPicToScientists(QString filename)
+{
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly))return;
+    QByteArray inByteArray = file.readAll();
+
+    db.open();
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO Scientists (dataBlob) VALUES (':imageData)");
+    query.bindValue(":imageData", inByteArray);
 }

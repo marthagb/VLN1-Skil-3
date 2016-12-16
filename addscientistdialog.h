@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "persons.h"
 #include <QFileDialog>
+#include "datalayer.h"
 
 namespace Ui {
 class addScientistDialog;
