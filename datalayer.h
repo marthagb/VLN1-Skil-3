@@ -42,6 +42,8 @@ public:
    void deleteScientist(string n);
    bool saveScientistsToFile(string input);
    void updateScientist(int variable, string value, string name);
+   void addPicToScientists(QString filename, string name);
+   void showPicOfScientists();
 
    void readComputers(int orderBy, int ascOrDesc);
    vector<int> searchComputerByName(const string n);
@@ -63,7 +65,7 @@ public:
    bool addAssociation(const Association& a);
    void deleteAssociation(string sN, string cN);
    bool saveAssociationsToFile(string input);
-   void addPicToScientists(QString filename, string name);
+
 
 };
 
