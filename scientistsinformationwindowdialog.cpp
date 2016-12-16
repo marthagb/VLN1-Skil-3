@@ -1,6 +1,7 @@
 #include "scientistsinformationwindowdialog.h"
 #include "ui_scientistsinformationwindowdialog.h"
 
+
 ScientistsInformationWindowDialog::ScientistsInformationWindowDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ScientistsInformationWindowDialog)
@@ -13,15 +14,15 @@ ScientistsInformationWindowDialog::~ScientistsInformationWindowDialog()
     delete ui;
 }
 
-void ScientistsInformationWindowDialog::setImage(QByteArray arr)
+void ScientistsInformationWindowDialog::setImage(QPixmap qp)
 {
-    image = arr;
+    image = qp;
 }
 
 void ScientistsInformationWindowDialog::ShowPicture()
 {
-    QPixmap outPixmap;
-    outPixmap.loadFromData(image);
-    ui->loadImageLabel->setPixmap(outPixmap);
+    ui->loadImageLabel->text().clear();
+    ui->loadImageLabel->setPixmap(image);
+    ui->loadImageLabel->setScaledContents(true);
     ui->loadImageLabel->show();
 }

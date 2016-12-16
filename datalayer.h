@@ -43,7 +43,7 @@ public:
     bool saveScientistsToFile(string input);
     void updateScientist(int variable, string value, string name);
     void addPicToScientists(QString filename, string name);
-    QByteArray showPicOfScientists(string name);
+    QPixmap showPicOfScientists(string name);
 
     void readComputers(int orderBy, int ascOrDesc);
     vector<int> searchComputerByName(const string n);

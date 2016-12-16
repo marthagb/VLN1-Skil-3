@@ -16,13 +16,13 @@ public:
     explicit ScientistsInformationWindowDialog(QWidget *parent = 0);
     ~ScientistsInformationWindowDialog();
 
-    void setImage(QByteArray arr);
+    void setImage(QPixmap qp);
+
+    void ShowPicture();
 
 private:
     Ui::ScientistsInformationWindowDialog *ui;
-    QByteArray image;
-
-    void ShowPicture();
+    QPixmap image;
 };
 
 #endif // SCIENTISTSINFORMATIONWINDOWDIALOG_H

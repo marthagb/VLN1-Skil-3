@@ -954,10 +954,11 @@ void MainWindow::on_scientistTable_doubleClicked()
 {
     int r = ui->scientistTable->currentRow();
     string n = ui->scientistTable->item(r, 0)->text().toStdString();
-    QByteArray arr = serve.showPicOfScientists(n);
+    QPixmap qp = serve.showPicOfScientists(n);
     ScientistsInformationWindowDialog sID;
     sID.setModal(true);
-    sID.setImage(arr);
+    sID.setImage(qp);
+    sID.ShowPicture();
     sID.exec();
 
 }
