@@ -23,6 +23,7 @@ public:
 private:
     Ui::ScientistsInformationWindowDialog *ui;
     QPixmap image;
+
 };
 
 #endif // SCIENTISTSINFORMATIONWINDOWDIALOG_H

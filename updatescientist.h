@@ -2,6 +2,7 @@
 #define UPDATESCIENTIST_H
 
 #include <QDialog>
+#include <QFileDialog>
 
 namespace Ui {
 class updatescientist;
@@ -28,16 +29,24 @@ public:
 
     bool getCheckBox();
     bool getUpdate();
+    QString getFile();
+    bool getUpdatePictureButton();
+    void setPic(QPixmap qp);
 
 private slots:
     void on_updateScientistButton_clicked();
 
     void on_cancelUpdateScientistButton_clicked();
 
+    void on_UpdatePictureButton_clicked();
+
 private:
     Ui::updatescientist *ui;
 
     bool update;
+    bool hasImage;
+
+    QString imageName;
 };
 
 #endif // UPDATESCIENTIST_H

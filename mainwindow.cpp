@@ -143,6 +143,7 @@ void MainWindow::on_updateScientistButton_clicked()
     updateScientist.setName(n);
     updateScientist.setGender(g);
     updateScientist.setBirthYear(bY);
+    updateScientist.setPic(serve.showPicOfScientists(n));
 
     if(ui->scientistTable->item(r,3))
     {
@@ -177,6 +178,10 @@ void MainWindow::on_updateScientistButton_clicked()
                 {
                     serve.updateScientist(3, birthYear, name);
                     serve.updateScientist(4, deathYear, name);
+                    if(updateScientist.getUpdatePictureButton())
+                    {
+                        serve.addPicToScientist(updateScientist.getFile(), name);
+                    }
                 }
                 else if (valid.birthChecks(b, d) == 1)
                 {
