@@ -1355,7 +1355,7 @@ bool DataLayer::saveAssociationsToFile(string input)
     return true;
 }
 
-void DataLayer::addPicToScientists(QString filename)
+void DataLayer::addPicToScientists(QString filename, string name)
 {
     QFile file(filename);
     if(!file.open(QIODevice::ReadOnly))return;
@@ -1363,6 +1363,9 @@ void DataLayer::addPicToScientists(QString filename)
 
     db.open();
     QSqlQuery query(db);
-    query.prepare("INSERT INTO Scientists (dataBlob) VALUES (':imageData)");
+    query.prepare("UPDATE Scientists SET dataBlob = :imageData WHERE Name = :Name");
     query.bindValue(":imageData", inByteArray);
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.exec();
+    db.close();
 }

@@ -46,6 +46,10 @@ void MainWindow::on_addScientistButton_clicked()
             if (valid.birthChecks(s.getBirthYear(), s.getDeathYear()) == 0)
             {
                 addNewScientist(s);
+                if (addScientist.getBtnImageClicked())
+                {
+                    serve.addPicToScientist(addScientist.getFile(), s.getName());
+                }
 
                 showScientists(serve.listScientists());
             }

@@ -22,6 +22,10 @@ public:
 
     bool getAdd();
 
+    QString getFile();
+
+    bool getBtnImageClicked();
+
 private slots:
     void on_cancelAddScientistButton_clicked();
 
@@ -33,6 +37,10 @@ private:
     Ui::addScientistDialog *ui;
 
     bool add;
+
+    bool hasImage;
+
+    QString imageName;
 };
 
 #endif // ADDSCIENTISTDIALOG_H

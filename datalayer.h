@@ -9,6 +9,7 @@
 #include "computer.h"
 #include "association.h"
 #include "addscientistdialog.h"
+#include <QtWidgets>
 
 using namespace std;
 
@@ -62,7 +63,7 @@ public:
    bool addAssociation(const Association& a);
    void deleteAssociation(string sN, string cN);
    bool saveAssociationsToFile(string input);
-   void addPicToScientists(QString filename);
+   void addPicToScientists(QString filename, string name);
 
 };
 
