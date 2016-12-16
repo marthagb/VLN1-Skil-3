@@ -695,6 +695,10 @@ void MainWindow::searchScientist()
     else if (ui->searchScientistsByBox->currentText().toStdString() == "Gender")
     {
         char g = ui->searchInputScientists->text().toStdString()[0];
+        if(!isupper(g))
+        {
+            g = toupper(g);
+        }
         v = serve.searchScientistByGender(g);
     }
     else if (ui->searchScientistsByBox->currentText().toStdString() == "Birth Year")
