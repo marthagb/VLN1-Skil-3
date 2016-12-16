@@ -35,6 +35,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// When add button is pressed then a add window is executed
+// in the add window you will add name,gender,YearBorn and if the scientist is alive
+// And you have the option to add a picture and fun facts
+// if you make a mistake then a pop up window will ask you if you want to try again.
 void MainWindow::on_addScientistButton_clicked()
 {
     addScientistDialog addScientist;
@@ -108,6 +112,8 @@ void MainWindow::addNewScientist(const Persons &p)
     serve.addScientist(p);
 }
 
+// When you click on the delete button there will pop up a
+// new window that asks you if you are sure you want to delete.
 void MainWindow::on_deleteScientistButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected scientist?",
@@ -130,6 +136,10 @@ void MainWindow::on_deleteScientistButton_clicked()
     ui->updateScientistButton->setEnabled(false);
 }
 
+// when the update button is clicked there will pop up another window
+// and you can change information about the selected scientist
+// You will then have the option to add a picture and fun facts
+// if you input strange information then you will be asked if you want to try again.
 void MainWindow::on_updateScientistButton_clicked()
 {
     Persons s;
@@ -263,6 +273,9 @@ void MainWindow::on_updateScientistButton_clicked()
     ui->deleteScientistButton->setEnabled(false);
 }
 
+// When the add from file button is clicked you will be asked for
+// the name of the file you want to load from
+// if the file can not be opened then you will get an error message.
 void MainWindow::on_addScientistsFromFileButton_clicked()
 {
     LoadScientistsFromFileDialog loadScientists;
@@ -286,6 +299,8 @@ void MainWindow::on_addScientistsFromFileButton_clicked()
     }
 }
 
+// when the save to file button is pressed you will be asked for a file name
+// it WILL overwrite everything in the file and saves the scientists to the file.
 void MainWindow::on_saveScientistsToFileButton_clicked()
 {
     saveScientistsToFileDialog sC;
@@ -299,6 +314,9 @@ void MainWindow::on_saveScientistsToFileButton_clicked()
     }
 }
 
+// When add button is pressed then a add window is executed
+// in the add window you will add name,YearMade,Type and if it was built
+// if you try to add a computer with invalid input you will be prompted to input again.
 void MainWindow::on_addComputerButton_clicked()
 {
     addComputerDialog addComputer;
@@ -337,6 +355,8 @@ void MainWindow::addNewComputer(const Computer &c)
     serve.addComputer(c);
 }
 
+// When the delete button is pressed you will be asked to confirm
+// that you want to delete this computer.
 void MainWindow::on_deleteComputerButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected computer?",
@@ -359,6 +379,9 @@ void MainWindow::on_deleteComputerButton_clicked()
     ui->updateComputerButton->setEnabled(false);
 }
 
+// when the update button is clicked there will pop up another window
+// and you can change information about the selected computer
+// if input incorrect information you will be asked if you want to try again.
 void MainWindow::on_updateComputerButton_clicked()
 {
     int r = ui->computersTable->currentRow();
@@ -428,6 +451,8 @@ void MainWindow::on_updateComputerButton_clicked()
     ui->deleteComputerButton->setEnabled(false);
 }
 
+// when the save to file in the computer tab is pressed
+// the computers will be saved to file, it WILL overwrite everything in the file.
 void MainWindow::on_saveComputersToFileButton_clicked()
 {
     saveComputersToFileDialog saveComp;
@@ -441,6 +466,9 @@ void MainWindow::on_saveComputersToFileButton_clicked()
     }
 }
 
+// when the add from file button is clicked for computers
+// it will check if it can open the file if not you will get error message
+// otherwise it will read from the file to the database, (you need special format)
 void MainWindow::on_addComputersFromFileButton_clicked()
 {
     LoadComputersFromFile comp;
@@ -464,6 +492,8 @@ void MainWindow::on_addComputersFromFileButton_clicked()
     }
 }
 
+// This will bring up a new window where you can choose
+// which computer and what scientist you want to associate
 void MainWindow::on_addAssociationButton_clicked()
 {
     addAssociationDialog addAssociation;
@@ -480,6 +510,8 @@ void MainWindow::on_addAssociationButton_clicked()
     }
 }
 
+// This will associate the scientists and computers
+// if you enter 'wierd' information you will be prompted to input again
 void MainWindow::addNewAssociation(const string sN, const string cN)
 {
     serve.sortScientists(1,1);
@@ -508,6 +540,9 @@ void MainWindow::addNewAssociation(const string sN, const string cN)
     }
 }
 
+// When the delete button in associations is clicked then
+// you will be asked if you are sure you want to delete the association
+// if yes then it will be deleted else it will not
 void MainWindow::on_deleteAssociationButton_clicked()
 {
     int reply = QMessageBox::question(this, "Confirm delete", "Delete selected association?",
@@ -528,6 +563,8 @@ void MainWindow::on_deleteAssociationButton_clicked()
     }
 }
 
+// This will bring up a new window which asks you to enter the
+// filename and it will save it to that name
 void MainWindow::on_saveAssocToFileButton_clicked()
 {
     saveAssociationsToFileDialog saveAssociations;
@@ -541,6 +578,7 @@ void MainWindow::on_saveAssocToFileButton_clicked()
     }
 }
 
+// Shows the scientists in alphabetical order.
 void MainWindow::showScientists(vector<Persons> S)
 {
     ui->scientistTable->setSortingEnabled(false);
@@ -568,6 +606,7 @@ void MainWindow::showScientists(vector<Persons> S)
     ui->scientistTable->setSortingEnabled(true);
 }
 
+// shows the computers in alphabetical order
 void MainWindow::showComputers(vector<Computer> C)
 {
     ui->computersTable->setSortingEnabled(false);
@@ -596,6 +635,7 @@ void MainWindow::showComputers(vector<Computer> C)
     ui->computersTable->setSortingEnabled(true);
 }
 
+// shows the associations in alphabetical order
 void MainWindow::showAssociations(vector<Association> A)
 {
     ui->associationsTable->setSortingEnabled(false);
@@ -627,6 +667,8 @@ void MainWindow::showAssociations(vector<Association> A)
     ui->associationsTable->setSortingEnabled(true);
 }
 
+// This is connected to the tab order, index 0 is scientists and so on.
+// for search and delete and so on.
 void MainWindow::on_mainOptions_currentChanged(int index)
 {
     if (index == 0)
@@ -677,23 +719,29 @@ void MainWindow::on_actionExit_Program_triggered()
     close();
 }
 
+// This is so you can not update or delete without selecting someone
 void MainWindow::on_scientistTable_clicked()
 {
     ui->updateScientistButton->setEnabled(true);
     ui->deleteScientistButton->setEnabled(true);
 }
 
+// This is so you can not update or delete without selecting a computer
 void MainWindow::on_computersTable_clicked()
 {
     ui->updateComputerButton->setEnabled(true);
     ui->deleteComputerButton->setEnabled(true);
 }
 
+// This is so you can not delete without selecting someone
 void MainWindow::on_associationsTable_clicked()
 {
     ui->deleteAssociationButton->setEnabled(true);
 }
 
+// searches for name/gender/year/yearRange
+// it does not matter if we search for upperCase letters or not
+// and if nothing is searched then it shows the scientists
 void MainWindow::searchScientist()
 {
     serve.sortScientists(1,1);
@@ -744,6 +792,8 @@ void MainWindow::searchScientist()
     }
 }
 
+// searches for name/YearMade/YearRange/Type
+// upperCase letter do not matter
 void MainWindow::searchComputer()
 {
     serve.sortComputers(1,1);
@@ -791,6 +841,8 @@ void MainWindow::searchComputer()
 
 }
 
+// searches for scientist name/computer name/year made/ year range
+// and computer type
 void MainWindow::searchAssociation()
 {
     serve.sortAssociations(0,1);
@@ -842,6 +894,7 @@ void MainWindow::searchAssociation()
     }
 }
 
+// Shows the
 void MainWindow::on_searchScientistsByBox_currentTextChanged(const QString &arg1)
 {
     if (arg1.toStdString() == "Name")
