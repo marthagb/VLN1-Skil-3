@@ -31,6 +31,10 @@ private slots:
 
     void on_addAssociationDialog_rejected();
 
+    void on_scientistList_clicked();
+
+    void on_computersList_clicked();
+
 private:
     Ui::addAssociationDialog *ui;
 
